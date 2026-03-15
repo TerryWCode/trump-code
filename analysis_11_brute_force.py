@@ -12,6 +12,7 @@ from math import comb
 from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
+from utils import est_hour
 
 BASE = Path(__file__).parent
 
@@ -39,10 +40,6 @@ def main():
         daily_posts[p['created_at'][:10]].append(p)
 
     sorted_dates = sorted(daily_posts.keys())
-
-    def est_hour(utc_str):
-        dt = datetime.fromisoformat(utc_str.replace('Z', '+00:00'))
-        return (dt.hour - 5) % 24, dt.minute
 
     def compute_features(date, idx):
         """計算某一天的所有二元特徵"""

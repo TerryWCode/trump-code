@@ -9,6 +9,7 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
+from utils import est_hour
 
 BASE = Path(__file__).parent
 DATA = BASE / "data"
@@ -30,11 +31,10 @@ def main():
     hour_by_month = defaultdict(Counter)
 
     for p in originals:
-        dt = datetime.fromisoformat(p['created_at'].replace('Z', '+00:00'))
-        est_hour = (dt.hour - 5) % 24  # UTC → EST (簡易)
-        hour_dist[est_hour] += 1
+        est_h, _ = est_hour(p['created_at'])
+        hour_dist[est_h] += 1
         month = p['created_at'][:7]
-        hour_by_month[month][est_hour] += 1
+        hour_by_month[month][est_h] += 1
 
     print(f"\n🕐 發文時段分布 (美東時間 EST):")
     print("-" * 60)
@@ -46,15 +46,13 @@ def main():
         print(f"  {h:02d}:00 {period} {count:4d} {bar}")
 
     # 深夜推文 (12am-5am EST)
-    night_posts = [p for p in originals
-                   if (datetime.fromisoformat(p['created_at'].replace('Z', '+00:00')).hour - 5) % 24 < 5]
+    night_posts = [p for p in originals if est_hour(p['created_at'])[0] < 5]
     print(f"\n🌙 深夜推文 (12am-5am EST): {len(night_posts)} 篇 ({len(night_posts)/len(originals)*100:.1f}%)")
     if night_posts:
         print("   最近 5 篇深夜推文:")
         for p in night_posts[:5]:
-            dt = datetime.fromisoformat(p['created_at'].replace('Z', '+00:00'))
-            est_h = (dt.hour - 5) % 24
-            print(f"   {p['created_at'][:16]} (EST {est_h}:{dt.minute:02d}) | {p['content'][:80]}...")
+            est_h, est_m = est_hour(p['created_at'])
+            print(f"   {p['created_at'][:16]} (EST {est_h}:{est_m:02d}) | {p['content'][:80]}...")
 
     # --- 2. 每日發文量 ---
     print(f"\n📅 每日發文量分布:")

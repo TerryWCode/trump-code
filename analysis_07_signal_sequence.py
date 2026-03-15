@@ -16,6 +16,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
+from utils import est_hour, to_eastern
 
 BASE = Path(__file__).parent
 
@@ -77,11 +78,6 @@ def main():
             signals.add('ANNOUNCE')
 
         return signals
-
-    def est_hour(utc_str):
-        """UTC 時間字串 → EST 小時"""
-        dt = datetime.fromisoformat(utc_str.replace('Z', '+00:00'))
-        return (dt.hour - 5) % 24, dt.minute
 
     def market_session(utc_str):
         """判斷發文時間屬於哪個交易時段"""
@@ -274,8 +270,7 @@ def main():
     hourly_posts = defaultdict(list)  # key: (date, hour_est) → [posts]
 
     for p in originals:
-        dt = datetime.fromisoformat(p['created_at'].replace('Z', '+00:00'))
-        est_h = (dt.hour - 5) % 24
+        est_h, _ = est_hour(p['created_at'])
         date = p['created_at'][:10]
         hourly_posts[(date, est_h)].append(p)
 
@@ -323,7 +318,8 @@ def main():
                     silence_min = 999
 
                 if silence_min >= 60:  # 至少沉默 1 小時
-                    burst_time_est = f"{(day_p[burst_start]['_dt'].hour - 5) % 24:02d}:{day_p[burst_start]['_dt'].minute:02d}"
+                    _burst_et = to_eastern(day_p[burst_start]['created_at'])
+                    burst_time_est = f"{_burst_et.hour:02d}:{_burst_et.minute:02d}"
 
                     # 爆發期的信號
                     burst_signals = set()
@@ -333,7 +329,8 @@ def main():
                     # 沉默後的信號
                     resume_signals = set()
                     if burst_end + 1 < len(day_p):
-                        resume_time_est = f"{(day_p[burst_end+1]['_dt'].hour - 5) % 24:02d}:{day_p[burst_end+1]['_dt'].minute:02d}"
+                        _resume_et = to_eastern(day_p[burst_end+1]['created_at'])
+                        resume_time_est = f"{_resume_et.hour:02d}:{_resume_et.minute:02d}"
                         for rp in day_p[burst_end+1:min(burst_end+4, len(day_p))]:
                             resume_signals.update(classify_post(rp['content']))
                     else:

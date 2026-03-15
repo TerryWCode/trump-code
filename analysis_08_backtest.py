@@ -10,6 +10,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
+from utils import est_hour
 
 BASE = Path(__file__).parent
 
@@ -52,10 +53,6 @@ def main():
         if any(w in cl for w in ['immediately', 'effective', 'hereby', 'i have directed', 'executive order', 'just signed']):
             signals.add('ACTION')
         return signals
-
-    def est_hour(utc_str):
-        dt = datetime.fromisoformat(utc_str.replace('Z', '+00:00'))
-        return (dt.hour - 5) % 24, dt.minute
 
     def market_session(utc_str):
         h, m = est_hour(utc_str)

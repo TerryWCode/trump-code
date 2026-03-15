@@ -325,10 +325,13 @@ def main():
     useful = sorted([f for f, c in feat_counts.items() if 5 <= c <= 200])
     print(f"   有效特徵: {len(useful)} 個")
 
-    # 分割
-    cutoff = "2025-12-01"
-    train_dates = [d for d in sorted_dates if d < cutoff and d in log_features]
-    test_dates = [d for d in sorted_dates if d >= cutoff and d in log_features]
+    # 分割：動態計算後 25% 為驗證集
+    _all_valid = [d for d in sorted_dates if d in log_features]
+    n_dates = len(_all_valid)
+    cutoff_idx = int(n_dates * 0.75)
+    cutoff = _all_valid[cutoff_idx] if n_dates > 0 else "2025-12-01"
+    train_dates = _all_valid[:cutoff_idx]
+    test_dates = _all_valid[cutoff_idx:]
 
     # 暴力搜索：預測「前一天的推文特徵」→「今天是大漲/大跌」
     print(f"\n🔨 搜索中...")

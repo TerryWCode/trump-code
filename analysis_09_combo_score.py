@@ -11,6 +11,7 @@ import math
 from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
+from utils import est_hour
 
 BASE = Path(__file__).parent
 
@@ -34,10 +35,6 @@ def main():
         [p for p in posts if p['has_text'] and not p['is_retweet']],
         key=lambda p: p['created_at']
     )
-
-    def est_hour(utc_str):
-        dt = datetime.fromisoformat(utc_str.replace('Z', '+00:00'))
-        return (dt.hour - 5) % 24, dt.minute
 
     def next_td(date_str, market=None):
         if market is None:

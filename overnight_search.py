@@ -17,6 +17,7 @@ from itertools import combinations
 from collections import defaultdict, Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from utils import est_hour
 
 BASE = Path(__file__).parent
 START_TIME = time.time()
@@ -51,11 +52,6 @@ def safe_json_write(filepath: Path, data: dict):
 # ============================================================
 # 工具函數
 # ============================================================
-
-def est_hour(utc_str):
-    dt = datetime.fromisoformat(utc_str.replace('Z', '+00:00'))
-    return (dt.hour - 5) % 24, dt.minute
-
 
 def next_td(date_str, sp_by_date):
     dt = datetime.strptime(date_str, '%Y-%m-%d')
