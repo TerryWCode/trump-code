@@ -19,8 +19,11 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import time
 import urllib.request
 import urllib.error
+from collections import defaultdict
 from datetime import datetime, timezone
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
@@ -28,6 +31,21 @@ from typing import Any
 
 BASE = Path(__file__).parent
 DATA = BASE / "data"
+
+# === 防濫用門檻 ===
+RATE_LIMIT_PER_HOUR = 20      # 每個 IP 每小時最多幾則
+RATE_LIMIT_COOLDOWN = 3       # 每則之間至少幾秒
+MSG_MIN_LENGTH = 5            # 最短幾個字
+MSG_MAX_LENGTH = 800          # 最長幾個字
+INSIGHT_MIN_SCORE = 6         # 洞見品質門檻（0-10，Gemini 評分）
+INSIGHT_MIN_LENGTH = 20       # 洞見最短字數（太短的不收）
+BANNED_PATTERNS = [           # 垃圾訊息關鍵字
+    'http://', 'https://', '.com/', 'click here',
+    'buy now', 'free money', 'airdrop', 'giveaway',
+]
+
+# IP → [(timestamp, ...)] 的訪問紀錄
+_rate_tracker: dict[str, list[float]] = defaultdict(list)
 
 # === Gemini Flash 三把 Key 輪用 ===
 GEMINI_KEYS = [
@@ -41,6 +59,48 @@ GEMINI_MODEL = "gemini-2.5-flash"
 CROWD_INSIGHTS_FILE = DATA / "crowd_insights.json"
 
 PORT = 8888
+
+
+def _check_rate_limit(ip: str) -> str | None:
+    """
+    檢查 IP 是否超過限制。
+    回傳 None = 通過，回傳字串 = 被擋（附原因）。
+    """
+    now = time.time()
+
+    # 清理一小時前的紀錄
+    _rate_tracker[ip] = [t for t in _rate_tracker[ip] if now - t < 3600]
+
+    # 每小時上限
+    if len(_rate_tracker[ip]) >= RATE_LIMIT_PER_HOUR:
+        return f"你問太快了，每小時最多 {RATE_LIMIT_PER_HOUR} 則。休息一下再來！"
+
+    # 冷卻時間
+    if _rate_tracker[ip] and now - _rate_tracker[ip][-1] < RATE_LIMIT_COOLDOWN:
+        return f"慢一點，{RATE_LIMIT_COOLDOWN} 秒後再發。"
+
+    # 通過 → 記錄
+    _rate_tracker[ip].append(now)
+    return None
+
+
+def _check_message(text: str) -> str | None:
+    """
+    檢查訊息品質。
+    回傳 None = 通過，回傳字串 = 被擋。
+    """
+    if len(text) < MSG_MIN_LENGTH:
+        return "訊息太短了，多寫幾個字吧。"
+    if len(text) > MSG_MAX_LENGTH:
+        return f"訊息太長了（最多 {MSG_MAX_LENGTH} 字），精簡一下。"
+    if any(p in text.lower() for p in BANNED_PATTERNS):
+        return "請不要貼連結或廣告。"
+    return None
+
+
+def _anon_id(ip: str) -> str:
+    """把 IP 匿名化成短 hash，不存原始 IP。"""
+    return hashlib.sha256(ip.encode()).hexdigest()[:8]
 
 
 def _next_key() -> str:
@@ -181,12 +241,22 @@ def call_gemini(user_message: str, history: list[dict] | None = None) -> str:
     return f"抱歉，AI 暫時無法回應（{last_error}）。請稍後再試。"
 
 
-def _save_crowd_insight(user_message: str, ai_response: str) -> None:
-    """儲存用戶的交易邏輯洞見，供 Opus 下次分析時參考。"""
-    insights: list[dict] = []
-    if CROWD_INSIGHTS_FILE.exists():
-        with open(CROWD_INSIGHTS_FILE, encoding='utf-8') as f:
-            insights = json.load(f)
+def _save_crowd_insight(user_message: str, ai_response: str, anon_id: str = "") -> None:
+    """
+    儲存用戶的交易邏輯洞見，供 Opus 下次分析時參考。
+
+    品質門檻：
+      - 用戶原文至少 20 字（太短的不是認真的邏輯）
+      - AI 提取的洞見至少 10 字
+      - 不含垃圾關鍵字
+    """
+    # 門檻 1：長度
+    if len(user_message) < INSIGHT_MIN_LENGTH:
+        return  # 太短，不收
+
+    # 門檻 2：垃圾過濾
+    if any(p in user_message.lower() for p in BANNED_PATTERNS):
+        return
 
     # 提取洞見部分
     insight_text = ""
@@ -195,15 +265,26 @@ def _save_crowd_insight(user_message: str, ai_response: str) -> None:
     elif '[用戶洞見]' in ai_response:
         insight_text = ai_response.split('[用戶洞見]')[-1].strip()
 
+    if len(insight_text) < 10:
+        return  # AI 沒有提取出有意義的洞見
+
+    # 通過門檻 → 存檔
+    insights: list[dict] = []
+    if CROWD_INSIGHTS_FILE.exists():
+        with open(CROWD_INSIGHTS_FILE, encoding='utf-8') as f:
+            insights = json.load(f)
+
     insights.append({
         'timestamp': datetime.now(timezone.utc).isoformat(),
-        'user_message': user_message[:500],
-        'ai_extracted_insight': insight_text[:300],
-        'status': 'NEW',  # Opus 處理後改成 REVIEWED
+        'anon_id': anon_id,  # 匿名 hash，不存 IP
+        'user_logic': user_message[:500],
+        'ai_extracted': insight_text[:300],
+        'status': 'NEW',  # Opus 處理後改成 REVIEWED / ADOPTED / REJECTED
+        'votes': 0,       # 未來可讓其他用戶投票
     })
 
-    # 最多保留 200 條
-    insights = insights[-200:]
+    # 最多保留 500 條
+    insights = insights[-500:]
 
     with open(CROWD_INSIGHTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(insights, f, ensure_ascii=False, indent=2)
@@ -429,34 +510,105 @@ function formatResponse(text) {
 # =====================================================================
 
 class ChatHandler(BaseHTTPRequestHandler):
+    def _get_ip(self) -> str:
+        return self.headers.get('X-Forwarded-For', self.client_address[0]).split(',')[0].strip()
+
+    def _json_response(self, code: int, data: dict):
+        self.send_response(code)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
+        self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+
     def do_GET(self):
         if self.path == '/' or self.path == '/index.html':
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.end_headers()
             self.wfile.write(HTML_PAGE.encode('utf-8'))
+
+        elif self.path == '/api/insights':
+            # 公開端點：所有人的洞見（匿名）
+            insights = []
+            if CROWD_INSIGHTS_FILE.exists():
+                with open(CROWD_INSIGHTS_FILE, encoding='utf-8') as f:
+                    insights = json.load(f)
+            # 只回傳已提取的洞見，不回傳原始訊息（保護隱私）
+            public = [
+                {
+                    'id': i,
+                    'time': ins.get('timestamp', '?')[:16],
+                    'insight': ins.get('ai_extracted', ''),
+                    'status': ins.get('status', 'NEW'),
+                    'anon': ins.get('anon_id', '?')[:4] + '****',
+                }
+                for i, ins in enumerate(insights)
+                if ins.get('ai_extracted')
+            ]
+            self._json_response(200, {'insights': public, 'total': len(public)})
+
+        elif self.path == '/api/status':
+            # 公開端點：系統狀態摘要
+            report = {}
+            report_file = DATA / "daily_report.json"
+            if report_file.exists():
+                with open(report_file, encoding='utf-8') as f:
+                    report = json.load(f)
+
+            ai = {}
+            ai_file = DATA / "opus_analysis.json"
+            if ai_file.exists():
+                with open(ai_file, encoding='utf-8') as f:
+                    ai = json.load(f)
+
+            self._json_response(200, {
+                'date': report.get('date', '?'),
+                'posts_today': report.get('posts_today', 0),
+                'signals': report.get('signals_detected', []),
+                'consensus': report.get('direction_summary', {}).get('consensus', '?'),
+                'system_health': ai.get('overall_system_health', '?'),
+                'total_rules': 546,
+                'models': 11,
+            })
+
         else:
             self.send_response(404)
             self.end_headers()
 
     def do_POST(self):
         if self.path == '/api/chat':
+            ip = self._get_ip()
+            anon = _anon_id(ip)
+
+            # 門檻 1：rate limit
+            rate_error = _check_rate_limit(ip)
+            if rate_error:
+                self._json_response(429, {'reply': rate_error, 'blocked': True})
+                return
+
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length))
 
-            user_msg = body.get('message', '')
+            user_msg = body.get('message', '').strip()
             history = body.get('history', [])
+
+            # 門檻 2：訊息品質
+            msg_error = _check_message(user_msg)
+            if msg_error:
+                self._json_response(400, {'reply': msg_error, 'blocked': True})
+                return
 
             reply = call_gemini(user_msg, history)
 
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            self.wfile.write(json.dumps({
+            # 如果有洞見，存的時候帶匿名 ID
+            if '[💡用戶洞見]' in reply or '[用戶洞見]' in reply:
+                _save_crowd_insight(user_msg, reply, anon)
+
+            self._json_response(200, {
                 'reply': reply,
                 'timestamp': datetime.now(timezone.utc).isoformat(),
-            }).encode('utf-8'))
+                'anon_id': anon[:4] + '****',
+            })
         else:
             self.send_response(404)
             self.end_headers()
