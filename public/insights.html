@@ -129,7 +129,7 @@ tr:hover{background:rgba(255,215,0,0.03)}
         <div style="font-size:16px;color:var(--dim)">✅ Survivors 存活</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px" id="highlight-cards">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:16px" id="highlight-cards">
       <div style="background:var(--card);border:1px solid var(--green);border-radius:10px;padding:14px;text-align:center">
         <div style="color:var(--green);font-size:36px;font-weight:800">+1.12%</div>
         <div style="color:var(--dim);font-size:16px;margin-top:4px">盤前 RELIEF → S&P 漲</div>
@@ -154,7 +154,7 @@ tr:hover{background:rgba(255,215,0,0.03)}
 
 <!-- 即時狀態 -->
 <div class="section">
-  <h2>📊 Live Status 即時狀態 ライブ <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400" countdown" data-interval="30">30</span>s</h2>
+  <h2>📊 Live Status 即時狀態 ライブ <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400""><span class="refresh-bar"><span class="fill" style="width:100%" data-interval="30"></span></span></span></h2>
   <div class="status-row" id="status-grid">
     <div class="scard"><div class="l">System 系統 システム</div><div class="v" id="s-health">--</div><div class="l" id="s-health2"></div></div>
     <div class="scard"><div class="l">Posts 推文 投稿</div><div class="v" id="s-posts">--</div><div class="l" id="s-posts2"></div></div>
@@ -264,14 +264,14 @@ tr:hover{background:rgba(255,215,0,0.03)}
 
 <!-- 最近信號 + 結果 -->
 <div class="section" id="signals">
-  <h2>📡 Signals & Results 信號與結果 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400" countdown" data-interval="30">30</span>s</h2>
+  <h2>📡 Signals & Results 信號與結果 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400""><span class="refresh-bar"><span class="fill" style="width:100%" data-interval="30"></span></span></span></h2>
   <p style="color:var(--dim);font-size:16px;margin-bottom:12px">每個信號偵測後，追蹤預測市場和美股的實際反應 Each signal tracked against PM + S&P 500</p>
   <div id="signal-area" style="min-height:60px"><span style="color:var(--dim)">Loading...</span></div>
 </div>
 
 <!-- 模型排行 -->
 <div class="section" id="rankings">
-  <h2>🏆 Model Rankings 模型排行榜 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400" countdown" data-interval="60">60</span>s</h2>
+  <h2>🏆 Model Rankings 模型排行榜 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400""><span class="refresh-bar"><span class="fill" style="width:100%" data-interval="60"></span></span></span></h2>
   <div style="overflow-x:auto" id="model-area"><span style="color:var(--dim)">Loading...</span></div>
 </div>
 
@@ -369,7 +369,7 @@ Trump 發推文 Truth Social
 
   <!-- 即時市場數據 -->
   <div style="margin-bottom:16px">
-    <h3 style="color:var(--gold);font-size:20px;margin-bottom:12px">📊 Live Markets 即時市場 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400" countdown" data-interval="60">60</span>s</h3>
+    <h3 style="color:var(--gold);font-size:20px;margin-bottom:12px">📊 Live Markets 即時市場 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400""><span class="refresh-bar"><span class="fill" style="width:100%" data-interval="60"></span></span></span></h3>
     <div style="overflow-x:auto" id="pm-live-area"><span style="color:var(--dim)">Loading markets...</span></div>
   </div>
 
@@ -383,7 +383,7 @@ Trump 發推文 Truth Social
 
 <!-- 正在進行的運算 -->
 <div class="section">
-  <h2>⚙️ Active Computation 正在運算 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400" countdown" data-interval="60">60</span>s</h2>
+  <h2>⚙️ Active Computation 正在運算 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400""><span class="refresh-bar"><span class="fill" style="width:100%" data-interval="60"></span></span></span></h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
     <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
@@ -418,7 +418,7 @@ Trump 發推文 Truth Social
 
 <!-- 群眾洞見 -->
 <div class="section">
-  <h2>💡 Crowd Insights 群眾洞見 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400" countdown" data-interval="30">30</span>s</h2>
+  <h2>💡 Crowd Insights 群眾洞見 <span class="live-dot"></span><span style="font-size:16px;color:var(--dim);font-weight:400""><span class="refresh-bar"><span class="fill" style="width:100%" data-interval="30"></span></span></span></h2>
   <div id="crowd-area" style="min-height:40px">
     <div style="color:var(--dim);padding:20px;text-align:center;background:var(--card);border-radius:12px">
       No insights yet / 還沒有群眾洞見 / まだインサイトなし<br>
@@ -613,23 +613,8 @@ async function load(){
 }
 
 // Polymarket 即時數據
-async function loadPM(){
-  try{
-    const d = await(await fetch(B+'/api/polymarket')).json();
-    const markets = (d.markets||[]).filter(m=>m.liquidity>500);
-    if(!markets.length){document.getElementById('pm-live-area').innerHTML='<span style="color:var(--dim)">No active markets / 暫無活躍市場</span>';return}
-    let html='<table><thead><tr><th>Market 市場</th><th>YES</th><th>NO</th><th>Liquidity 流動性</th></tr></thead><tbody>';
-    markets.slice(0,12).forEach(m=>{
-      const yes=m.yes_price||0,no=m.no_price||0,liq=m.liquidity||0;
-      const yesColor=yes>0.7?'var(--green)':yes<0.3?'var(--red)':'var(--gold)';
-      html+=`<tr><td style="max-width:300px">${esc(m.question.substring(0,60))}</td>`;
-      html+=`<td style="color:${yesColor};font-weight:700">${(yes*100).toFixed(1)}%</td>`;
-      html+=`<td style="color:var(--dim)">${(no*100).toFixed(1)}%</td>`;
-      html+=`<td style="color:var(--dim)">$${liq.toLocaleString()}</td></tr>`;
-    });
-    html+='</tbody></table>';
-    document.getElementById('pm-live-area').innerHTML=html;
-  }catch(e){document.getElementById('pm-live-area').innerHTML='<span style="color:var(--dim)">Error loading markets</span>'}
+// loadPM removed — merged into loadDashboard
+
 }
 
 // === 新：從 /api/dashboard 一次拉全部 ===
@@ -725,16 +710,14 @@ async function loadDashboard(){
 }
 
 
-// 真實倒數計時器
-let countdowns = {};
-document.querySelectorAll('.countdown').forEach(el => {
-  const interval = parseInt(el.dataset.interval) || 30;
-  const id = Math.random();
-  countdowns[id] = interval;
+// 進度條倒數
+document.querySelectorAll('.refresh-bar .fill').forEach(bar => {
+  const interval = parseInt(bar.dataset.interval) || 30;
+  let remaining = interval;
   setInterval(() => {
-    countdowns[id]--;
-    if (countdowns[id] <= 0) countdowns[id] = interval;
-    el.textContent = countdowns[id];
+    remaining--;
+    if (remaining <= 0) remaining = interval;
+    bar.style.width = (remaining / interval * 100) + '%';
   }, 1000);
 });
 
