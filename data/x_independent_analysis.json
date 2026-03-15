@@ -1,0 +1,682 @@
+{
+  "metadata": {
+    "analysis_date": "2026-03-15",
+    "total_tweets": 168,
+    "originals": 154,
+    "retweets": 14,
+    "date_range": {
+      "start": "2025-01-20",
+      "end": "2026-03-02"
+    }
+  },
+  "timing_analysis": {
+    "hour_distribution_et": {
+      "00:00": 1,
+      "01:00": 0,
+      "02:00": 1,
+      "03:00": 0,
+      "04:00": 1,
+      "05:00": 0,
+      "06:00": 0,
+      "07:00": 7,
+      "08:00": 9,
+      "09:00": 12,
+      "10:00": 8,
+      "11:00": 15,
+      "12:00": 18,
+      "13:00": 11,
+      "14:00": 8,
+      "15:00": 9,
+      "16:00": 3,
+      "17:00": 11,
+      "18:00": 10,
+      "19:00": 4,
+      "20:00": 8,
+      "21:00": 22,
+      "22:00": 8,
+      "23:00": 2
+    },
+    "peak_hours_et": [
+      21,
+      12,
+      11,
+      9,
+      13
+    ],
+    "market_session": {
+      "pre_market_4am_930am": {
+        "count": 17,
+        "pct": 10.1
+      },
+      "market_hours_930am_4pm": {
+        "count": 81,
+        "pct": 48.2
+      },
+      "after_market_4pm_8pm": {
+        "count": 28,
+        "pct": 16.7
+      },
+      "off_hours_8pm_4am": {
+        "count": 42,
+        "pct": 25.0
+      }
+    },
+    "weekday_distribution": {
+      "週一": 38,
+      "週二": 20,
+      "週三": 30,
+      "週四": 17,
+      "週五": 31,
+      "週六": 24,
+      "週日": 8
+    }
+  },
+  "market_impact": {
+    "tweet_days": {
+      "count": 69,
+      "avg_return_pct": 0.1087,
+      "avg_next_day_return_pct": -0.0867,
+      "volatility_pct": 0.9321,
+      "positive_day_ratio_pct": 63.8
+    },
+    "no_tweet_days": {
+      "count": 219,
+      "avg_return_pct": 0.0124,
+      "avg_next_day_return_pct": 0.0716,
+      "volatility_pct": 1.0132,
+      "positive_day_ratio_pct": 49.8
+    },
+    "difference": {
+      "same_day_return_diff": 0.0963,
+      "next_day_return_diff": -0.1584,
+      "volatility_diff": -0.0811
+    },
+    "biggest_move_days": [
+      {
+        "date": "2025-04-04",
+        "return_pct": -4.12,
+        "tweet_count": 1,
+        "sample_text": "These Houthis gathered for instructions on an attack. Oops, "
+      },
+      {
+        "date": "2025-04-07",
+        "return_pct": 2.189,
+        "tweet_count": 2,
+        "sample_text": "Oil prices are down, interest rates are down (the slow movin"
+      },
+      {
+        "date": "2025-02-27",
+        "return_pct": -2.011,
+        "tweet_count": 1,
+        "sample_text": "https://t.co/tJ22x6ldl3"
+      },
+      {
+        "date": "2025-04-03",
+        "return_pct": -1.752,
+        "tweet_count": 1,
+        "sample_text": "https://t.co/ZoSf5TdLqo"
+      },
+      {
+        "date": "2025-03-28",
+        "return_pct": -1.73,
+        "tweet_count": 1,
+        "sample_text": "https://t.co/i1rW9HroWn"
+      },
+      {
+        "date": "2025-02-28",
+        "return_pct": 1.669,
+        "tweet_count": 2,
+        "sample_text": "RT @Scavino47: Behind the scenes at the @WhiteHouse as Presi"
+      },
+      {
+        "date": "2025-04-02",
+        "return_pct": 1.616,
+        "tweet_count": 3,
+        "sample_text": "https://t.co/RPXb6Y9E6y"
+      },
+      {
+        "date": "2025-03-31",
+        "return_pct": 1.518,
+        "tweet_count": 7,
+        "sample_text": "Jimmy Patronis, Chief Financial Officer and Fire Marshall fo"
+      },
+      {
+        "date": "2025-04-16",
+        "return_pct": -1.125,
+        "tweet_count": 1,
+        "sample_text": "https://t.co/Y6OFeGKS4l"
+      },
+      {
+        "date": "2025-05-21",
+        "return_pct": -1.109,
+        "tweet_count": 1,
+        "sample_text": "https://t.co/ZuagVWL4KS"
+      }
+    ]
+  },
+  "content_analysis": {
+    "type_distribution": {
+      "url_only": {
+        "count": 91,
+        "pct": 54.2
+      },
+      "text_content": {
+        "count": 63,
+        "pct": 37.5
+      },
+      "retweets": {
+        "count": 14,
+        "pct": 8.3
+      }
+    },
+    "topic_distribution": {
+      "other": {
+        "count": 28,
+        "pct": 18.2,
+        "sample": ""
+      },
+      "biden/democrats": {
+        "count": 8,
+        "pct": 5.2,
+        "sample": "Thank you President Bukele, of El Salvador, for taking the criminals that were so stupidly allowed, "
+      },
+      "economy/business": {
+        "count": 7,
+        "pct": 4.5,
+        "sample": "Photo of beautiful water flow that I just opened in California. Today, 1.6 billion gallons and, in 3"
+      },
+      "immigration/border": {
+        "count": 7,
+        "pct": 4.5,
+        "sample": "It is so good to have the Venezuela Hostages back home and, very important to note, that Venezuela h"
+      },
+      "endorsement/politics": {
+        "count": 7,
+        "pct": 4.5,
+        "sample": "Number one, it's a great product, as good as it gets—and number two, because @ElonMusk has devoted h"
+      },
+      "maga/rally": {
+        "count": 6,
+        "pct": 3.9,
+        "sample": "MAKE AMERICA GREAT AGAIN! https://t.co/K6FkyX1AZp"
+      },
+      "melania": {
+        "count": 4,
+        "pct": 2.6,
+        "sample": "Happy 20th Anniversary to Melania! https://t.co/VIcXSQb4QO"
+      },
+      "tariff/trade": {
+        "count": 4,
+        "pct": 2.6,
+        "sample": "It is so good to have the Venezuela Hostages back home and, very important to note, that Venezuela h"
+      },
+      "military/houthi/iran": {
+        "count": 3,
+        "pct": 1.9,
+        "sample": "This morning I ordered precision Military air strikes on the Senior ISIS Attack Planner and other te"
+      },
+      "media/npr/npr": {
+        "count": 3,
+        "pct": 1.9,
+        "sample": "In two months, there has been more Private Investment spoken for, and/or committed to, than in four "
+      },
+      "elon/tesla/doge": {
+        "count": 2,
+        "pct": 1.3,
+        "sample": "Number one, it's a great product, as good as it gets—and number two, because @ElonMusk has devoted h"
+      },
+      "oil/energy": {
+        "count": 2,
+        "pct": 1.3,
+        "sample": "Number one, it's a great product, as good as it gets—and number two, because @ElonMusk has devoted h"
+      },
+      "fed/interest_rates": {
+        "count": 2,
+        "pct": 1.3,
+        "sample": "Oil prices are down, interest rates are down (the slow moving Fed should cut rates!), food prices ar"
+      },
+      "deal/diplomacy": {
+        "count": 2,
+        "pct": 1.3,
+        "sample": "Sleepy Joe Biden, THE WORST PRESIDENT IN THE HISTORY OF THE UNITED STATES, has allowed millions and "
+      },
+      "el_salvador/bukele": {
+        "count": 1,
+        "pct": 0.6,
+        "sample": "Thank you President Bukele, of El Salvador, for taking the criminals that were so stupidly allowed, "
+      },
+      "inflation": {
+        "count": 1,
+        "pct": 0.6,
+        "sample": "Oil prices are down, interest rates are down (the slow moving Fed should cut rates!), food prices ar"
+      },
+      "big_beautiful_bill": {
+        "count": 1,
+        "pct": 0.6,
+        "sample": "Republicans MUST UNITE behind, “THE ONE, BIG BEAUTIFUL BILL!” Not only does it cut Taxes for ALL Ame"
+      }
+    },
+    "engagement_by_type": {
+      "url_only": {
+        "avg_impressions": 59654060,
+        "avg_likes": 348426,
+        "avg_retweets": 46201
+      },
+      "text_content": {
+        "avg_impressions": 65953854,
+        "avg_likes": 397042,
+        "avg_retweets": 51720
+      }
+    },
+    "top_10_by_impressions": [
+      {
+        "date": "2025-06-21",
+        "text": "https://t.co/wu9mMkxtUg",
+        "impressions": 264100236,
+        "likes": 1249394,
+        "retweets": 136517
+      },
+      {
+        "date": "2025-02-15",
+        "text": "He who saves his Country does not violate any Law.",
+        "impressions": 244966893,
+        "likes": 716287,
+        "retweets": 101361
+      },
+      {
+        "date": "2025-06-22",
+        "text": "https://t.co/2uweRciDEo",
+        "impressions": 183585083,
+        "likes": 1208232,
+        "retweets": 111209
+      },
+      {
+        "date": "2026-02-28",
+        "text": "https://t.co/BZuJDudLej",
+        "impressions": 173157961,
+        "likes": 1003358,
+        "retweets": 157029
+      },
+      {
+        "date": "2025-02-01",
+        "text": "This morning I ordered precision Military air strikes on the Senior ISIS Attack Planner and other terrorists he recruited and led in Somalia. These killers, who we found hiding in caves, threatened th",
+        "impressions": 167039349,
+        "likes": 743465,
+        "retweets": 95388
+      },
+      {
+        "date": "2025-09-11",
+        "text": "TO MY GREAT FELLOW AMERICANS… https://t.co/oRsrE5TTHr",
+        "impressions": 157808360,
+        "likes": 1301757,
+        "retweets": 189330
+      },
+      {
+        "date": "2025-04-04",
+        "text": "These Houthis gathered for instructions on an attack. Oops, there will be no attack by these Houthis! \n\nThey will never sink our ships again! https://t.co/lEzfyDgWP5",
+        "impressions": 143839920,
+        "likes": 457449,
+        "retweets": 57746
+      },
+      {
+        "date": "2025-05-10",
+        "text": "https://t.co/lRPhZpugBV",
+        "impressions": 136070298,
+        "likes": 989584,
+        "retweets": 118183
+      },
+      {
+        "date": "2025-06-17",
+        "text": "https://t.co/4sy7jjESGk",
+        "impressions": 135173164,
+        "likes": 593896,
+        "retweets": 61413
+      },
+      {
+        "date": "2025-02-19",
+        "text": "https://t.co/PMcrOwXejI",
+        "impressions": 114047865,
+        "likes": 610194,
+        "retweets": 101256
+      }
+    ]
+  },
+  "volume_trend": {
+    "monthly": {
+      "2025-01": 13,
+      "2025-02": 34,
+      "2025-03": 19,
+      "2025-04": 14,
+      "2025-05": 30,
+      "2025-06": 11,
+      "2025-07": 5,
+      "2025-08": 0,
+      "2025-09": 10,
+      "2025-10": 12,
+      "2025-11": 6,
+      "2025-12": 4,
+      "2026-01": 5,
+      "2026-02": 4,
+      "2026-03": 1
+    },
+    "silence_gaps_top10": [
+      {
+        "from_date": "2025-10-15",
+        "to_date": "2025-11-25",
+        "gap_days": 41.9,
+        "resumed_with": "I am asking all America First Patriots in Tennesse"
+      },
+      {
+        "from_date": "2025-07-30",
+        "to_date": "2025-09-04",
+        "gap_days": 36.4,
+        "resumed_with": "https://t.co/IVIHaB3DYr"
+      },
+      {
+        "from_date": "2025-12-25",
+        "to_date": "2026-01-23",
+        "gap_days": 29.7,
+        "resumed_with": "COUNTDOWN: 7 Days until the World will witness an "
+      },
+      {
+        "from_date": "2026-02-03",
+        "to_date": "2026-02-28",
+        "gap_days": 25.2,
+        "resumed_with": "https://t.co/BZuJDudLej"
+      },
+      {
+        "from_date": "2025-12-02",
+        "to_date": "2025-12-23",
+        "gap_days": 21.2,
+        "resumed_with": "THE TRUMP KENNEDY CENTER HONORS will be broadcast "
+      },
+      {
+        "from_date": "2025-09-17",
+        "to_date": "2025-09-30",
+        "gap_days": 12.9,
+        "resumed_with": "https://t.co/JzQYLShOCt"
+      },
+      {
+        "from_date": "2025-07-05",
+        "to_date": "2025-07-17",
+        "gap_days": 12.4,
+        "resumed_with": "https://t.co/iDGcFKBR9r"
+      },
+      {
+        "from_date": "2025-06-02",
+        "to_date": "2025-06-14",
+        "gap_days": 11.9,
+        "resumed_with": "https://t.co/8C5WxKK3nc"
+      },
+      {
+        "from_date": "2025-06-25",
+        "to_date": "2025-07-04",
+        "gap_days": 9.2,
+        "resumed_with": "https://t.co/PTPGtD7bjV"
+      },
+      {
+        "from_date": "2025-10-03",
+        "to_date": "2025-10-12",
+        "gap_days": 9.0,
+        "resumed_with": "I am pleased to announce that the great Dan Scavin"
+      }
+    ],
+    "key_findings": {
+      "peak_month": "2025-02",
+      "peak_month_count": 34,
+      "zero_months": [
+        "2025-08"
+      ],
+      "last_tweet_date": "2026-03-02",
+      "total_active_days": 95
+    }
+  },
+  "x_only_analysis": {
+    "retweets_are_x_only": true,
+    "retweet_count": 14,
+    "retweet_targets": {
+      "Scavino47": 2,
+      "realDonaldTrump": 1,
+      "NicoleShanahan": 1,
+      "america": 1,
+      "mrddmia": 1,
+      "OcrazioCornPop": 1,
+      "johnrich": 1,
+      "nypost": 1,
+      "kaitrump": 1,
+      "MELANIATRUMP": 1,
+      "FoxNews": 1,
+      "THR": 1,
+      "DanScavino": 1
+    },
+    "retweet_details": [
+      {
+        "date": "2025-01-21",
+        "text": "RT @realDonaldTrump: My NEW Official Trump Meme is HERE! It’s time to celebrate everything we stand for: WINNING! Join my very special Trum…",
+        "impressions": 83
+      },
+      {
+        "date": "2025-01-31",
+        "text": "RT @NicoleShanahan: Proud of you, Bobby, for taking the lead—and of every American who has every reason to give up but refuses to stop figh…",
+        "impressions": 85
+      },
+      {
+        "date": "2025-02-28",
+        "text": "RT @Scavino47: Behind the scenes at the @WhiteHouse as President @realDonaldTrump welcomes UK Prime Minister @Keir_Starmer to the West Wing…",
+        "impressions": 262
+      },
+      {
+        "date": "2025-03-07",
+        "text": "RT @america: America is Back. Thank you, @realDonaldTrump! https://t.co/ABazdwMFt8",
+        "impressions": 309
+      },
+      {
+        "date": "2025-03-12",
+        "text": "RT @Scavino47: President Trump, @Elon, and X leave the Oval Office and head over to the South Portico of the @WhiteHouse where Elon helped…",
+        "impressions": 232
+      },
+      {
+        "date": "2025-03-21",
+        "text": "RT @mrddmia: 🚨 Newly Filed Motion To Disqualify Radical Obama Judge Beryl Howell From Trump Case\n\nRead More: https://t.co/CyEILbUhyq https:…",
+        "impressions": 355
+      },
+      {
+        "date": "2025-03-30",
+        "text": "RT @OcrazioCornPop: 🚨 SIGNAL SCANDAL:  Katherine Maher, the leftist NPR CEO, is currently the Chair of the Board of Signal!\n\nWHAT ARE THE O…",
+        "impressions": 500
+      },
+      {
+        "date": "2025-04-23",
+        "text": "RT @johnrich: A conversation about online child predators with Homeland Security and John Rich: PLS Repost! https://t.co/zChy4K5HQU",
+        "impressions": 734
+      },
+      {
+        "date": "2025-05-08",
+        "text": "RT @nypost: Democratic Rep. Jasmine Crockett accused of ‘abusing her power’ at airport after she cut passengers in wheelchairs https://t.co…",
+        "impressions": 1060
+      },
+      {
+        "date": "2025-10-15",
+        "text": "RT @kaitrump: I had an amazing time filming with my Grandpa to kick off my new series called 1 on 1 with Kai. In the video, everyone gets t…",
+        "impressions": 640
+      },
+      {
+        "date": "2026-01-31",
+        "text": "RT @MELANIATRUMP: MELANIA, the film.\n#1 Highest Opening In 10 Yrs (Doc)\nLoved By All - “A” CinemaScore https://t.co/HTVM0Cu2Jv",
+        "impressions": 679
+      },
+      {
+        "date": "2026-02-02",
+        "text": "RT @FoxNews: RECORD BREAKER: “Melania,” a documentary following the first lady in the 20 days before President Trump’s second inauguration,…",
+        "impressions": 510
+      },
+      {
+        "date": "2026-02-02",
+        "text": "RT @THR: Box Office: ‘Melania’ Heads for $8 Million Opening, the Best Showing in a Decade for a Doc https://t.co/2FKjEMRoxW",
+        "impressions": 791
+      },
+      {
+        "date": "2026-02-03",
+        "text": "RT @DanScavino: On behalf of Erin and me, thank you to everyone for the love and support we've received. We both had an unforgettable weddi…",
+        "impressions": 877
+      }
+    ],
+    "second_term_x_only_originals": [
+      {
+        "id": "1892242622623699357",
+        "date": "2025-02-19",
+        "text": "https://t.co/PMcrOwXejI",
+        "likes": 610199
+      },
+      {
+        "id": "1894126415932526802",
+        "date": "2025-02-24",
+        "text": "https://t.co/9pZeARuStB",
+        "likes": 296953
+      },
+      {
+        "id": "1895566669281636846",
+        "date": "2025-02-28",
+        "text": "https://t.co/Ja8HQTFpf7",
+        "likes": 752511
+      },
+      {
+        "id": "1905689237749727368",
+        "date": "2025-03-28",
+        "text": "https://t.co/i1rW9HroWn",
+        "likes": 293383
+      },
+      {
+        "id": "1907782254572470670",
+        "date": "2025-04-03",
+        "text": "https://t.co/ZoSf5TdLqo",
+        "likes": 174210
+      },
+      {
+        "id": "1920519130941170088",
+        "date": "2025-05-08",
+        "text": "https://t.co/0sUAawNN8S",
+        "likes": 95039
+      },
+      {
+        "id": "1921174163848401313",
+        "date": "2025-05-10",
+        "text": "https://t.co/lRPhZpugBV",
+        "likes": 989597
+      },
+      {
+        "id": "1921699954696855934",
+        "date": "2025-05-11",
+        "text": "https://t.co/ifaRjPPHvv",
+        "likes": 347661
+      },
+      {
+        "id": "1921911904429088892",
+        "date": "2025-05-12",
+        "text": "https://t.co/9uLRtPVKpp",
+        "likes": 443985
+      },
+      {
+        "id": "1923793069138178293",
+        "date": "2025-05-17",
+        "text": "🇶🇦🇺🇸 https://t.co/v1NwTQPWLO",
+        "likes": 320652
+      },
+      {
+        "id": "1924523182909747657",
+        "date": "2025-05-19",
+        "text": "https://t.co/q5CPyHZkLD",
+        "likes": 461055
+      },
+      {
+        "id": "1925201677914603580",
+        "date": "2025-05-21",
+        "text": "https://t.co/ZuagVWL4KS",
+        "likes": 546627
+      },
+      {
+        "id": "1928797140408533377",
+        "date": "2025-05-31",
+        "text": "https://t.co/ttc8fsXNVF",
+        "likes": 451449
+      },
+      {
+        "id": "1934008938334228752",
+        "date": "2025-06-14",
+        "text": "https://t.co/8C5WxKK3nc",
+        "likes": 310835
+      },
+      {
+        "id": "1936573183634645387",
+        "date": "2025-06-21",
+        "text": "https://t.co/wu9mMkxtUg",
+        "likes": 1249401
+      },
+      {
+        "id": "1937917613989859810",
+        "date": "2025-06-25",
+        "text": "https://t.co/dQgHNdzAXb",
+        "likes": 476192
+      },
+      {
+        "id": "1941244891578904902",
+        "date": "2025-07-04",
+        "text": "https://t.co/PTPGtD7bjV",
+        "likes": 140186
+      },
+      {
+        "id": "1941341699374186746",
+        "date": "2025-07-05",
+        "text": "HAPPY 4TH OF JULY!\n🎇🎆🇺🇸🦅https://t.co/54aoHX14mj",
+        "likes": 486902
+      },
+      {
+        "id": "1968134929080082432",
+        "date": "2025-09-17",
+        "text": "https://t.co/gZgTprtUvt",
+        "likes": 317106
+      },
+      {
+        "id": "1972822596397003159",
+        "date": "2025-09-30",
+        "text": "https://t.co/JzQYLShOCt",
+        "likes": 458913
+      },
+      {
+        "id": "1973218518893207825",
+        "date": "2025-10-01",
+        "text": "https://t.co/2yyuRkm9r8",
+        "likes": 272535
+      },
+      {
+        "id": "2027651077865157033",
+        "date": "2026-02-28",
+        "text": "https://t.co/BZuJDudLej",
+        "likes": 1003338
+      },
+      {
+        "id": "2028505632123326484",
+        "date": "2026-03-02",
+        "text": "https://t.co/uAxTGrJisv",
+        "likes": 584236
+      }
+    ],
+    "common_traits": {
+      "mostly_url_video": true,
+      "high_engagement": true,
+      "x_native_format": "影片/圖片直接上傳 X，無法一鍵搬到 Truth Social",
+      "crypto_promotion": "$TRUMP meme coin 推廣需要 X 的加密貨幣社群"
+    },
+    "note": "轉推（RT）在 Truth Social 不存在，因此所有 14 篇 RT 都是 X 獨有。原創推文中也有多篇（主要是影片/URL）只在 X 發布。"
+  },
+  "overall_engagement": {
+    "total_impressions": 9583619377,
+    "total_likes": 56720363,
+    "total_retweets": 7679780,
+    "total_replies": 5211199,
+    "total_quotes": 786070,
+    "total_bookmarks": 2103662,
+    "avg_impressions_per_tweet": 57045353,
+    "avg_likes_per_tweet": 337621
+  }
+}
