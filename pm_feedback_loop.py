@@ -337,6 +337,10 @@ def run_pm_feedback() -> dict[str, Any]:
     if tracking_result.get('total_verified', 0) > 0:
         feedback = generate_feedback()
 
+    # 4. 自動調整信號信心度（根據 PM 驗證結果）
+    if feedback and feedback.get('signal_effectiveness'):
+        auto_adjust_confidence(feedback)
+
     log("=" * 50)
     log("✅ 回饋迴路完成")
     log("=" * 50)
@@ -346,6 +350,55 @@ def run_pm_feedback() -> dict[str, Any]:
         'tracking': tracking_result,
         'feedback': feedback,
     }
+
+
+def auto_adjust_confidence(feedback: dict[str, Any]) -> None:
+    """
+    根據預測市場的驗證結果，自動微調信號信心度。
+
+    規則：
+      - PM 命中率 > 60% 的信號 → 信心度 +0.03（小步上調）
+      - PM 命中率 < 40% 的信號 → 信心度 -0.03
+      - 中間的不動
+      - 至少 3 筆驗證才調（避免噪音）
+      - 調幅小（每天最多 ±0.03），保守避免過度反應
+    """
+    sc_file = DATA / "signal_confidence.json"
+    if not sc_file.exists():
+        return
+
+    with open(sc_file, encoding='utf-8') as f:
+        conf = json.load(f)
+
+    effectiveness = feedback.get('signal_effectiveness', {})
+    adjusted = False
+
+    for sig, stats in effectiveness.items():
+        if sig not in conf:
+            continue
+        if stats.get('total_trades', 0) < 3:
+            continue  # 樣本太少
+
+        hit_rate = stats.get('hit_rate', 50)
+        old_val = conf[sig]
+
+        if hit_rate > 60:
+            new_val = min(0.95, old_val + 0.03)
+        elif hit_rate < 40:
+            new_val = max(0.20, old_val - 0.03)
+        else:
+            continue
+
+        if abs(new_val - old_val) > 0.001:
+            conf[sig] = round(new_val, 3)
+            arrow = "⬆️" if new_val > old_val else "⬇️"
+            log(f"   {arrow} [PM回饋] {sig}: {old_val:.2f} → {new_val:.2f} "
+                f"（PM命中率 {hit_rate:.0f}%）")
+            adjusted = True
+
+    if adjusted:
+        with open(sc_file, 'w', encoding='utf-8') as f:
+            json.dump(conf, f, ensure_ascii=False, indent=2)
 
 
 if __name__ == '__main__':
