@@ -1,6 +1,6 @@
 {
   "date": "2026-03-15",
-  "generated_at": "2026-03-15T03:22:24Z",
+  "generated_at": "2026-03-15T04:33:22Z",
   "posts_today": 11,
   "latest_post": {
     "time": "2026-03-14T19:25",
@@ -28,9 +28,9 @@
     "close": 6632.19
   },
   "summary": {
-    "en": "Trump Code Daily Report — 2026-03-15\nPosts today: 11 | Models triggered: 0\nSignals: DEAL, CHINA, IRAN, DEAL_ONLY\nConsensus: 0 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: McLaughlin: Strong Majority Backs Trump in Stopping Iran's Nuclear Ambitions: https://www.newsmax.co",
-    "zh": "川普密碼每日報告 — 2026-03-15\n今日推文: 11 篇 | 觸發模型: 0 組\n偵測信號: Deal, 中國, 伊朗, 只有Deal沒有關稅✅\n共識方向: 0 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: McLaughlin: Strong Majority Backs Trump in Stopping Iran's Nuclear Ambitions: https://www.newsmax.co",
-    "ja": "トランプ・コード日次レポート — 2026-03-15\n本日の投稿: 11件 | トリガーモデル: 0組\n検出シグナル: ディール, 中国, イラン, Dealのみ（関税無し）✅\nコンセンサス: 0組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: McLaughlin: Strong Majority Backs Trump in Stopping Iran's Nuclear Ambitions: https://www.newsmax.co"
+    "en": "Trump Code Daily Report -- 2026-03-15\nPosts today: 11 | Models triggered: 0\nSignals: DEAL, CHINA, IRAN, DEAL_ONLY\nConsensus: 0 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: McLaughlin: Strong Majority Backs Trump in Stopping Iran's Nuclear Ambitions: https://www.newsmax.co",
+    "zh": "川普密碼每日報告 -- 2026-03-15\n今日推文: 11 篇 | 觸發模型: 0 組\n偵測信號: Deal, 中國, 伊朗, 只有Deal沒有關稅\n共識方向: 0 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: McLaughlin: Strong Majority Backs Trump in Stopping Iran's Nuclear Ambitions: https://www.newsmax.co",
+    "ja": "トランプ・コード日次レポート -- 2026-03-15\n本日の投稿: 11件 | トリガーモデル: 0組\n検出シグナル: ディール, 中国, イラン, Dealのみ（関税無し）\nコンセンサス: 0組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: McLaughlin: Strong Majority Backs Trump in Stopping Iran's Nuclear Ambitions: https://www.newsmax.co"
   },
   "triggered_rules_sample": []
 }
