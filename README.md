@@ -393,6 +393,57 @@ Every day we publish predictions in `data/daily_report.json`. You can:
 
 ---
 
+## 🔌 API & CLI
+
+### Quick Start
+
+```bash
+git clone https://github.com/sstklen/trump-code.git
+cd trump-code
+pip install -r requirements.txt
+```
+
+### CLI Commands
+
+```bash
+python3 trump_code_cli.py signals    # Today's signals
+python3 trump_code_cli.py models     # Model leaderboard
+python3 trump_code_cli.py predict    # LONG or SHORT consensus
+python3 trump_code_cli.py arbitrage  # Prediction market opportunities
+python3 trump_code_cli.py health     # System health status
+python3 trump_code_cli.py report     # Full daily report
+python3 trump_code_cli.py json       # All data as JSON (for integration)
+```
+
+### JSON API (for developers)
+
+```python
+import json, subprocess
+data = json.loads(subprocess.check_output(["python3", "trump_code_cli.py", "json"]))
+print(data['signals'])      # Today's detected signals
+print(data['models'])       # Model performance rankings
+print(data['arbitrage'])    # Prediction market arbitrage opportunities
+```
+
+### Chatbot
+
+```bash
+python3 chatbot_server.py
+# Open http://localhost:8888
+```
+
+Share your trading logic — the best ideas get absorbed into the system! 💡
+
+### Prediction Markets Connected
+
+| Platform | Status | What it does |
+|---|---|---|
+| **Polymarket** ($56B volume) | ✅ Live | Real-time prices, signal-based arbitrage |
+| **Kalshi** ($44B volume) | ✅ Live | Cross-platform spread detection |
+| **Truth Predict** | ⏳ Pending | Waiting for API launch |
+
+---
+
 ## ⚠️ Disclaimer | 免責聲明 | 免責事項
 
 > **FOR RESEARCH AND EDUCATIONAL PURPOSES ONLY.**

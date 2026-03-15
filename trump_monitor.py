@@ -140,8 +140,8 @@ class PredictionEngine:
 
             # --- C 組：行為異常模型 ---
             'C1_burst_silence': {
-                'name': '轟炸→長沉默→做多',
-                'desc': '1 小時 ≥5 篇後沉默 ≥3 小時 → 波動率上升',
+                'name': '正面轟炸→沉默→做多',
+                'desc': '1 小時 ≥5 篇後沉默 ≥3 小時，且 burst 期間正面情緒 > 負面 → 做多',
                 'direction': 'LONG',
                 'hold': 1,
                 'trigger': self._trigger_c1,
@@ -246,8 +246,19 @@ class PredictionEngine:
                 day_summary.get('positive', 0) >= 2)
 
     def _trigger_c1(self, day_summary):
-        """轟炸後沉默"""
-        return day_summary.get('burst_then_silence', False)
+        """轟炸後沉默（含情緒過濾）
+        2026-03-15 修正：burst 期間若負面情緒（attack/threat/tariff）多於
+        正面情緒（positive/deal/relief/market_brag），代表沉默是在消化壞消息，
+        不應做多。只有正面 > 負面時才觸發。
+        """
+        if not day_summary.get('burst_then_silence', False):
+            return False
+        # 情緒過濾：負面轟炸後的沉默 ≠ 利多
+        attack_count = day_summary.get('burst_attack_count', 0)
+        positive_count = day_summary.get('burst_positive_count', 0)
+        if attack_count > positive_count:
+            return False
+        return True
 
     def _trigger_c2(self, day_summary):
         """炫耀股市 ≥3"""
@@ -386,11 +397,28 @@ def summarize_day(day_posts):
             intervals.append(gap)
 
     # 偵測轟炸→沉默
+    # 2026-03-15 修正：同時記錄 burst 期間的正負面情緒計數，供 C1 過濾用
     if intervals:
         burst_count = sum(1 for g in intervals if g < 5)
         silence = max(intervals) if intervals else 0
         if burst_count >= 3 and silence >= 180:
             summary['burst_then_silence'] = True
+            # 統計 burst 期間（間隔 < 5 分鐘的連續推文）的正面/負面信號
+            burst_attack = 0
+            burst_positive = 0
+            for idx_iv, gap in enumerate(intervals):
+                if gap < 5:
+                    # intervals[i] 對應 day_posts[i] 與 day_posts[i+1] 之間的間隔
+                    # 把這兩篇都算進 burst
+                    for pidx in (idx_iv, idx_iv + 1):
+                        if pidx < len(day_posts):
+                            sigs = classify_signals(day_posts[pidx]['content'])
+                            if 'ATTACK' in sigs or 'THREAT' in sigs or 'TARIFF' in sigs:
+                                burst_attack += 1
+                            if 'POSITIVE' in sigs or 'DEAL' in sigs or 'RELIEF' in sigs or 'MARKET_BRAG' in sigs:
+                                burst_positive += 1
+            summary['burst_attack_count'] = burst_attack
+            summary['burst_positive_count'] = burst_positive
 
     # 簽名偵測
     for p in day_posts:
