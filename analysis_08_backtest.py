@@ -91,6 +91,10 @@ daily_signals = defaultdict(lambda: {
     'action': 0, 'china': 0, 'posts': 0,
     'pre_tariff': 0, 'pre_deal': 0, 'pre_relief': 0,
     'open_tariff': 0, 'open_deal': 0,
+    # pre_close_* = 盤前 + 盤中（截至 16:00），排除盤後/夜間推文
+    # 用於修正前視偏差：信號只用投資人盤前可見的資訊
+    'pre_close_tariff': 0, 'pre_close_deal': 0, 'pre_close_relief': 0,
+    'pre_close_market_brag': 0, 'pre_close_action': 0,
 })
 
 for p in originals:
@@ -104,8 +108,11 @@ for p in originals:
         d[sig.lower()] = d.get(sig.lower(), 0) + 1
         if session == 'PRE_MARKET':
             d[f'pre_{sig.lower()}'] = d.get(f'pre_{sig.lower()}', 0) + 1
+            d[f'pre_close_{sig.lower()}'] = d.get(f'pre_close_{sig.lower()}', 0) + 1
         elif session == 'MARKET_OPEN':
             d[f'open_{sig.lower()}'] = d.get(f'open_{sig.lower()}', 0) + 1
+            d[f'pre_close_{sig.lower()}'] = d.get(f'pre_close_{sig.lower()}', 0) + 1
+        # AFTER_HOURS / OVERNIGHT 不計入 pre_close_*
 
 
 print("=" * 90)
@@ -115,12 +122,14 @@ print("=" * 90)
 # === Buy & Hold 基準 ===
 first_day = sp500[0]
 last_day = sp500[-1]
-bh_return = (last_day['close'] - first_day['close']) / first_day['close'] * 100
+bh_return = (last_day['close'] - first_day['open']) / first_day['open'] * 100
 print(f"\n📈 基準: Buy & Hold S&P500")
 print(f"   期間: {first_day['date']} ~ {last_day['date']}")
-print(f"   起點: {first_day['close']:,.2f} → 終點: {last_day['close']:,.2f}")
+print(f"   起點(open): {first_day['open']:,.2f} → 終點(close): {last_day['close']:,.2f}")
 print(f"   報酬率: {bh_return:+.2f}%")
 print(f"   交易日: {len(sp500)} 天")
+print(f"\n   ⚠️  前視偏差修正: 信號觸發只用盤前(PRE_MARKET)+盤中(MARKET_OPEN)推文")
+print(f"      盤後(AFTER_HOURS)/夜間(OVERNIGHT)推文不計入信號，排除前視偏差")
 
 
 # === 回測框架 ===
@@ -164,9 +173,13 @@ def run_rule(rule_name, trigger_fn, direction, hold_days_target, market=sp_by_da
             td = date
 
         # 檢查觸發條件
+        # today_pre_close: 只含盤前+盤中信號，排除盤後推文（修正前視偏差）
+        sig = daily_signals[date]
+        pre_close_view = {k.replace('pre_close_', ''): v for k, v in sig.items() if k.startswith('pre_close_')}
         context = {
             'date': date,
             'today': daily_signals[date],
+            'today_pre_close': pre_close_view,  # 無前視偏差版本
             'prev_3': [daily_signals[sorted_dates[j]] for j in range(max(0,i-3), i)],
             'prev_7': [daily_signals[sorted_dates[j]] for j in range(max(0,i-7), i)],
         }
@@ -273,7 +286,8 @@ def print_rule_results(rule_name, trades, description):
 # 規則 1: 盤前暫緩信號 → 開盤買入，持有 1 天
 # ============================================================
 def rule1_trigger(ctx):
-    return ctx['today'].get('pre_relief', 0) >= 1
+    # 使用 pre_close 版本（只含盤前+盤中），避免前視偏差
+    return ctx['today'].get('pre_relief', 0) >= 1  # pre_relief 本身已是盤前信號
 
 trades_r1 = run_rule('R1', rule1_trigger, 'LONG', 1)
 r1 = print_rule_results(
@@ -305,7 +319,8 @@ def rule3_trigger(ctx):
     if len(prev) < 3:
         return False
     tariff_streak = all(d['tariff'] >= 1 for d in prev)
-    deal_today = ctx['today']['deal'] >= 1
+    # 只用盤前+盤中的 deal 信號（避免前視偏差）
+    deal_today = ctx['today_pre_close'].get('deal', 0) >= 1
     return tariff_streak and deal_today
 
 trades_r3 = run_rule('R3', rule3_trigger, 'LONG', 2)
@@ -320,8 +335,9 @@ r3 = print_rule_results(
 # 規則 4: 三信號齊發 (TARIFF+DEAL+RELIEF同天) → 買入3天
 # ============================================================
 def rule4_trigger(ctx):
-    t = ctx['today']
-    return t['tariff'] >= 1 and t['deal'] >= 1 and t['relief'] >= 1
+    # 使用盤前+盤中信號，避免前視偏差
+    t = ctx['today_pre_close']
+    return t.get('tariff', 0) >= 1 and t.get('deal', 0) >= 1 and t.get('relief', 0) >= 1
 
 trades_r4 = run_rule('R4', rule4_trigger, 'LONG', 3)
 r4 = print_rule_results(
@@ -335,7 +351,8 @@ r4 = print_rule_results(
 # 規則 5: 他主動炫耀股市 → 賣出信號（做空1天）
 # ============================================================
 def rule5_trigger(ctx):
-    return ctx['today']['market_brag'] >= 2  # 一天炫耀股市 ≥2 次
+    # 使用盤前+盤中信號，避免前視偏差
+    return ctx['today_pre_close'].get('market_brag', 0) >= 2  # 一天炫耀股市 ≥2 次
 
 trades_r5 = run_rule('R5', rule5_trigger, 'SHORT', 1)
 r5 = print_rule_results(
@@ -349,8 +366,10 @@ r5 = print_rule_results(
 # 加碼規則：高發文量日 (≥30篇) + TARIFF → 買入2天
 # ============================================================
 def rule6_trigger(ctx):
+    # posts 用全天，tariff 用盤前+盤中（避免前視偏差）
     t = ctx['today']
-    return t['posts'] >= 30 and t['tariff'] >= 3
+    t_pc = ctx['today_pre_close']
+    return t['posts'] >= 30 and t_pc.get('tariff', 0) >= 3
 
 trades_r6 = run_rule('R6', rule6_trigger, 'LONG', 2)
 r6 = print_rule_results(

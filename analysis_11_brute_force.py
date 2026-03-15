@@ -8,6 +8,7 @@
 import json
 import re
 from itertools import combinations
+from math import comb
 from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -70,23 +71,35 @@ def compute_features(date, idx):
         is_open = not is_pre and h < 16
         is_night = h < 5 or h >= 23
 
-        if any(w in cl for w in ['tariff', 'tariffs', 'duty']): tariff += 1
-        if any(w in cl for w in ['deal', 'agreement', 'signed', 'negotiate']): deal += 1
-        if any(w in cl for w in ['pause', 'exempt', 'suspend', 'delay']): relief += 1
-        if any(w in cl for w in ['immediately', 'hereby', 'executive order', 'just signed']): action += 1
-        if any(w in cl for w in ['fake news', 'corrupt', 'fraud', 'witch hunt']): attack += 1
-        if any(w in cl for w in ['great', 'tremendous', 'incredible', 'historic', 'beautiful']): positive += 1
-        if any(w in cl for w in ['stock market', 'all time high', 'record high', 'dow']): market_brag += 1
-        if any(w in cl for w in ['china', 'chinese', 'beijing']): china += 1
-        if any(w in cl for w in ['iran', 'iranian']): iran += 1
-        if any(w in cl for w in ['russia', 'putin', 'ukraine']): russia += 1
+        this_tariff = any(w in cl for w in ['tariff', 'tariffs', 'duty'])
+        this_deal = any(w in cl for w in ['deal', 'agreement', 'signed', 'negotiate'])
+        this_relief = any(w in cl for w in ['pause', 'exempt', 'suspend', 'delay'])
+        this_action = any(w in cl for w in ['immediately', 'hereby', 'executive order', 'just signed'])
+        this_attack = any(w in cl for w in ['fake news', 'corrupt', 'fraud', 'witch hunt'])
+        this_positive = any(w in cl for w in ['great', 'tremendous', 'incredible', 'historic', 'beautiful'])
+        this_brag = any(w in cl for w in ['stock market', 'all time high', 'record high', 'dow'])
+        this_china = any(w in cl for w in ['china', 'chinese', 'beijing'])
+        this_iran = any(w in cl for w in ['iran', 'iranian'])
+        this_russia = any(w in cl for w in ['russia', 'putin', 'ukraine'])
 
-        if is_pre and tariff: pre_tariff += 1
-        if is_pre and deal: pre_deal += 1
-        if is_pre and relief: pre_relief += 1
-        if is_pre and action: pre_action += 1
-        if is_open and tariff: open_tariff += 1
-        if is_open and deal: open_deal += 1
+        if this_tariff: tariff += 1
+        if this_deal: deal += 1
+        if this_relief: relief += 1
+        if this_action: action += 1
+        if this_attack: attack += 1
+        if this_positive: positive += 1
+        if this_brag: market_brag += 1
+        if this_china: china += 1
+        if this_iran: iran += 1
+        if this_russia: russia += 1
+
+        # 修正 pre_tariff bug: 用當前貼文的 this_* 判斷，不用累計值
+        if is_pre and this_tariff: pre_tariff += 1
+        if is_pre and this_deal: pre_deal += 1
+        if is_pre and this_relief: pre_relief += 1
+        if is_pre and this_action: pre_action += 1
+        if is_open and this_tariff: open_tariff += 1
+        if is_open and this_deal: open_deal += 1
         if is_night: night_post += 1
 
         if 'President DJT' in c: sig_djt += 1
@@ -181,10 +194,17 @@ print(f"   特徵數: {len(feature_names)} 個")
 print(f"   天數: {len(all_features)} 天")
 
 # === 分割：訓練 vs 驗證 ===
-# 前 10 個月 = 訓練，最後 3 個月 = 驗證
-cutoff = "2025-12-01"
-train_dates = [d for d in sorted_dates if d < cutoff and d in all_features and d in sp_by_date]
-test_dates = [d for d in sorted_dates if d >= cutoff and d in all_features and d in sp_by_date]
+# 動態計算：後 25% 做驗證，確保資料更新後比例不失衡
+_all_valid_dates = [d for d in sorted_dates if d in all_features and d in sp_by_date]
+_n_dates = len(_all_valid_dates)
+_cutoff_idx = int(_n_dates * 0.75)
+cutoff = _all_valid_dates[_cutoff_idx] if _n_dates > 0 else "2025-12-01"
+
+train_dates = _all_valid_dates[:_cutoff_idx]
+test_dates = _all_valid_dates[_cutoff_idx:]
+
+if len(test_dates) < 10:
+    print("⚠️ 驗證集不足 10 天，結果不可靠")
 
 print(f"   訓練期: {train_dates[0]} ~ {train_dates[-1]} ({len(train_dates)} 天)")
 print(f"   驗證期: {test_dates[0]} ~ {test_dates[-1]} ({len(test_dates)} 天)")
@@ -199,9 +219,9 @@ direction_options = ['LONG', 'SHORT']
 
 # 計算組合數
 n_features = len(feature_names)
-n2 = len(list(combinations(range(n_features), 2)))
-n3 = len(list(combinations(range(n_features), 3)))
-n4 = len(list(combinations(range(n_features), 4)))
+n2 = comb(n_features, 2)
+n3 = comb(n_features, 3)
+n4 = comb(n_features, 4)
 total_combos = (n2 + n3 + n4) * len(hold_options) * len(direction_options)
 print(f"   2 條件: {n2} 組")
 print(f"   3 條件: {n3} 組")
@@ -266,6 +286,19 @@ def backtest_combo(feature_combo, direction, hold, dates):
     }
 
 
+def binomial_pvalue(wins: int, total: int, p0: float = 0.5) -> float:
+    """
+    二項檢定 p-value（單尾）
+    H0: 勝率 = p0（隨機）
+    H1: 勝率 > p0
+    """
+    pval = sum(
+        comb(total, k) * (p0 ** k) * ((1 - p0) ** (total - k))
+        for k in range(wins, total + 1)
+    )
+    return pval
+
+
 # === 跑所有組合 ===
 winners_train = []  # 訓練期勝率 > 60% 的
 total_tested = 0
@@ -286,14 +319,17 @@ for n_conditions in [2, 3, 4]:
 
                 # 訓練期回測
                 result = backtest_combo(feature_combo, direction, hold, train_dates)
-                if result and result['win_rate'] >= 60 and result['avg_return'] > 0.1:
-                    winners_train.append({
-                        'features': feature_combo,
-                        'direction': direction,
-                        'hold': hold,
-                        'n_conditions': n_conditions,
-                        'train': result,
-                    })
+                if result and result['trades'] >= 10 and result['win_rate'] >= 60 and result['avg_return'] > 0.1:
+                    pval = binomial_pvalue(result['wins'], result['trades'])
+                    if pval < 0.05:  # 個別 p < 0.05
+                        result['p_value'] = round(pval, 6)
+                        winners_train.append({
+                            'features': feature_combo,
+                            'direction': direction,
+                            'hold': hold,
+                            'n_conditions': n_conditions,
+                            'train': result,
+                        })
 
 print(f"\n✅ 全部跑完！")
 print(f"   總組合: {total_tested:,}")
@@ -305,11 +341,16 @@ print(f"🧪 驗證期檢驗 — 只有兩段都對的才是真密碼")
 print(f"{'='*90}")
 
 final_winners = []
+bonferroni_alpha = 0.05 / max(total_combos, 1)  # Bonferroni 校正後的顯著性門檻
 
 for w in winners_train:
     test_result = backtest_combo(w['features'], w['direction'], w['hold'], test_dates)
-    if test_result and test_result['win_rate'] >= 55 and test_result['avg_return'] > 0:
+    if test_result and test_result['trades'] >= 5 and test_result['win_rate'] >= 60 and test_result['avg_return'] > 0.1:
+        test_pval = binomial_pvalue(test_result['wins'], test_result['trades'])
+        test_result['p_value'] = round(test_pval, 6)
         w['test'] = test_result
+        w['test_p_value'] = round(test_pval, 6)
+        w['bonferroni_significant'] = (w['train'].get('p_value', 1) < bonferroni_alpha)
         w['combined_win_rate'] = (w['train']['win_rate'] + test_result['win_rate']) / 2
         w['combined_avg_return'] = (w['train']['avg_return'] + test_result['avg_return']) / 2
         final_winners.append(w)
@@ -365,10 +406,14 @@ for fname, count in sorted(feature_freq.items(), key=lambda x: -x[1])[:20]:
     print(f"  {fname:25s} | {count:4d}次 ({pct:5.1f}%) {bar}")
 
 # 存結果
+bonferroni_count = sum(1 for w in final_winners if w.get('bonferroni_significant'))
 output = {
     'total_tested': total_tested,
     'train_passed': len(winners_train),
     'final_passed': len(final_winners),
+    'bonferroni_alpha': bonferroni_alpha,
+    'bonferroni_significant_count': bonferroni_count,
+    'cutoff_date': cutoff,
     'top_30': [{
         'rank': i+1,
         'features': w['features'],
@@ -378,6 +423,9 @@ output = {
         'test_win_rate': round(w['test']['win_rate'], 1),
         'train_avg_return': round(w['train']['avg_return'], 3),
         'test_avg_return': round(w['test']['avg_return'], 3),
+        'p_value': w['train'].get('p_value'),
+        'test_p_value': w.get('test_p_value'),
+        'bonferroni_significant': w.get('bonferroni_significant', False),
     } for i, w in enumerate(final_winners[:30])],
     'feature_frequency': dict(sorted(feature_freq.items(), key=lambda x: -x[1])[:20]),
 }

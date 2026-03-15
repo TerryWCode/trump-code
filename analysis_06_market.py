@@ -66,7 +66,26 @@ def get_prev_trading_day(date_str, market_data):
     return None
 
 def day_return(date_str, market_data):
-    """計算當天漲跌幅 %"""
+    """計算日報酬率 % (close-to-close)"""
+    if date_str not in market_data:
+        return None
+    # 找前一個交易日
+    sorted_dates = sorted(market_data.keys())
+    try:
+        idx = sorted_dates.index(date_str)
+    except ValueError:
+        return None
+    if idx == 0:
+        # 第一天沒有前一天，fallback 到 open-to-close
+        d = market_data[date_str]
+        return (d['close'] - d['open']) / d['open'] * 100
+    prev_date = sorted_dates[idx - 1]
+    prev_close = market_data[prev_date]['close']
+    today_close = market_data[date_str]['close']
+    return (today_close - prev_close) / prev_close * 100
+
+def intraday_return(date_str, market_data):
+    """計算盤中報酬率 % (open-to-close)"""
     if date_str not in market_data:
         return None
     d = market_data[date_str]
@@ -99,6 +118,28 @@ daily_features = defaultdict(lambda: {
     'has_iran': False, 'has_border': False, 'emotion_sum': 0,
     'night_posts': 0, 'contents': []
 })
+
+def welch_ttest(group1, group2):
+    """Welch's t-test（不假設等方差），純 Python 實作"""
+    n1, n2 = len(group1), len(group2)
+    if n1 < 2 or n2 < 2:
+        return {'t': None, 'significant': False, 'note': '樣本不足'}
+    mean1 = sum(group1) / n1
+    mean2 = sum(group2) / n2
+    var1 = sum((x - mean1) ** 2 for x in group1) / (n1 - 1)
+    var2 = sum((x - mean2) ** 2 for x in group2) / (n2 - 1)
+    se = math.sqrt(var1 / n1 + var2 / n2)
+    if se == 0:
+        return {'t': None, 'significant': False, 'note': '方差為零'}
+    t = (mean1 - mean2) / se
+    df = n1 + n2 - 2
+    significant = abs(t) > 2.0 and df > 10
+    return {
+        't': round(t, 3),
+        'df': df,
+        'significant': significant,
+        'mean_diff': round(mean1 - mean2, 4),
+    }
 
 def emotion_score(content):
     score = 0
@@ -153,6 +194,22 @@ for p in originals:
 
 
 # ============================================================
+# 基線：所有交易日平均報酬率
+# ============================================================
+all_trading_dates = sorted(sp500_by_date.keys())
+all_returns = [day_return(d, sp500_by_date) for d in all_trading_dates]
+all_returns = [r for r in all_returns if r is not None]
+baseline_mean = sum(all_returns) / len(all_returns) if all_returns else 0
+baseline_std = (sum((r - baseline_mean) ** 2 for r in all_returns) / max(len(all_returns) - 1, 1)) ** 0.5
+
+print(f"\n{'='*80}")
+print(f"📊 基線: 所有交易日 ({len(all_returns)} 天)")
+print(f"   平均日報酬: {baseline_mean:+.4f}%")
+print(f"   標準差: {baseline_std:.4f}%")
+print("=" * 80)
+
+
+# ============================================================
 # 分析 1：發文量 vs 隔天股市
 # ============================================================
 print(f"\n{'='*80}")
@@ -192,6 +249,11 @@ print("=" * 80)
 tariff_days = [d for d, f in daily_features.items() if f['has_tariff'] and d in sp500_by_date]
 non_tariff_days = [d for d, f in daily_features.items() if not f['has_tariff'] and d in sp500_by_date]
 
+tariff_same_rets = []
+tariff_next_rets = []
+non_tariff_same_rets = []
+non_tariff_next_rets = []
+
 for label, days in [('提到關稅', tariff_days), ('沒提關稅', non_tariff_days)]:
     same_ret = [day_return(d, sp500_by_date) for d in days]
     same_ret = [r for r in same_ret if r is not None]
@@ -204,6 +266,18 @@ for label, days in [('提到關稅', tariff_days), ('沒提關稅', non_tariff_d
         pos_same = sum(1 for r in same_ret if r > 0)
         pos_next = sum(1 for r in next_ret if r > 0)
         print(f"  {label:10s} | {len(days):3d}天 | 當天 {avg_same:+.3f}% (漲{pos_same}/{len(same_ret)}) | 隔天 {avg_next:+.3f}% (漲{pos_next}/{len(next_ret)})")
+        if label == '提到關稅':
+            tariff_same_rets = same_ret
+            tariff_next_rets = next_ret
+        else:
+            non_tariff_same_rets = same_ret
+            non_tariff_next_rets = next_ret
+
+# t-test: 關稅日 vs 非關稅日
+ttest_tariff_same = welch_ttest(tariff_same_rets, non_tariff_same_rets)
+ttest_tariff_next = welch_ttest(tariff_next_rets, non_tariff_next_rets)
+print(f"  [t-test 當天] t={ttest_tariff_same['t']}, {'顯著' if ttest_tariff_same['significant'] else '不顯著'} (df={ttest_tariff_same.get('df', 'N/A')})")
+print(f"  [t-test 隔天] t={ttest_tariff_next['t']}, {'顯著' if ttest_tariff_next['significant'] else '不顯著'} (df={ttest_tariff_next.get('df', 'N/A')})")
 
 
 # ============================================================
@@ -425,9 +499,16 @@ for t in tariff_timeline:
 # 存結果摘要
 # ============================================================
 results = {
+    'baseline': {
+        'all_trading_days': len(all_returns),
+        'mean_return': round(baseline_mean, 4),
+        'std_return': round(baseline_std, 4),
+    },
     'tariff_vs_market': {
         'tariff_days': len(tariff_days),
         'non_tariff_days': len(non_tariff_days),
+        'ttest_same_day': ttest_tariff_same,
+        'ttest_next_day': ttest_tariff_next,
     },
     'tariff_timeline': tariff_timeline,
     'biggest_drops': [{'date': d['date'], 'return': round(d['return'], 2)} for d in daily_returns[:10]],
