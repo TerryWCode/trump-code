@@ -692,8 +692,41 @@ def main():
     # 7. 預測市場套利掃描
     pm_results = scan_prediction_markets(key)
 
-    # 8. 刪文偵測
-    log("🔍 7.5/8 刪文偵測...")
+    # 8. 預測市場回饋迴路（追蹤過去的套利機會結果）
+    log("📊 8/10 預測市場回饋...")
+    try:
+        from pm_feedback_loop import run_pm_feedback
+        pm_fb = run_pm_feedback()
+        tracking = pm_fb.get('tracking', {})
+        if tracking.get('total_verified', 0) > 0:
+            log(f"   PM 命中率: {tracking.get('hit_rate', 0):.1f}%")
+    except ImportError:
+        log("   pm_feedback_loop 未安裝，跳過")
+    except Exception as e:
+        log(f"   PM 回饋失敗: {e}")
+
+    # 9. 閉環學習 + 進化
+    log("🧠 9/10 閉環學習...")
+    try:
+        from learning_engine import run_learning_cycle
+        learn_result = run_learning_cycle()
+    except ImportError:
+        log("   learning_engine 未安裝，跳過")
+    except Exception as e:
+        log(f"   學習失敗: {e}")
+
+    # 9.5. Opus 簡報包
+    log("📋 9.5/10 準備 Opus 簡報...")
+    try:
+        from ai_signal_agent import prepare_briefing
+        prepare_briefing(today_posts, today_features, key, triggered)
+    except ImportError:
+        pass
+    except Exception as e:
+        log(f"   簡報失敗: {e}")
+
+    # 9.8. 刪文偵測
+    log("🔍 9.8/10 刪文偵測...")
     try:
         from deletion_detector import detect_deletions
         deletion_result = detect_deletions()
@@ -704,7 +737,7 @@ def main():
     except Exception as e:
         log(f"   ⚠️ 刪文偵測失敗: {e}")
 
-    # 9. 同步
+    # 10. 同步
     sync_to_github()
 
     log(f"\n{'='*70}")
