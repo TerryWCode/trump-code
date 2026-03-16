@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trump Code Game</title>
+<style>
+:root {
+  --bg: #080c18;
+  --panel: #10182b;
+  --panel-alt: #152038;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #e0e0e0;
+  --muted: #93a0bb;
+  --gold: #FFD700;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --orange: #f59e0b;
+  --yellow: #facc15;
+  --gray: #94a3b8;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(255, 215, 0, 0.1), transparent 28%),
+    linear-gradient(180deg, #0b1222 0%, var(--bg) 100%);
+  color: var(--text);
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+.page {
+  width: min(100%, 600px);
+  margin: 0 auto;
+  padding: 20px 14px 40px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(21, 32, 56, 0.95), rgba(10, 17, 32, 0.95));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.header {
+  text-align: center;
+  padding-top: 28px;
+  padding-bottom: 18px;
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(1.8rem, 7vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.section-title {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  color: #f8fafc;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+}
+
+.preview {
+  margin: 0 0 14px;
+  color: #d7dce6;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.signal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ai-line {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.spy-line,
+.meta-line,
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.vote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.vote-button {
+  appearance: none;
+  border: 2px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  border-radius: 16px;
+  min-height: 72px;
+  padding: 12px 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.vote-button:hover:not(:disabled),
+.vote-button:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.vote-button:disabled {
+  cursor: default;
+  opacity: 0.78;
+}
+
+.vote-button.green { border-color: rgba(34, 197, 94, 0.6); }
+.vote-button.red { border-color: rgba(239, 68, 68, 0.6); }
+.vote-button.gray { border-color: rgba(148, 163, 184, 0.55); }
+
+.vote-button.selected.green { background: rgba(34, 197, 94, 0.18); border-color: var(--green); }
+.vote-button.selected.red { background: rgba(239, 68, 68, 0.18); border-color: var(--red); }
+.vote-button.selected.gray { background: rgba(148, 163, 184, 0.16); border-color: var(--gray); }
+
+.nickname-input {
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(4, 8, 16, 0.55);
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 0.95rem;
+}
+
+.nickname-input:focus {
+  outline: none;
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+.vote-confirmation {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.vote-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vote-bar-row {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.bar-track {
+  position: relative;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  min-width: 2px;
+}
+
+.countdown {
+  text-align: center;
+}
+
+.countdown-value {
+  font-size: clamp(1.8rem, 8vw, 2.5rem);
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+.countdown-status {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.result-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.actual-result {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.scoreboard {
+  text-align: center;
+}
+
+.scoreline {
+  font-size: clamp(1.2rem, 5vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.scoreline .ai { color: var(--gold); }
+.scoreline .crowd { color: #cbd5e1; }
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+th,
+td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+tbody tr.highlight {
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.rank-1 { color: var(--gold); }
+.rank-2 { color: #cbd5e1; }
+.rank-3 { color: #d6a46d; }
+
+.waiting {
+  text-align: center;
+  padding: 20px 16px;
+}
+
+.waiting-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.empty {
+  color: var(--muted);
+  margin: 0;
+}
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.88rem;
+  padding-top: 10px;
+}
+
+.footer p {
+  margin: 8px 0 0;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%) translateY(18px);
+  background: rgba(10, 17, 32, 0.96);
+  color: var(--text);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.green-text { color: var(--green); }
+.red-text { color: var(--red); }
+.gray-text { color: var(--gray); }
+.gold-text { color: var(--gold); }
+
+@media (max-width: 420px) {
+  .page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .panel {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .vote-grid {
+    gap: 8px;
+  }
+
+  .vote-button {
+    min-height: 68px;
+    font-size: 0.94rem;
+    padding: 10px 8px;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="stack" id="app"></div>
+  </div>
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+<script>
+const app = document.getElementById('app');
+const toast = document.getElementById('toast');
+const STORAGE_PREFIX = 'trump-code-game-vote:';
+const SIGNAL_COLORS = {
+  TARIFF: '#ef4444',
+  DEAL: '#22c55e',
+  RELIEF: '#3b82f6',
+  ACTION: '#f59e0b',
+  THREAT: '#facc15',
+  BULLISH: '#22c55e',
+  BEARISH: '#ef4444'
+};
+const VOTE_META = {
+  UP: { label: 'BULL', emoji: '📈', css: 'green', color: '#22c55e' },
+  DOWN: { label: 'BEAR', emoji: '📉', css: 'red', color: '#ef4444' },
+  FLAT: { label: 'FLAT', emoji: '😐', css: 'gray', color: '#94a3b8' }
+};
+
+const state = {
+  game: null,
+  leaderboard: { players: [], ai_vs_crowd: { ai_wins: 0, crowd_wins: 0, total_rounds: 0 } },
+  latestSignal: null,
+  gamePollTimer: null,
+  leaderboardPollTimer: null,
+  countdownTimer: null,
+  toastTimer: null,
+  lastGamePollInterval: null,
+  lastRenderSignature: ''
+};
+
+function escapeHtml(value) {
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function clipText(text, maxLength) {
+  const safe = String(text || '').trim();
+  if (safe.length <= maxLength) return safe;
+  return safe.slice(0, maxLength - 1).trimEnd() + '…';
+}
+
+function getStorageKey(signalId) {
+  return STORAGE_PREFIX + signalId;
+}
+
+function getSavedVote(signalId) {
+  if (!signalId) return null;
+  try {
+    const raw = localStorage.getItem(getStorageKey(signalId));
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveVote(signalId, vote) {
+  if (!signalId) return;
+  localStorage.setItem(getStorageKey(signalId), JSON.stringify(vote));
+}
+
+function getDraftNickname() {
+  const input = document.getElementById('nicknameInput');
+  if (input) return input.value.trim();
+  const saved = state.game ? getSavedVote(state.game.signal_id) : null;
+  return saved && saved.nickname ? saved.nickname : '';
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(state.toastTimer);
+  state.toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+async function fetchJson(url, options = {}, fallbackMessage = 'Connection lost, retrying...') {
+  try {
+    const response = await fetch(url, options);
+    let data = {};
+    try {
+      data = await response.json();
+    } catch (error) {
+      data = {};
+    }
+    if (!response.ok) {
+      throw new Error(data.error || fallbackMessage);
+    }
+    return data;
+  } catch (error) {
+    showToast(error.message || fallbackMessage);
+    throw error;
+  }
+}
+
+function formatMoney(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return 'N/A';
+  return '$' + number.toFixed(2);
+}
+
+function formatPercent(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return null;
+  const sign = number > 0 ? '+' : '';
+  return sign + number.toFixed(2) + '%';
+}
+
+function formatDirection(direction) {
+  return VOTE_META[direction] || { label: direction || 'N/A', emoji: '•', css: 'gray', color: '#94a3b8' };
+}
+
+function parseTime(value) {
+  const timestamp = Date.parse(value || '');
+  return Number.isFinite(timestamp) ? timestamp : null;
+}
+
+function timeRemaining(expiresAt) {
+  const target = parseTime(expiresAt);
+  if (!target) return null;
+  return Math.max(0, target - Date.now());
+}
+
+function formatCountdown(ms) {
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+  const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+  const seconds = String(totalSeconds % 60).padStart(2, '0');
+  return hours + ':' + minutes + ':' + seconds;
+}
+
+function formatHoursAgo(isoString) {
+  const timestamp = parseTime(isoString);
+  if (!timestamp) return 'Unknown';
+  const diffHours = Math.max(0, (Date.now() - timestamp) / 3600000);
+  if (diffHours < 1) return 'Less than 1 hour ago';
+  if (diffHours < 24) return diffHours.toFixed(1).replace('.0', '') + ' hours ago';
+  return Math.floor(diffHours / 24) + ' days ago';
+}
+
+function calculatePercentages(votes) {
+  const counts = votes || {};
+  const total = Number(counts.up || 0) + Number(counts.down || 0) + Number(counts.flat || 0);
+  if (total === 0) {
+    return { up: 0, down: 0, flat: 0, total: 0 };
+  }
+  return {
+    up: Math.round((Number(counts.up || 0) / total) * 100),
+    down: Math.round((Number(counts.down || 0) / total) * 100),
+    flat: Math.round((Number(counts.flat || 0) / total) * 100),
+    total
+  };
+}
+
+function getCrowdDirection(votes) {
+  const entries = [
+    ['UP', Number(votes?.up || 0)],
+    ['DOWN', Number(votes?.down || 0)],
+    ['FLAT', Number(votes?.flat || 0)]
+  ];
+  const max = Math.max(...entries.map((entry) => entry[1]));
+  if (!max) return null;
+  const leaders = entries.filter((entry) => entry[1] === max);
+  return leaders.length === 1 ? leaders[0][0] : null;
+}
+
+function getAiHitRate() {
+  const rounds = Number(state.leaderboard.ai_vs_crowd?.total_rounds || 0);
+  const aiWins = Number(state.leaderboard.ai_vs_crowd?.ai_wins || 0);
+  if (!rounds) return '61.3%';
+  return ((aiWins / rounds) * 100).toFixed(1) + '%';
+}
+
+function renderBadges(signalTypes) {
+  const types = Array.isArray(signalTypes) ? signalTypes : [];
+  if (!types.length) return '<div class="muted">No tags</div>';
+  return types.map((type) => {
+    const color = SIGNAL_COLORS[type] || '#64748b';
+    return '<span class="badge" style="background:' + color + '22;border-color:' + color + '55;color:' + color + ';">' + escapeHtml(type) + '</span>';
+  }).join('');
+}
+
+function renderSignalCard(game) {
+  const ai = formatDirection(game.ai_direction);
+  const confidence = Number(game.ai_confidence);
+  const confidenceLabel = Number.isFinite(confidence)
+    ? Math.round(confidence > 1 ? confidence : confidence * 100) + '%'
+    : 'N/A';
+  return `
+    <section class="panel">
+      <div class="badge-row">${renderBadges(game.signal_types)}</div>
+      <p class="preview">"${escapeHtml(clipText(game.post_preview || 'No post preview available.', 200))}"</p>
+      <div class="signal-meta">
+        <div class="ai-line" style="color:${ai.color};">🤖 AI says ${ai.emoji} ${ai.label} ${confidenceLabel}</div>
+        <div class="spy-line">SPY: ${escapeHtml(formatMoney(game.spy_at_signal))}</div>
+      </div>
+    </section>
+  `;
+}
+
+function renderVoteSection(game) {
+  const savedVote = getSavedVote(game.signal_id);
+  const selected = savedVote && savedVote.direction ? savedVote.direction : '';
+  const disabled = Boolean(selected) || Boolean(game.resolved) || timeRemaining(game.expires_at) === 0;
+  const nickname = escapeHtml(savedVote && savedVote.nickname ? savedVote.nickname : '');
+  return `
+    <section class="panel">
+      <h2 class="section-title">Your Prediction?</h2>
+      <div class="vote-grid">
+        <button class="vote-button green ${selected === 'UP' ? 'selected' : ''}" data-direction="UP" ${disabled ? 'disabled' : ''}>📈 Bull</button>
+        <button class="vote-button red ${selected === 'DOWN' ? 'selected' : ''}" data-direction="DOWN" ${disabled ? 'disabled' : ''}>📉 Bear</button>
+        <button class="vote-button gray ${selected === 'FLAT' ? 'selected' : ''}" data-direction="FLAT" ${disabled ? 'disabled' : ''}>😐 Flat</button>
+      </div>
+      <input id="nicknameInput" class="nickname-input" type="text" maxlength="40" placeholder="Nickname (optional)" value="${nickname}" ${disabled ? 'disabled' : ''}>
+      ${selected ? '<div class="vote-confirmation green-text">✅ Voted: ' + escapeHtml(formatDirection(selected).label) + '</div>' : ''}
+    </section>
+  `;
+}
+
+function renderVoteBars(game) {
+  const percentages = calculatePercentages(game.votes);
+  const rows = [
+    { key: 'up', icon: '📈', color: '#22c55e' },
+    { key: 'down', icon: '📉', color: '#ef4444' },
+    { key: 'flat', icon: '😐', color: '#94a3b8' }
+  ];
+  return `
+    <section class="panel">
+      <h2 class="section-title">Live Vote Bars</h2>
+      <div class="vote-bars">
+        ${rows.map((row) => `
+          <div class="vote-bar-row">
+            <div>${row.icon}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:${percentages[row.key]}%;background:${row.color};"></div></div>
+            <div>${percentages[row.key]}%</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="meta-line" style="margin-top:12px;">👥 ${escapeHtml(String(game.total_votes || 0))} votes</div>
+    </section>
+  `;
+}
+
+function renderCountdown(game) {
+  const remaining = timeRemaining(game.expires_at);
+  const expired = remaining === 0;
+  const text = expired ? '⏰ Voting closed — resolving...' : '⏰ ' + formatCountdown(remaining);
+  return `
+    <section class="panel countdown">
+      <div class="countdown-value" id="countdownValue">${escapeHtml(text)}</div>
+      <div class="countdown-status" id="countdownStatus">${game.resolved ? 'Round resolved' : expired ? 'Waiting for verification data' : 'Voting closes at ' + escapeHtml(new Date(game.expires_at).toLocaleString())}</div>
+    </section>
+  `;
+}
+
+function renderResultPanel(game) {
+  if (!game.resolved || !game.result) return '';
+  const result = game.result;
+  const actual = Number(result.spy_change);
+  const actualLabel = formatPercent(actual) || 'N/A';
+  const actualClass = actual > 0 ? 'green-text' : actual < 0 ? 'red-text' : 'gray-text';
+  const aiDirection = formatDirection(game.ai_direction);
+  const crowdDirection = formatDirection(result.crowd_direction || getCrowdDirection(game.votes));
+  const aiOutcome = result.ai_correct === true ? '✅ Correct' : result.ai_correct === false ? '❌ Wrong' : '• Pending';
+  const crowdOutcome = result.crowd_correct === true ? '✅ Correct' : result.crowd_correct === false ? '❌ Wrong' : '• No consensus';
+  return `
+    <section class="panel">
+      <h2 class="section-title">Result</h2>
+      <div class="actual-result ${actualClass}">${escapeHtml(formatDirection(result.actual_direction).emoji)} SPY ${escapeHtml(actualLabel)}</div>
+      <div class="meta-line">Source: ${escapeHtml(result.verify_source || 'N/A')}</div>
+      <div class="result-grid">
+        <div class="result-card">
+          <div>🤖 AI</div>
+          <div style="margin-top:6px;color:${aiDirection.color};font-weight:800;">${aiDirection.emoji} ${escapeHtml(aiDirection.label)}</div>
+          <div class="meta-line" style="margin-top:8px;">${escapeHtml(aiOutcome)}</div>
+        </div>
+        <div class="result-card">
+          <div>👥 Crowd</div>
+          <div style="margin-top:6px;color:${crowdDirection.color};font-weight:800;">${crowdDirection.emoji} ${escapeHtml(crowdDirection.label)}</div>
+          <div class="meta-line" style="margin-top:8px;">${escapeHtml(crowdOutcome)}</div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderScoreboard() {
+  const summary = state.leaderboard.ai_vs_crowd || { ai_wins: 0, crowd_wins: 0, total_rounds: 0 };
+  return `
+    <section class="panel scoreboard">
+      <h2 class="section-title">AI vs Crowd</h2>
+      <div class="scoreline"><span class="ai">🤖 AI ${escapeHtml(String(summary.ai_wins || 0))}</span>  —  <span class="crowd">${escapeHtml(String(summary.crowd_wins || 0))} 👥 Crowd</span>  (${escapeHtml(String(summary.total_rounds || 0))} rounds)</div>
+      <div class="meta-line" style="margin-top:8px;">AI Hit Rate: ${escapeHtml(getAiHitRate())}</div>
+    </section>
+  `;
+}
+
+function renderLeaderboard(game) {
+  const players = Array.isArray(state.leaderboard.players) ? state.leaderboard.players.slice(0, 10) : [];
+  const savedVote = game && game.signal_id ? getSavedVote(game.signal_id) : null;
+  const votedNickname = savedVote && savedVote.nickname ? savedVote.nickname.trim().toLowerCase() : '';
+  return `
+    <section class="panel">
+      <h2 class="section-title">Leaderboard</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Score</th>
+              <th>Wins</th>
+              <th>Streak</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${players.length ? players.map((player) => {
+              const rank = Number(player.rank || 0);
+              const rankClass = rank <= 3 ? 'rank-' + rank : '';
+              const highlight = votedNickname && String(player.nickname || '').trim().toLowerCase() === votedNickname ? 'highlight' : '';
+              return `
+                <tr class="${highlight}">
+                  <td class="${rankClass}">${escapeHtml(String(rank))}</td>
+                  <td>${escapeHtml(player.nickname || 'anon')}</td>
+                  <td>${escapeHtml(String(player.score || 0))}</td>
+                  <td>${escapeHtml(String(player.wins || 0))}</td>
+                  <td>${escapeHtml(String(player.streak || 0))}</td>
+                </tr>
+              `;
+            }).join('') : '<tr><td colspan="5" class="empty">No players yet.</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function renderWaitingState() {
+  const lastSignalAge = state.latestSignal?.created_at ? formatHoursAgo(state.latestSignal.created_at) : 'Unknown';
+  return `
+    <section class="panel waiting">
+      <div class="waiting-icon">⏳</div>
+      <h2 class="section-title" style="margin-bottom:6px;">Waiting for Trump to post...</h2>
+      <div class="muted">Last signal was ${escapeHtml(lastSignalAge)}</div>
+    </section>
+  `;
+}
+
+function renderFooter() {
+  return `
+    <footer class="footer">
+      <div><a href="https://trumpcode.washinmura.jp/" target="_blank" rel="noreferrer">trumpcode.washinmura.jp</a> · <a href="https://github.com/sstklen/trump-code" target="_blank" rel="noreferrer">github.com/sstklen/trump-code</a></div>
+      <p>Powered by Trump Code — 31.5M models tested</p>
+    </footer>
+  `;
+}
+
+function getRenderSignature() {
+  const game = state.game || {};
+  const leaderboard = state.leaderboard || {};
+  const vote = game.signal_id ? getSavedVote(game.signal_id) : null;
+  return JSON.stringify({
+    active: game.active,
+    signal_id: game.signal_id,
+    resolved: game.resolved,
+    total_votes: game.total_votes,
+    votes: game.votes,
+    result: game.result,
+    players: leaderboard.players,
+    summary: leaderboard.ai_vs_crowd,
+    latestSignal: state.latestSignal?.created_at,
+    savedVote: vote
+  });
+}
+
+function renderApp(force = false) {
+  const signature = getRenderSignature();
+  if (!force && signature === state.lastRenderSignature) return;
+  state.lastRenderSignature = signature;
+
+  const game = state.game;
+  const parts = [
+    '<section class="panel header"><h1>🔐 Trump Code Game</h1><p class="subtitle">AI vs Crowd — Can you beat 61.3% hit rate?</p></section>'
+  ];
+
+  if (game && game.active) {
+    parts.push(renderSignalCard(game));
+    if (!game.resolved) {
+      parts.push(renderVoteSection(game));
+      parts.push(renderVoteBars(game));
+      parts.push(renderCountdown(game));
+    } else {
+      parts.push(renderVoteBars(game));
+      parts.push(renderCountdown(game));
+      parts.push(renderResultPanel(game));
+    }
+  } else {
+    parts.push(renderWaitingState());
+  }
+
+  parts.push(renderScoreboard());
+  parts.push(renderLeaderboard(game));
+  parts.push(renderFooter());
+  app.innerHTML = parts.join('');
+  bindVoteButtons();
+}
+
+function updateCountdownDisplay() {
+  const countdownValue = document.getElementById('countdownValue');
+  const countdownStatus = document.getElementById('countdownStatus');
+  const game = state.game;
+  if (!countdownValue || !game || !game.active) return;
+
+  if (game.resolved) {
+    countdownValue.textContent = '⏰ Voting closed — resolved';
+    if (countdownStatus) countdownStatus.textContent = 'Round resolved';
+    return;
+  }
+
+  const remaining = timeRemaining(game.expires_at);
+  if (remaining === null) {
+    countdownValue.textContent = '⏰ --:--:--';
+    return;
+  }
+
+  if (remaining === 0) {
+    countdownValue.textContent = '⏰ Voting closed — resolving...';
+    if (countdownStatus) countdownStatus.textContent = 'Waiting for verification data';
+    if (state.lastGamePollInterval !== 5000) {
+      scheduleGamePoll();
+    }
+  } else {
+    countdownValue.textContent = '⏰ ' + formatCountdown(remaining);
+    if (countdownStatus) countdownStatus.textContent = 'Voting closes at ' + new Date(game.expires_at).toLocaleString();
+  }
+}
+
+function resetCountdownTimer() {
+  clearInterval(state.countdownTimer);
+  state.countdownTimer = null;
+  if (state.game && state.game.active) {
+    updateCountdownDisplay();
+    state.countdownTimer = setInterval(updateCountdownDisplay, 1000);
+  }
+}
+
+function bindVoteButtons() {
+  document.querySelectorAll('.vote-button[data-direction]').forEach((button) => {
+    button.addEventListener('click', () => submitVote(button.dataset.direction));
+  });
+}
+
+async function submitVote(direction) {
+  const game = state.game;
+  if (!game || !game.active || game.resolved) return;
+  const nicknameInput = document.getElementById('nicknameInput');
+  const nickname = nicknameInput ? nicknameInput.value.trim() : '';
+
+  try {
+    const data = await fetchJson('/api/game-vote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ direction, nickname })
+    }, 'Vote failed');
+    saveVote(game.signal_id, { direction: data.direction, nickname, signal_id: data.signal_id, voted_at: new Date().toISOString() });
+    await refreshGameState({ forceRender: true });
+  } catch (error) {
+    return;
+  }
+}
+
+async function refreshGameState(options = {}) {
+  const { forceRender = false } = options;
+  try {
+    state.game = await fetchJson('/api/game-state');
+  } catch (error) {
+    return;
+  }
+
+  if (!state.game.active) {
+    try {
+      const response = await fetch('/api/game-signal');
+      if (response.ok) {
+        state.latestSignal = await response.json();
+      } else {
+        state.latestSignal = null;
+      }
+    } catch (error) {
+      state.latestSignal = null;
+    }
+  } else {
+    state.latestSignal = state.game;
+  }
+
+  renderApp(forceRender);
+  resetCountdownTimer();
+  scheduleGamePoll();
+}
+
+async function refreshLeaderboard(options = {}) {
+  const { forceRender = false } = options;
+  try {
+    state.leaderboard = await fetchJson('/api/game-leaderboard');
+    renderApp(forceRender);
+  } catch (error) {
+    return;
+  }
+}
+
+function scheduleGamePoll() {
+  clearTimeout(state.gamePollTimer);
+  const game = state.game;
+  const remaining = game && game.active && !game.resolved ? timeRemaining(game.expires_at) : null;
+  const interval = game && game.active && !game.resolved && remaining === 0 ? 5000 : 15000;
+  state.lastGamePollInterval = interval;
+  state.gamePollTimer = setTimeout(() => refreshGameState(), interval);
+}
+
+function scheduleLeaderboardPoll() {
+  clearTimeout(state.leaderboardPollTimer);
+  state.leaderboardPollTimer = setTimeout(async () => {
+    await refreshLeaderboard();
+    scheduleLeaderboardPoll();
+  }, 60000);
+}
+
+async function init() {
+  renderApp(true);
+  await Promise.all([
+    refreshGameState({ forceRender: true }),
+    refreshLeaderboard({ forceRender: true })
+  ]);
+  scheduleLeaderboardPoll();
+}
+
+window.addEventListener('load', init);
+</script>
+</body>
+</html>

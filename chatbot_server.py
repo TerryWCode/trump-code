@@ -998,6 +998,17 @@ class ChatHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(HTML_PAGE.encode('utf-8'))
 
+        elif self.path == '/game' or self.path == '/game.html':
+            game_file = BASE / 'public' / 'game.html'
+            if game_file.exists():
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/html; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(game_file.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
+
         elif self.path == '/api/insights':
             # 公開端點：所有人的洞見（匿名）
             insights = []
