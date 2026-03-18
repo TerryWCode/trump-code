@@ -205,5 +205,47 @@
         "origin": "mutation_remove"
       }
     ]
+  },
+  {
+    "date": "2026-03-18",
+    "crossover": 16,
+    "mutation": 8,
+    "distill": 16,
+    "total_new": 40,
+    "total_rules_after": 600,
+    "top_3": [
+      {
+        "features": [
+          "is_friday",
+          "kw_signed"
+        ],
+        "direction": "LONG",
+        "hold": 3,
+        "score": 100.0,
+        "origin": "crossover"
+      },
+      {
+        "features": [
+          "open_dow",
+          "kw_dow_2plus",
+          "kw_interest_rate"
+        ],
+        "direction": "LONG",
+        "hold": 3,
+        "score": 100.0,
+        "origin": "crossover"
+      },
+      {
+        "features": [
+          "kw_energy",
+          "kw_never_let_you_down",
+          "kw_president_of_the_united_states"
+        ],
+        "direction": "LONG",
+        "hold": 1,
+        "score": 93.8,
+        "origin": "crossover"
+      }
+    ]
   }
 ]

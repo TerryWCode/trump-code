@@ -106,5 +106,17 @@
       "IRAN"
     ],
     "consensus": "NEUTRAL"
+  },
+  {
+    "date": "2026-03-18",
+    "posts": 14,
+    "triggered": 1,
+    "long": 1,
+    "short": 0,
+    "signals": [
+      "CHINA",
+      "IRAN"
+    ],
+    "consensus": "BULLISH"
   }
 ]

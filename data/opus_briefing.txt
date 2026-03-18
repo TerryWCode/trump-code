@@ -1,18 +1,30 @@
-# 川普密碼 Opus 簡報 — 2026-03-17
-準備時間: 2026-03-17T14:56:25Z
+# 川普密碼 Opus 簡報 — 2026-03-18
+準備時間: 2026-03-18T15:02:17Z
 
-## 今日推文: 4 篇
-時間: 2026-03-17T01:39:27.615Z ~ 2026-03-17T12:21:38.057Z
+## 今日推文: 14 篇
+時間: 2026-03-18T02:57:06.825Z ~ 2026-03-18T12:59:38.157Z
 
-[01:39] "Hang Out with Sean Hannity" is a GREAT  New Podcast, Streaming Now!!! Sean is a fantastic guy, and has been right from my political beginnings! President DJT
+[09:20] Trump steamrolls over California's anti-fossil fuel crusade to get oil flowing from offshore rigs: https://justthenews.com/politics-policy/energy/trump-steamrolls-over-californias-anti-fossil-fuel-crusade-get-oil-flowing
 
-[03:14] Wow! Venezuela defeated Italy tonight, 4-2, in the WBC (Baseball!) Semifinal. They are looking really great. Good things are happening to Venezuela lately! I wonder what this magic is all about? STATEHOOD, #51, ANYONE? President DONALD J. TRUMP
+[09:23] Britain had meltdown when China hacked voter files, but U.S. intel kept it secret in America: https://justthenews.com/government/security/us-intel-has-known-2020-china-gained-access-us-voter-files-memos-show
 
-[09:01] The US-Israeli strategy against Iran is working. Here is why: https://www.aljazeera.com/opinions/2026/3/16/the-us-israeli-strategy-against-iran-is-working-here-is-why
+[11:11] The Democrat's purposeful DHS SHUTDOWN is causing chaos at the airports. These Lunatics are being totally unreasonable in their Radical Left asks. They are FULLY TO BLAME, and must pay a big price, for the good of our Country, in the Midterm Elections. MAKE AMERICA GREAT AGAIN!
 
-[12:21] The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the history of Congress, and America itself. NO MORE RIGGED ELECTIONS! Voter I.D., Proof of Citizenship, No Rigged Mail-In Voting (We are the only Country in the World that allows this!), No Men in Women's Spo
+[11:22] I wonder what would happen if we "finished off" what's left of the Iranian Terror State, and let the Countries that use it, we don't, be responsible for the so called "Straight?" That would get some of our non-responsive "Allies" in gear, and fast!!! President DJT
 
-## 關鍵字偵測到的信號: IRAN
+[12:01] Remember, for all of those absolute "fools" out there, Iran is considered, by everyone, to be the NUMBER ONE STATE SPONSOR OF TERROR. We are rapidly putting them out of business!
+
+[12:13] When is "Too Late" Powell lowering INTEREST RATES? President DJT
+
+[12:20] For all of the Fake News out there, it's called THE SAVE AMERICA ACT, not the SAVE ACT. Nobody knows what the Save Act means!!!
+
+[12:35] I wonder what would happen if we "finished off" what's left of the Iranian Terror State, and let the Countries that use it, we don't, be responsible for the so called "Strait?" That would get some of our non-responsive "Allies" in gear, and fast!!! President DJT
+
+[12:43] US allies need to get a grip – step up and help open the Strait of Hormuz: https://nypost.com/2026/03/17/opinion/us-allies-germany-the-uk-owe-america-their-help-in-opening-the-strait-of-hormuz/
+
+[12:59] RT: https://truthsocial.com/users/realDonaldTrump/statuses/116250297283069512
+
+## 關鍵字偵測到的信號: CHINA, IRAN
 
 ## 模型績效排行
   A3_relief_rocket (盤前 RELIEF→當天飆): 72.7% | 報酬 +1.206% | 11 筆
@@ -36,10 +48,10 @@
 
 ## 學習引擎上次動作: 4 升級 / 1 降級 / 1 淘汰
 
-## 規則進化: 新增 44 條規則
+## 規則進化: 新增 40 條規則
 
 ## 信號信心度
-  ACTION: 0.828
+  ACTION: 0.841
   CHINA: 0.6
   DEAL: 0.55
   DEAL_ONLY: 0.65

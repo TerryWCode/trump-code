@@ -1,54 +1,113 @@
 {
-  "date": "2026-03-17",
-  "prepared_at": "2026-03-17T14:56:25Z",
+  "date": "2026-03-18",
+  "prepared_at": "2026-03-18T15:02:17Z",
   "status": "PENDING",
   "today_posts": {
-    "count": 4,
-    "latest": "The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the history of Congress, and America itself. NO MORE RIGGED ELECTIONS! Voter I.D., Proof of Citizenship, No R",
-    "earliest_time": "2026-03-17T01:39:27.615Z",
-    "latest_time": "2026-03-17T12:21:38.057Z",
+    "count": 14,
+    "latest": "RT: https://truthsocial.com/users/realDonaldTrump/statuses/116250297283069512",
+    "earliest_time": "2026-03-18T02:57:06.825Z",
+    "latest_time": "2026-03-18T12:59:38.157Z",
     "sample": [
       {
-        "time": "01:39",
-        "text": "\"Hang Out with Sean Hannity\" is a GREAT  New Podcast, Streaming Now!!! Sean is a fantastic guy, and has been right from my political beginnings! President DJT"
+        "time": "09:20",
+        "text": "Trump steamrolls over California's anti-fossil fuel crusade to get oil flowing from offshore rigs: https://justthenews.com/politics-policy/energy/trump-steamrolls-over-californias-anti-fossil-fuel-crusade-get-oil-flowing"
       },
       {
-        "time": "03:14",
-        "text": "Wow! Venezuela defeated Italy tonight, 4-2, in the WBC (Baseball!) Semifinal. They are looking really great. Good things are happening to Venezuela lately! I wonder what this magic is all about? STATEHOOD, #51, ANYONE? President DONALD J. TRUMP"
+        "time": "09:23",
+        "text": "Britain had meltdown when China hacked voter files, but U.S. intel kept it secret in America: https://justthenews.com/government/security/us-intel-has-known-2020-china-gained-access-us-voter-files-memos-show"
       },
       {
-        "time": "09:01",
-        "text": "The US-Israeli strategy against Iran is working. Here is why: https://www.aljazeera.com/opinions/2026/3/16/the-us-israeli-strategy-against-iran-is-working-here-is-why"
+        "time": "11:11",
+        "text": "The Democrat's purposeful DHS SHUTDOWN is causing chaos at the airports. These Lunatics are being totally unreasonable in their Radical Left asks. They are FULLY TO BLAME, and must pay a big price, for the good of our Country, in the Midterm Elections. MAKE AMERICA GREAT AGAIN!"
       },
       {
-        "time": "12:21",
-        "text": "The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the history of Congress, and America itself. NO MORE RIGGED ELECTIONS! Voter I.D., Proof of Citizenship, No Rigged Mail-In Voting (We are the only Country in the World that allows this!), No Men in Women's Spo"
+        "time": "11:22",
+        "text": "I wonder what would happen if we \"finished off\" what's left of the Iranian Terror State, and let the Countries that use it, we don't, be responsible for the so called \"Straight?\" That would get some of our non-responsive \"Allies\" in gear, and fast!!! President DJT"
+      },
+      {
+        "time": "12:01",
+        "text": "Remember, for all of those absolute \"fools\" out there, Iran is considered, by everyone, to be the NUMBER ONE STATE SPONSOR OF TERROR. We are rapidly putting them out of business!"
+      },
+      {
+        "time": "12:13",
+        "text": "When is \"Too Late\" Powell lowering INTEREST RATES? President DJT"
+      },
+      {
+        "time": "12:20",
+        "text": "For all of the Fake News out there, it's called THE SAVE AMERICA ACT, not the SAVE ACT. Nobody knows what the Save Act means!!!"
+      },
+      {
+        "time": "12:35",
+        "text": "I wonder what would happen if we \"finished off\" what's left of the Iranian Terror State, and let the Countries that use it, we don't, be responsible for the so called \"Strait?\" That would get some of our non-responsive \"Allies\" in gear, and fast!!! President DJT"
+      },
+      {
+        "time": "12:43",
+        "text": "US allies need to get a grip – step up and help open the Strait of Hormuz: https://nypost.com/2026/03/17/opinion/us-allies-germany-the-uk-owe-america-their-help-in-opening-the-strait-of-hormuz/"
+      },
+      {
+        "time": "12:59",
+        "text": "RT: https://truthsocial.com/users/realDonaldTrump/statuses/116250297283069512"
       }
     ]
   },
   "keyword_signals": [
+    "CHINA",
     "IRAN"
   ],
   "today_features": {
-    "posts_1_5": true,
-    "avg_len_long": true,
-    "caps_very_high": true,
-    "excl_extreme": true,
+    "posts_11_20": true,
+    "avg_len_medium": true,
+    "caps_medium": true,
+    "excl_normal": true,
     "questions_yes": true,
+    "mostly_premarket": true,
     "has_night": true,
+    "kw_china": true,
+    "pre_china": true,
     "kw_iran": true,
+    "kw_iran_2plus": true,
     "pre_iran": true,
-    "kw_israel": true,
-    "pre_israel": true,
+    "kw_dow": true,
+    "kw_dow_2plus": true,
+    "pre_dow": true,
+    "kw_interest_rate": true,
+    "kw_interest_rate_2plus": true,
+    "pre_interest_rate": true,
+    "kw_oil": true,
+    "pre_oil": true,
+    "kw_energy": true,
+    "pre_energy": true,
     "kw_great": true,
-    "kw_great_2plus": true,
-    "kw_fantastic": true,
+    "pre_great": true,
+    "kw_fake": true,
+    "kw_fake_2plus": true,
+    "pre_fake": true,
     "kw_save_america": true,
+    "kw_save_america_2plus": true,
     "pre_save_america": true,
     "kw_president_djt": true,
-    "kw_thank_you_for_your_attention": true,
-    "pre_thank_you_for_your_attention": true,
-    "volume_drop": true
+    "kw_president_djt_2plus": true,
+    "pre_president_djt": true
+  },
+  "triggered_rules": {
+    "total": 1,
+    "long": 1,
+    "short": 0,
+    "sample": [
+      {
+        "id": "R0086",
+        "features": [
+          "kw_dow_2plus",
+          "kw_interest_rate",
+          "questions_yes"
+        ],
+        "direction": "LONG",
+        "hold": 2,
+        "train_wr": 100.0,
+        "test_wr": 100.0,
+        "score": 100.0
+      }
+    ]
   },
   "model_performance": {
     "A1_tariff_bearish": {
@@ -157,18 +216,17 @@
     "signal_adjusted": 1
   },
   "evolution_latest": {
-    "date": "2026-03-17",
+    "date": "2026-03-18",
     "crossover": 16,
-    "mutation": 12,
+    "mutation": 8,
     "distill": 16,
-    "total_new": 44,
+    "total_new": 40,
     "total_rules_after": 600,
     "top_3": [
       {
         "features": [
-          "kw_economy",
-          "kw_tremendous",
-          "kw_interest_rate"
+          "is_friday",
+          "kw_signed"
         ],
         "direction": "LONG",
         "hold": 3,
@@ -178,6 +236,7 @@
       {
         "features": [
           "open_dow",
+          "kw_dow_2plus",
           "kw_interest_rate"
         ],
         "direction": "LONG",
@@ -187,13 +246,14 @@
       },
       {
         "features": [
-          "kw_ban",
+          "kw_energy",
+          "kw_never_let_you_down",
           "kw_president_of_the_united_states"
         ],
         "direction": "LONG",
-        "hold": 3,
-        "score": 100.0,
-        "origin": "mutation_remove"
+        "hold": 1,
+        "score": 93.8,
+        "origin": "crossover"
       }
     ]
   },
@@ -201,7 +261,7 @@
     "TARIFF": 0.7,
     "DEAL": 0.55,
     "RELIEF": 0.95,
-    "ACTION": 0.828,
+    "ACTION": 0.841,
     "THREAT": 0.6,
     "CHINA": 0.6,
     "IRAN": 0.55,
@@ -209,8 +269,9 @@
     "DEAL_ONLY": 0.65
   },
   "prediction_market": {
-    "date": "2026-03-17",
+    "date": "2026-03-18",
     "signals": [
+      "CHINA",
       "IRAN"
     ],
     "opportunities": [],

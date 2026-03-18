@@ -1,19 +1,20 @@
 {
-  "date": "2026-03-17",
-  "generated_at": "2026-03-17T14:55:51Z",
-  "posts_today": 4,
+  "date": "2026-03-18",
+  "generated_at": "2026-03-18T15:02:14Z",
+  "posts_today": 14,
   "latest_post": {
-    "time": "2026-03-17T12:21",
-    "content_preview": "The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo"
+    "time": "2026-03-18T12:59",
+    "content_preview": "RT: https://truthsocial.com/users/realDonaldTrump/statuses/116250297283069512"
   },
   "signals_detected": [
+    "CHINA",
     "IRAN"
   ],
-  "models_triggered": 0,
+  "models_triggered": 1,
   "direction_summary": {
-    "LONG": 0,
+    "LONG": 1,
     "SHORT": 0,
-    "consensus": "NEUTRAL"
+    "consensus": "BULLISH"
   },
   "historical_hit_rate": {
     "verified": 0,
@@ -21,13 +22,25 @@
     "rate": 0.0
   },
   "sp500_latest": {
-    "date": "2026-03-17",
-    "close": 6742.09
+    "date": "2026-03-18",
+    "close": 6681.24
   },
   "summary": {
-    "en": "Trump Code Daily Report -- 2026-03-17\nPosts today: 4 | Models triggered: 0\nSignals: IRAN\nConsensus: 0 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo",
-    "zh": "川普密碼每日報告 -- 2026-03-17\n今日推文: 4 篇 | 觸發模型: 0 組\n偵測信號: 伊朗\n共識方向: 0 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo",
-    "ja": "トランプ・コード日次レポート -- 2026-03-17\n本日の投稿: 4件 | トリガーモデル: 0組\n検出シグナル: イラン\nコンセンサス: 0組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo"
+    "en": "Trump Code Daily Report -- 2026-03-18\nPosts today: 14 | Models triggered: 1\nSignals: CHINA, IRAN\nConsensus: 1 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: RT: https://truthsocial.com/users/realDonaldTrump/statuses/116250297283069512",
+    "zh": "川普密碼每日報告 -- 2026-03-18\n今日推文: 14 篇 | 觸發模型: 1 組\n偵測信號: 中國, 伊朗\n共識方向: 1 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: RT: https://truthsocial.com/users/realDonaldTrump/statuses/116250297283069512",
+    "ja": "トランプ・コード日次レポート -- 2026-03-18\n本日の投稿: 14件 | トリガーモデル: 1組\n検出シグナル: 中国, イラン\nコンセンサス: 1組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: RT: https://truthsocial.com/users/realDonaldTrump/statuses/116250297283069512"
   },
-  "triggered_rules_sample": []
+  "triggered_rules_sample": [
+    {
+      "features": [
+        "kw_dow_2plus",
+        "kw_interest_rate",
+        "questions_yes"
+      ],
+      "direction": "LONG",
+      "hold": 2,
+      "train_wr": 100.0,
+      "test_wr": 100.0
+    }
+  ]
 }
