@@ -175,9 +175,9 @@
     "top_3": [
       {
         "features": [
-          "kw_interest_rate",
-          "kw_thank_you_for_your_attention",
-          "kw_economy"
+          "kw_economy",
+          "kw_tremendous",
+          "kw_interest_rate"
         ],
         "direction": "LONG",
         "hold": 3,
@@ -186,22 +186,22 @@
       },
       {
         "features": [
-          "kw_beautiful",
-          "volume_falling_3d"
+          "open_dow",
+          "kw_interest_rate"
         ],
         "direction": "LONG",
-        "hold": 2,
-        "score": 87.5,
-        "origin": "mutation_remove"
+        "hold": 3,
+        "score": 100.0,
+        "origin": "crossover"
       },
       {
         "features": [
-          "open_tariff",
-          "volume_falling_3d"
+          "kw_ban",
+          "kw_president_of_the_united_states"
         ],
         "direction": "LONG",
-        "hold": 2,
-        "score": 84.6,
+        "hold": 3,
+        "score": 100.0,
         "origin": "mutation_remove"
       }
     ]

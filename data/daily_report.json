@@ -1,10 +1,10 @@
 {
   "date": "2026-03-17",
-  "generated_at": "2026-03-17T22:30:01Z",
-  "posts_today": 5,
+  "generated_at": "2026-03-17T14:55:51Z",
+  "posts_today": 4,
   "latest_post": {
-    "time": "2026-03-17T15:18",
-    "content_preview": "The United States has been informed by most of our NATO \"Allies\" that they don't want to get involve"
+    "time": "2026-03-17T12:21",
+    "content_preview": "The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo"
   },
   "signals_detected": [
     "IRAN"
@@ -22,12 +22,12 @@
   },
   "sp500_latest": {
     "date": "2026-03-17",
-    "close": 6716.09
+    "close": 6742.09
   },
   "summary": {
-    "en": "Trump Code Daily Report -- 2026-03-17\nPosts today: 5 | Models triggered: 0\nSignals: IRAN\nConsensus: 0 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: The United States has been informed by most of our NATO \"Allies\" that they don't want to get involve",
-    "zh": "川普密碼每日報告 -- 2026-03-17\n今日推文: 5 篇 | 觸發模型: 0 組\n偵測信號: 伊朗\n共識方向: 0 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: The United States has been informed by most of our NATO \"Allies\" that they don't want to get involve",
-    "ja": "トランプ・コード日次レポート -- 2026-03-17\n本日の投稿: 5件 | トリガーモデル: 0組\n検出シグナル: イラン\nコンセンサス: 0組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: The United States has been informed by most of our NATO \"Allies\" that they don't want to get involve"
+    "en": "Trump Code Daily Report -- 2026-03-17\nPosts today: 4 | Models triggered: 0\nSignals: IRAN\nConsensus: 0 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo",
+    "zh": "川普密碼每日報告 -- 2026-03-17\n今日推文: 4 篇 | 觸發模型: 0 組\n偵測信號: 伊朗\n共識方向: 0 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo",
+    "ja": "トランプ・コード日次レポート -- 2026-03-17\n本日の投稿: 4件 | トリガーモデル: 0組\n検出シグナル: イラン\nコンセンサス: 0組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the histo"
   },
   "triggered_rules_sample": []
 }

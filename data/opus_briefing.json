@@ -1,12 +1,12 @@
 {
   "date": "2026-03-17",
-  "prepared_at": "2026-03-17T22:30:06Z",
+  "prepared_at": "2026-03-17T14:56:25Z",
   "status": "PENDING",
   "today_posts": {
-    "count": 5,
-    "latest": "The United States has been informed by most of our NATO \"Allies\" that they don't want to get involved with our Military Operation against the Terrorist Regime of Iran, in the Middle East, this, despit",
+    "count": 4,
+    "latest": "The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the history of Congress, and America itself. NO MORE RIGGED ELECTIONS! Voter I.D., Proof of Citizenship, No R",
     "earliest_time": "2026-03-17T01:39:27.615Z",
-    "latest_time": "2026-03-17T15:18:36.677Z",
+    "latest_time": "2026-03-17T12:21:38.057Z",
     "sample": [
       {
         "time": "01:39",
@@ -23,10 +23,6 @@
       {
         "time": "12:21",
         "text": "The Save America Act is one of the most IMPORTANT & CONSEQUENTIAL pieces of legislation in the history of Congress, and America itself. NO MORE RIGGED ELECTIONS! Voter I.D., Proof of Citizenship, No Rigged Mail-In Voting (We are the only Country in the World that allows this!), No Men in Women's Spo"
-      },
-      {
-        "time": "15:18",
-        "text": "The United States has been informed by most of our NATO \"Allies\" that they don't want to get involved with our Military Operation against the Terrorist Regime of Iran, in the Middle East, this, despite the fact that almost every Country strongly agreed with what we are doing, and that Iran cannot, i"
       }
     ]
   },
@@ -36,34 +32,23 @@
   "today_features": {
     "posts_1_5": true,
     "avg_len_long": true,
-    "caps_high": true,
+    "caps_very_high": true,
     "excl_extreme": true,
     "questions_yes": true,
     "has_night": true,
-    "kw_japan": true,
-    "open_japan": true,
     "kw_iran": true,
-    "kw_iran_2plus": true,
     "pre_iran": true,
-    "open_iran": true,
     "kw_israel": true,
     "pre_israel": true,
-    "kw_korea": true,
-    "open_korea": true,
-    "kw_billion": true,
-    "open_billion": true,
     "kw_great": true,
     "kw_great_2plus": true,
     "kw_fantastic": true,
     "kw_save_america": true,
     "pre_save_america": true,
     "kw_president_djt": true,
-    "kw_president_of_the_united_states": true,
-    "open_president_of_the_united_states": true,
     "kw_thank_you_for_your_attention": true,
-    "kw_thank_you_for_your_attention_2plus": true,
     "pre_thank_you_for_your_attention": true,
-    "open_thank_you_for_your_attention": true
+    "volume_drop": true
   },
   "model_performance": {
     "A1_tariff_bearish": {
@@ -181,9 +166,9 @@
     "top_3": [
       {
         "features": [
-          "kw_interest_rate",
-          "kw_thank_you_for_your_attention",
-          "kw_economy"
+          "kw_economy",
+          "kw_tremendous",
+          "kw_interest_rate"
         ],
         "direction": "LONG",
         "hold": 3,
@@ -192,22 +177,22 @@
       },
       {
         "features": [
-          "kw_beautiful",
-          "volume_falling_3d"
+          "open_dow",
+          "kw_interest_rate"
         ],
         "direction": "LONG",
-        "hold": 2,
-        "score": 87.5,
-        "origin": "mutation_remove"
+        "hold": 3,
+        "score": 100.0,
+        "origin": "crossover"
       },
       {
         "features": [
-          "open_tariff",
-          "volume_falling_3d"
+          "kw_ban",
+          "kw_president_of_the_united_states"
         ],
         "direction": "LONG",
-        "hold": 2,
-        "score": 84.6,
+        "hold": 3,
+        "score": 100.0,
         "origin": "mutation_remove"
       }
     ]
