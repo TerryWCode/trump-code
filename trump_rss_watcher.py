@@ -332,7 +332,7 @@ def run_loop():
 
                     # Git commit + push
                     import subprocess
-                    subprocess.run(["git", "add", f"articles/{yesterday}/"], cwd=str(Path(__file__).parent), capture_output=True)
+                    subprocess.run(["git", "add", f"articles/"], cwd=str(Path(__file__).parent), capture_output=True)
                     subprocess.run(["git", "commit", "-m", f"daily: {yesterday} 三語分析文章"], cwd=str(Path(__file__).parent), capture_output=True)
                     subprocess.run(["git", "push"], cwd=str(Path(__file__).parent), capture_output=True)
                     log(f"📝 Git push 完成")

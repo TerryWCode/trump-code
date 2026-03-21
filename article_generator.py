@@ -166,7 +166,9 @@ def generate_articles(target_date: str = None):
     log(f"   推文：{len(posts)} 篇")
 
     # 建目錄
-    article_dir = ARTICLES / target_date
+    month = target_date[:7]  # 2026-03
+    day = target_date[8:]    # 20
+    article_dir = ARTICLES / month
     article_dir.mkdir(parents=True, exist_ok=True)
 
     results = {}
@@ -177,7 +179,7 @@ def generate_articles(target_date: str = None):
             article = call_llm(prompt)
 
             # 存檔
-            out_path = article_dir / f"{lang}.md"
+            out_path = article_dir / f"{day}-{lang}.md"
             out_path.write_text(article, encoding="utf-8")
             results[lang] = {"status": "ok", "path": str(out_path), "length": len(article)}
             log(f"   [{lang}] ✅ {len(article)} 字 → {out_path}")
@@ -192,7 +194,7 @@ def generate_articles(target_date: str = None):
         "posts_count": len(posts),
         "articles": results,
     }
-    (article_dir / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2))
+    (article_dir / f"{day}-meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2))
 
     log(f"✅ 完成：{article_dir}")
     return meta
@@ -203,7 +205,14 @@ def generate_articles(target_date: str = None):
 
 def update_index():
     """更新文章索引（給主站用）"""
-    dates = sorted([d.name for d in ARTICLES.iterdir() if d.is_dir() and d.name[:4] == "2026"], reverse=True)
+    dates = set()
+    for month_dir in ARTICLES.iterdir():
+        if month_dir.is_dir() and month_dir.name[:4].isdigit():
+            for f in month_dir.iterdir():
+                if f.name.endswith("-zh.md"):
+                    day = f.name.split("-")[0]
+                    dates.add(f"{month_dir.name}-{day}")
+    dates = sorted(dates, reverse=True)
     index_path = ARTICLES / "index.json"
     index_path.write_text(json.dumps(dates, ensure_ascii=False, indent=2))
     log(f"📋 索引更新：{len(dates)} 篇")
@@ -212,7 +221,9 @@ def update_index():
 
 def publish_to_devto(date: str, lang: str = "zh"):
     """發布到 Dev.to（單篇）"""
-    article_path = ARTICLES / date / f"{lang}.md"
+    month = date[:7]
+    day = date[8:]
+    article_path = ARTICLES / month / f"{day}-{lang}.md"
     if not article_path.exists():
         log(f"Dev.to: {article_path} 不存在")
         return
