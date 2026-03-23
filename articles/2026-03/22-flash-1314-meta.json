@@ -1,0 +1,24 @@
+{
+  "type": "flash",
+  "date": "2026-03-22",
+  "generated_at": "2026-03-22T13:14:09.469866+00:00",
+  "post_id": "116269555618597105",
+  "post_content": "The United States has blown Iran off of the map, and yet their lightweight analyst, David Sanger, says that I haven’t met my own goals. Yes I have, and weeks ahead of schedule! Their leadership is gon",
+  "signals": "DEAL",
+  "direction": "UP",
+  "confidence": 0.65,
+  "articles": {
+    "zh": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude 指令不存在（未安裝 Claude Code） | Gemini: 沒有 Key"
+    },
+    "en": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude 指令不存在（未安裝 Claude Code） | Gemini: 沒有 Key"
+    },
+    "ja": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude 指令不存在（未安裝 Claude Code） | Gemini: 沒有 Key"
+    }
+  }
+}

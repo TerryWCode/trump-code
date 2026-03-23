@@ -1,0 +1,24 @@
+{
+  "type": "flash",
+  "date": "2026-03-23",
+  "generated_at": "2026-03-23T00:35:13.707597+00:00",
+  "post_id": "116275668825285445",
+  "post_content": "I don’t think we should make any deal with the Crazy, Country Destroying, Radical Left Democrats unless, and until, they Vote with Republicans to pass “THE SAVE AMERICA ACT.” It is far more important ",
+  "signals": "DEAL, RELIEF, BEARISH",
+  "direction": "UP",
+  "confidence": 0.75,
+  "articles": {
+    "zh": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude 指令不存在（未安裝 Claude Code） | Gemini: 沒有 Key"
+    },
+    "en": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude 指令不存在（未安裝 Claude Code） | Gemini: 沒有 Key"
+    },
+    "ja": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude 指令不存在（未安裝 Claude Code） | Gemini: 沒有 Key"
+    }
+  }
+}
