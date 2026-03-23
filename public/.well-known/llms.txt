@@ -1,0 +1,45 @@
+# Trump Code (川普密碼 / トランプ・コード)
+
+> AI-powered brute-force analysis of Trump's social media posts and their stock market impact.
+
+## Overview
+Trump Code analyzes 7,400+ Truth Social posts from Trump's second term (2025-01-20 onwards), testing 31.5 million prediction model combinations. 551 rules survived train/test validation with a 61.3% hit rate (z=5.39, statistically significant).
+
+## Key Findings
+- RELIEF signal = strongest buy signal (Apr 9, 2025: S&P +9.52%)
+- Pure tariff day = most dangerous (-1.057% average)
+- 4-signal combo (DEAL+BRAG+RELIEF+TARIFF) = most profitable (+2.792%)
+- Trump's silence = 80% bullish (+0.409% average)
+- Truth Social publishes 6.2 hours before X (6-hour trading window)
+- Late-night tariff tweets are anti-indicators (62% wrong → reverse = 62% right)
+
+## Live Dashboard
+https://trumpcode.washinmura.jp
+
+## API Endpoints
+- GET /api/dashboard — All data in one call
+- GET /api/signals — Latest signals + 7-day history
+- GET /api/models — 11 model performance rankings
+- GET /api/recent-posts — Latest 20 Trump posts with signal analysis
+- GET /api/polymarket-trump — 316+ live Trump prediction markets
+- GET /api/status — System health
+- GET /api/data — Downloadable dataset catalog
+- POST /api/chat — AI chatbot (Gemini Flash)
+
+## Open Data
+All data is 100% public and free:
+- trump_posts_all.json — 44,000+ Truth Social posts
+- predictions_log.json — 566 verified predictions
+- surviving_rules.json — 551 active rules
+- daily_report.json — Daily trilingual report
+- signal_confidence.json — Auto-adjusted signal confidence
+
+## System Architecture
+Real-Time Engine (every 5 min) → Daily Pipeline (11 steps) → Three Brains (Opus AI analysis + Rule Evolver + Circuit Breaker) → Output (Dashboard, API, CLI, MCP, Chatbot)
+
+## GitHub
+https://github.com/sstklen/trump-code
+
+## Built By
+Washin Mura (和心村) — Animal sanctuary on Japan's Boso Peninsula
+https://washinmura.jp

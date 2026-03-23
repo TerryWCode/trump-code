@@ -1,0 +1,99 @@
+# Trump Code (川普密碼 / トランプ・コード) — Full Documentation for AI
+
+> AI-powered brute-force analysis of Trump's social media posts and their stock market impact.
+> Built by Washin Mura (和心村) — Animal sanctuary on Japan's Boso Peninsula.
+
+## What This System Does
+
+Trump Code is a real-time engine that:
+1. Monitors Trump's Truth Social posts every 30 seconds via RSS
+2. Classifies each post into market signals using LLM reasoning (Claude Opus) + keyword cross-validation
+3. Snapshots Polymarket prices, S&P 500 (SPY/ES/VIX), and $TRUMP coin at signal time
+4. Makes dual-track predictions (prediction market + stock market direction)
+5. Verifies predictions at 1h/3h/6h/12h/24h/48h intervals
+6. Learns: which signals predict market movements, which are noise
+7. Generates trilingual (zh-TW/en/ja) flash reports and daily analysis articles
+
+## Key Statistics
+- Posts analyzed: 7,400+ (from 2025-01-20 onwards)
+- Model combinations tested: 31.5 million
+- Surviving rules: 551 (passed train/test validation)
+- Overall hit rate: 61.3% (z=5.39, statistically significant)
+- Languages: Traditional Chinese (繁體中文), English, Japanese (日本語)
+
+## Signal Types
+| Signal | Meaning | Market Impact |
+|--------|---------|---------------|
+| TARIFF | New/increased tariffs | Usually bearish (-1.057% avg) |
+| DEAL | Trade agreements, negotiations | Usually bullish |
+| RELIEF | Tariff pauses, exemptions | Strongest buy signal (+9.52% best) |
+| ACTION | Executive orders, "just signed" | High impact, direction varies |
+| THREAT | Sanctions, bans, retaliation | Usually bearish |
+| BULLISH | Positive economic commentary | Mildly bullish |
+| BEARISH | Negative economic commentary | Bearish |
+
+## Key Findings
+- RELIEF signal = strongest buy signal (Apr 9, 2025: S&P +9.52% in one day)
+- Pure tariff day = most dangerous (-1.057% average)
+- 4-signal combo (DEAL+BRAG+RELIEF+TARIFF) = most profitable (+2.792%)
+- Trump's silence = 80% bullish (+0.409% average next-day return)
+- Truth Social publishes 6.2 hours before X (creates a 6-hour trading window)
+- Late-night tariff tweets are anti-indicators (62% wrong → reverse = 62% right)
+
+## Live Dashboard
+https://trumpcode.washinmura.jp
+
+## Daily Analysis Articles
+- Published daily in 3 languages (zh-TW, en, ja)
+- Flash reports generated immediately when significant signals detected
+- URL pattern: https://trumpcode.washinmura.jp/daily.html?date=YYYY-MM-DD
+- Article files: /articles/{YYYY-MM}/{DD}-{zh|en|ja}.md
+
+## API Endpoints (all public, no auth required)
+- GET /api/dashboard — All data in one call (signals, models, predictions, posts)
+- GET /api/signals — Latest signals + 7-day history
+- GET /api/models — 11 model performance rankings with hit rates
+- GET /api/recent-posts — Latest 20 Trump posts with signal analysis
+- GET /api/polymarket-trump — 316+ live Trump prediction markets from Polymarket
+- GET /api/status — System health check
+- GET /api/data — Downloadable dataset catalog (14 datasets)
+- POST /api/chat — AI chatbot powered by Gemini Flash
+
+## Open Data (100% free, no registration)
+- trump_posts_all.json — 44,000+ Truth Social posts with timestamps and content
+- predictions_log.json — 566 verified predictions with outcomes
+- surviving_rules.json — 551 active trading rules with parameters
+- daily_report.json — Daily trilingual analysis report
+- signal_confidence.json — Auto-adjusted signal confidence scores
+- rt_predictions.json — Real-time predictions (live tracking)
+- rt_learning.json — Real-time learning statistics by signal type
+
+## System Architecture
+```
+RSS Feed (30s) → Signal Classification (LLM + Keywords)
+                      ↓
+    Polymarket Snapshot + S&P 500 + $TRUMP Coin
+                      ↓
+    Dual-Track Prediction (PM direction + Stock direction)
+                      ↓
+    Verification Loop (1h/3h/6h/12h/24h/48h)
+                      ↓
+    Learning Engine → Rule Evolution → Confidence Adjustment
+                      ↓
+    Output: Dashboard + API + Daily Articles (3 languages)
+```
+
+## Technology
+- Real-time engine: Python, 5-minute polling cycle
+- RSS watcher: 30-second polling, <20s detection latency
+- LLM reasoning: Claude Opus (local) + Gemini (fallback)
+- Market data: Polymarket API, Yahoo Finance, CoinGecko
+- Frontend: Vanilla HTML/CSS/JS, dark theme
+- Hosting: AWS Lightsail, Caddy reverse proxy
+
+## GitHub
+https://github.com/sstklen/trump-code (open source)
+
+## Contact
+Washin Mura (和心村)
+https://washinmura.jp

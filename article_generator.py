@@ -176,12 +176,27 @@ def generate_articles(target_date: str = None):
             results[lang] = {"status": "error", "error": str(e)}
             log(f"   [{lang}] ❌ {e}")
 
-    # 存 metadata
+    # 存 metadata（含 Article Schema for SEO/AEO）
+    lang_names = {"zh": "繁體中文", "en": "English", "ja": "日本語"}
     meta = {
         "date": target_date,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "posts_count": len(posts),
         "articles": results,
+        "schema": {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": f"Trump Code Daily Analysis {target_date}",
+            "alternativeHeadline": f"川普密碼日報 {target_date}",
+            "datePublished": target_date,
+            "dateModified": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+            "author": {"@type": "Organization", "name": "Washin Mura (和心村)", "url": "https://washinmura.jp"},
+            "publisher": {"@type": "Organization", "name": "TRUMP CODE", "url": "https://trumpcode.washinmura.jp"},
+            "inLanguage": ["zh-TW", "en", "ja"],
+            "url": f"https://trumpcode.washinmura.jp/daily.html?date={target_date}",
+            "isAccessibleForFree": True,
+            "about": "AI analysis of Trump social media posts and stock market impact",
+        },
     }
     (article_dir / f"{day}-meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2))
 
@@ -206,6 +221,27 @@ def update_index():
     index_path.write_text(json.dumps(dates, ensure_ascii=False, indent=2))
     log(f"📋 索引更新：{len(dates)} 篇")
     return dates
+
+
+def notify_indexnow(urls: list[str]):
+    """通知 Bing/Yandex IndexNow 有新頁面（即時索引）。"""
+    # IndexNow key — 放在 public/.well-known/ 下驗證
+    key = "trumpcode2026washinmura"
+    payload = json.dumps({
+        "host": "trumpcode.washinmura.jp",
+        "key": key,
+        "urlList": urls,
+    }).encode()
+    try:
+        req = urllib.request.Request(
+            "https://api.indexnow.org/IndexNow",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+        )
+        resp = urllib.request.urlopen(req, timeout=10)
+        log(f"🔔 IndexNow: {resp.status} — {len(urls)} URL 已通知")
+    except Exception as e:
+        log(f"⚠️ IndexNow 失敗（不影響發布）: {e}")
 
 
 def publish_to_devto(date: str, lang: str = "zh"):
@@ -372,15 +408,22 @@ def generate_flash(post: dict, signals: list, direction: str, confidence: float)
 
 
 def full_pipeline(target_date: str = None):
-    """完整管線：生成文章 + 更新索引 + 發布 Dev.to"""
+    """完整管線：生成文章 + 更新索引 + 發布 Dev.to + IndexNow 通知"""
     meta = generate_articles(target_date)
     update_index()
 
-    # Dev.to 三語都發
     actual_date = target_date or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    # Dev.to 三語都發
     for lang in ["zh", "en", "ja"]:
         if meta.get("articles", {}).get(lang, {}).get("status") == "ok":
             publish_to_devto(actual_date, lang)
+
+    # IndexNow — 通知搜尋引擎有新文章
+    notify_indexnow([
+        f"https://trumpcode.washinmura.jp/daily.html?date={actual_date}",
+        "https://trumpcode.washinmura.jp/daily.html",
+    ])
 
     return meta
 

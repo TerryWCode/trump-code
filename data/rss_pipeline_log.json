@@ -275,5 +275,94 @@
     "rules_triggered": 2,
     "polymarket_order": null,
     "content_preview": "If the Radical Left Democrats don’t immediately sign an agreement to let our Cou"
+  },
+  {
+    "post_id": "116272713025328785",
+    "pub_time": "Sun, 22 Mar 2026 12:00:01 +0000",
+    "detected_at": "2026-03-22T13:14:09.452220+00:00",
+    "detect_latency_sec": 4448.4,
+    "classify_ms": 2.1,
+    "predict_ms": 0.0,
+    "total_sec": 4448.5,
+    "signals": [
+      "DEAL"
+    ],
+    "direction": "UP",
+    "confidence": 0.65,
+    "rules_triggered": 1,
+    "polymarket_order": null,
+    "content_preview": "On Monday, ICE will be going to airports to help our wonderful TSA Agents who ha"
+  },
+  {
+    "post_id": "116269555618597105",
+    "pub_time": "Sat, 21 Mar 2026 22:37:03 +0000",
+    "detected_at": "2026-03-22T13:14:09.469030+00:00",
+    "detect_latency_sec": 52626.5,
+    "classify_ms": 1.8,
+    "predict_ms": 0.0,
+    "total_sec": 52626.5,
+    "signals": [
+      "DEAL"
+    ],
+    "direction": "UP",
+    "confidence": 0.65,
+    "rules_triggered": 1,
+    "polymarket_order": null,
+    "content_preview": "The United States has blown Iran off of the map, and yet their lightweight analy"
+  },
+  {
+    "post_id": "116273343074887409",
+    "pub_time": "Sun, 22 Mar 2026 14:40:15 +0000",
+    "detected_at": "2026-03-22T14:46:07.421553+00:00",
+    "detect_latency_sec": 352.4,
+    "classify_ms": 4.3,
+    "predict_ms": 0.0,
+    "total_sec": 352.4,
+    "signals": [
+      "ACTION",
+      "BEARISH"
+    ],
+    "direction": "NEUTRAL",
+    "confidence": 0.3,
+    "rules_triggered": 2,
+    "polymarket_order": null,
+    "content_preview": "The Democrat running in Texas, James Talarico, turns out to be a FRAUD! It showe"
+  },
+  {
+    "post_id": "116275668825285445",
+    "pub_time": "Mon, 23 Mar 2026 00:31:43 +0000",
+    "detected_at": "2026-03-23T00:35:13.706190+00:00",
+    "detect_latency_sec": 210.7,
+    "classify_ms": 5.5,
+    "predict_ms": 0.0,
+    "total_sec": 210.7,
+    "signals": [
+      "DEAL",
+      "RELIEF",
+      "BEARISH"
+    ],
+    "direction": "UP",
+    "confidence": 0.75,
+    "rules_triggered": 3,
+    "polymarket_order": null,
+    "content_preview": "I don’t think we should make any deal with the Crazy, Country Destroying, Radica"
+  },
+  {
+    "post_id": "116276442445755599",
+    "pub_time": "Mon, 23 Mar 2026 03:48:28 +0000",
+    "detected_at": "2026-03-23T09:49:51.581700+00:00",
+    "detect_latency_sec": 21672.4,
+    "classify_ms": 11176.8,
+    "predict_ms": 0.0,
+    "total_sec": 21683.6,
+    "signals": [
+      "THREAT",
+      "BULLISH"
+    ],
+    "direction": "NEUTRAL",
+    "confidence": 0.3,
+    "rules_triggered": 2,
+    "polymarket_order": null,
+    "content_preview": "PEACE THROUGH STRENGTH, TO PUT IT MILDLY!!!"
   }
 ]
