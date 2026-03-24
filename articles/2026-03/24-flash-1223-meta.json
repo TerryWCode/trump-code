@@ -1,0 +1,27 @@
+{
+  "type": "flash",
+  "date": "2026-03-24",
+  "generated_at": "2026-03-24T12:23:16.881277+00:00",
+  "post_id": "116282577310101116",
+  "post_content": "Democrats are desperate to keep illegals, no matter how bad or dangerous they me be, in the Country. They want them to VOTE! That’s why they are fighting so hard to neutralize ICE. We will fight them ",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1223-zh.md",
+      "length": 403
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1223-en.md",
+      "length": 1623
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1223-ja.md",
+      "length": 437
+    }
+  }
+}
