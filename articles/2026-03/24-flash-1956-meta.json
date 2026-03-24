@@ -1,0 +1,27 @@
+{
+  "type": "flash",
+  "date": "2026-03-24",
+  "generated_at": "2026-03-24T19:56:03.396130+00:00",
+  "post_id": "116285903958791106",
+  "post_content": "Vigo County Commissioner Brenda Wilson, a Proven America First Patriot, is running against “No Goode” Greg Goode (BAD FOR THE U.S.A.!) in the Republican Primary for Indiana’s 38th Senate District, whi",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1956-zh.md",
+      "length": 440
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1956-en.md",
+      "length": 1525
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1956-ja.md",
+      "length": 451
+    }
+  }
+}
