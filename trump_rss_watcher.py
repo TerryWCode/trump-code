@@ -219,10 +219,11 @@ def on_new_post(post: dict):
                              signals, direction, confidence, triggered)
 
         # === 步驟 5: 即時三語快報生成（背景執行，不阻塞監控）===
-        if confidence and confidence >= 0.5:
-            _trigger_flash_article(post, signals, direction, confidence)
+        _trigger_flash_article(post, signals, direction, confidence)
     else:
-        log(f"     ⚪ 無信號 ({classify_ms:.0f}ms)")
+        # 無信號也寫 — 每篇都寫，累積一年就有信心了
+        log(f"     ⚪ 無市場信號，仍生成快報 ({classify_ms:.0f}ms)")
+        _trigger_flash_article(post, [], 'NEUTRAL', 0.0)
 
 
 def _append_pipeline_log(post, detect_latency, classify_ms, predict_ms,

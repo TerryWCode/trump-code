@@ -364,5 +364,56 @@
     "rules_triggered": 2,
     "polymarket_order": null,
     "content_preview": "PEACE THROUGH STRENGTH, TO PUT IT MILDLY!!!"
+  },
+  {
+    "post_id": "116278600245530358",
+    "pub_time": "Mon, 23 Mar 2026 12:57:13 +0000",
+    "detected_at": "2026-03-23T13:00:06.979866+00:00",
+    "detect_latency_sec": 174.0,
+    "classify_ms": 4.3,
+    "predict_ms": 0.0,
+    "total_sec": 174.0,
+    "signals": [
+      "DEAL"
+    ],
+    "direction": "UP",
+    "confidence": 0.65,
+    "rules_triggered": 1,
+    "polymarket_order": null,
+    "content_preview": "I am a BIG proponent of ICE wearing masks as they search for, and are forced to "
+  },
+  {
+    "post_id": "116278963682644203",
+    "pub_time": "Mon, 23 Mar 2026 14:29:39 +0000",
+    "detected_at": "2026-03-23T14:30:12.935946+00:00",
+    "detect_latency_sec": 33.9,
+    "classify_ms": 4.9,
+    "predict_ms": 0.0,
+    "total_sec": 33.9,
+    "signals": [
+      "DEAL"
+    ],
+    "direction": "UP",
+    "confidence": 0.65,
+    "rules_triggered": 1,
+    "polymarket_order": null,
+    "content_preview": "RT @realDonaldTrumpI am a BIG proponent of ICE wearing masks as they search for,"
+  },
+  {
+    "post_id": "116278959605267870",
+    "pub_time": "Mon, 23 Mar 2026 14:28:37 +0000",
+    "detected_at": "2026-03-23T14:30:12.955143+00:00",
+    "detect_latency_sec": 96.0,
+    "classify_ms": 1.9,
+    "predict_ms": 0.0,
+    "total_sec": 96.0,
+    "signals": [
+      "BEARISH"
+    ],
+    "direction": "DOWN",
+    "confidence": 0.65,
+    "rules_triggered": 1,
+    "polymarket_order": null,
+    "content_preview": "For years, Democrats ignored Violent and Vicious Crime of all shapes, sizes, col"
   }
 ]
