@@ -1,0 +1,27 @@
+{
+  "type": "flash",
+  "date": "2026-03-24",
+  "generated_at": "2026-03-24T19:50:40.441416+00:00",
+  "post_id": "116285866660628943",
+  "post_content": "Bluffton City Councilman Blake Fiechter, a True America First Patriot, is running against “RINO” State Senator Travis Holdman, in Indiana’s 19th Senate District who, for whatever reason, voted against",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1950-zh.md",
+      "length": 446
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1950-en.md",
+      "length": 1747
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1950-ja.md",
+      "length": 536
+    }
+  }
+}
