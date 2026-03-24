@@ -1,0 +1,27 @@
+{
+  "type": "flash",
+  "date": "2026-03-24",
+  "generated_at": "2026-03-24T19:55:54.600445+00:00",
+  "post_id": "116285906390195915",
+  "post_content": "It is my Great Honor to endorse America First Patriot, Jeff Ellington, a terrific Candidate for Indiana's 39th State Senate District (which I won by a whopping 55 points!). Jeff will be a fantastic re",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1955-zh.md",
+      "length": 425
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1955-en.md",
+      "length": 1489
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/24-flash-1955-ja.md",
+      "length": 449
+    }
+  }
+}
