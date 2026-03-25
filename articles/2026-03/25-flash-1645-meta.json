@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-03-25",
+  "generated_at": "2026-03-25T16:45:25.812768+00:00",
+  "post_id": "116290528260288417",
+  "post_content": "The Radical Left, Country Hating Democrats are trying to create inner chaos to take away from the great military achievement we are having in Iran. They hate seeing us WIN so completely and decisively",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116290528260288417",
+  "post_source": "Truth Social",
+  "post_time": "Wed, 25 Mar 2026 15:30:40 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/25-flash-1645-zh.md",
+      "length": 398
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/25-flash-1645-en.md",
+      "length": 668
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/25-flash-1645-ja.md",
+      "length": 435
+    }
+  }
+}
