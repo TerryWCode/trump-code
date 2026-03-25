@@ -1,9 +1,9 @@
 {
   "type": "flash",
   "date": "2026-03-25",
-  "generated_at": "2026-03-25T07:02:27.829361+00:00",
-  "post_id": "x_2015833393917747502",
-  "post_content": "MELANIA, the Movie, is a MUST WATCH. Get your tickets today — Selling out, FAST!\n\nPhoto: Regine Mahaux\nhttps://t.co/rjwd5Appkv https://t.co/vFpXfV0Mg0",
+  "generated_at": "2026-03-25T07:02:41.037107+00:00",
+  "post_id": "x_2014874759473828043",
+  "post_content": "I have been briefed on the Record Cold Wave and Historic Winter Storm that will be hitting much of the United States this weekend. The Trump Administration is coordinating with State and Local Officia",
   "signals": "",
   "direction": "NEUTRAL",
   "confidence": 0.0,
@@ -11,17 +11,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/25-flash-0702-zh.md",
-      "length": 48
+      "length": 50
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/25-flash-0702-en.md",
-      "length": 174
+      "length": 216
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/25-flash-0702-ja.md",
-      "length": 60
+      "length": 381
     }
   }
 }

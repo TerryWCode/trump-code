@@ -1,3 +1,3 @@
-⚡ Trump Code | Flash: Trump Promotes 'MELANIA, the Movie'
+⚡ Trump Code | Flash
 
-**What he said:** Former President Trump just posted an urgent promotional message for "MELANIA, the Movie," urging
+**President Trump just tweeted confirmation of federal coordination with state/local officials and FEMA preparedness for an imminent record cold wave and historic winter storm set to hit much of
