@@ -82,14 +82,22 @@ def load_today_data(target_date: str):
     return day_posts, report
 
 
-def build_prompt(lang: str, posts: list, report: dict, target_date: str) -> str:
-    """建構 LLM prompt"""
-    # 整理推文摘要
+def build_prompt(lang: str, posts: list, report: dict, target_date: str):
+    """建構 LLM prompt。回傳 (prompt_str, source_links)。"""
+    # 整理推文摘要（含原文連結）
     posts_text = ""
+    source_links = []
     for i, p in enumerate(posts[:30], 1):
         time = p.get("created_at", "")[:16]
         content = p.get("content", "")[:200]
+        pid = p.get("id", "")
+        url = p.get("original_url", "")
+        if not url and pid:
+            url = f"https://truthsocial.com/@realDonaldTrump/posts/{pid}"
         posts_text += f"{i}. [{time}] {content}\n"
+        if url:
+            posts_text += f"   原文：{url}\n"
+            source_links.append(url)
 
     if not posts_text:
         posts_text = "(今天尚無推文)"
@@ -134,14 +142,17 @@ def build_prompt(lang: str, posts: list, report: dict, target_date: str) -> str:
 目標讀者：{cfg['audience']}
 
 請產出一篇 300-500 字的分析文章，包含：
-1. 今日重點（川普在說什麼、語氣如何）
-2. 信號解讀（對市場的潛在影響）
+1. 今日重點（川普在說什麼、語氣如何，引用原文關鍵句）
+2. 信號解讀（對市場的潛在影響，帶具體數字）
 3. 趨勢觀察（跟前幾天比有什麼變化）
 4. 一句話結論
 
+重要：文章中必須引用川普的原文關鍵句（用引號標示）。
+
 格式：{cfg['format']}
 用 Markdown 格式輸出。不要加 ```markdown 標記。
-"""
+不要在文章末尾加出處區塊（系統會自動附上）。
+""", source_links
 
 
 def generate_articles(target_date: str = None):
@@ -163,11 +174,65 @@ def generate_articles(target_date: str = None):
     # 三語並行生成（從 45 秒縮到 15 秒）
     from concurrent.futures import ThreadPoolExecutor
 
+    # 先組一次 prompt 拿 source_links（三語共用同一份連結）
+    _, all_source_links = build_prompt("en", posts, report, target_date)
+    links_text = "\n".join(f"  - {url}" for url in all_source_links[:30]) if all_source_links else "  - (無原文連結)"
+
+    # 每日文章出處區塊（公定規格）
+    signals = report.get("signals_detected", [])
+    consensus = report.get("direction_summary", {}).get("consensus", "N/A")
+    daily_provenance = {
+        "zh": f"""
+---
+**📋 出處與方法**
+- 原文來源：Truth Social (@realDonaldTrump)
+- 當日推文數：{len(posts)} 篇
+- 原文連結：
+{links_text}
+- 信號：{', '.join(signals) if signals else '無'} | 模型共識：{consensus}
+- 分析引擎：Trump Code AI（Claude Opus / Gemini Flash）
+- 信號偵測：基於 7,400+ 篇推文訓練的 551 條規則，z=5.39
+- 分析方法：NLP 關鍵字分類 → LLM 因果推理 → 信心度評分
+- 資料集：trumpcode.washinmura.jp/api/data
+- 原始碼：github.com/sstklen/trump-code
+""",
+        "en": f"""
+---
+**📋 Sources & Methodology**
+- Source: Truth Social (@realDonaldTrump)
+- Posts analyzed: {len(posts)}
+- Source URLs:
+{links_text}
+- Signals: {', '.join(signals) if signals else 'None'} | Consensus: {consensus}
+- Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
+- Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
+- Method: NLP keyword classification → LLM causal reasoning → confidence scoring
+- Dataset: trumpcode.washinmura.jp/api/data
+- Open source: github.com/sstklen/trump-code
+""",
+        "ja": f"""
+---
+**📋 出典・分析手法**
+- 原文：Truth Social (@realDonaldTrump)
+- 本日の投稿数：{len(posts)} 件
+- 原文リンク：
+{links_text}
+- シグナル：{', '.join(signals) if signals else 'なし'} | コンセンサス：{consensus}
+- 分析エンジン：Trump Code AI（Claude Opus / Gemini Flash）
+- シグナル検出：7,400件以上の投稿から検証済み551ルール（z=5.39）
+- 手法：NLPキーワード分類 → LLM因果推論 → 信頼度スコアリング
+- データセット：trumpcode.washinmura.jp/api/data
+- オープンソース：github.com/sstklen/trump-code
+""",
+    }
+
     def _gen_one(lang):
         log(f"   [{lang}] 呼叫 LLM...")
         try:
-            prompt = build_prompt(lang, posts, report, target_date)
+            prompt, _ = build_prompt(lang, posts, report, target_date)
             article = call_llm(prompt)
+            # 自動附出處區塊（公定規格）
+            article = article.rstrip() + "\n" + daily_provenance[lang]
             out_path = article_dir / f"{day}-{lang}.md"
             out_path.write_text(article, encoding="utf-8")
             log(f"   [{lang}] ✅ {len(article)} 字 → {out_path}")
@@ -181,11 +246,15 @@ def generate_articles(target_date: str = None):
         for lang, result in pool.map(_gen_one, ["zh", "en", "ja"]):
             results[lang] = result
 
-    # 存 metadata（含 Article Schema for SEO/AEO）
+    # 存 metadata（含完整出處 + Article Schema for SEO/AEO — 公定規格）
     meta = {
         "date": target_date,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "posts_count": len(posts),
+        "source_urls": all_source_links,
+        "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+        "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+        "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
         "articles": results,
         "schema": {
             "@context": "https://schema.org",
