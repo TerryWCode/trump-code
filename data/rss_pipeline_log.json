@@ -586,5 +586,39 @@
     "rules_triggered": 1,
     "polymarket_order": null,
     "content_preview": "It is my Great Honor to endorse State Representative Michelle Davis, a REAL Repu"
+  },
+  {
+    "post_id": "116287761828408706",
+    "pub_time": "Wed, 25 Mar 2026 03:47:08 +0000",
+    "detected_at": "2026-03-25T13:01:52.329382+00:00",
+    "detect_latency_sec": 33284.3,
+    "classify_ms": 7.0,
+    "predict_ms": 0.0,
+    "total_sec": 33284.3,
+    "signals": [
+      "BEARISH"
+    ],
+    "direction": "DOWN",
+    "confidence": 0.65,
+    "rules_triggered": 1,
+    "polymarket_order": null,
+    "content_preview": "Terrible!"
+  },
+  {
+    "post_id": "116286710096907230",
+    "pub_time": "Tue, 24 Mar 2026 23:19:40 +0000",
+    "detected_at": "2026-03-25T13:01:52.391368+00:00",
+    "detect_latency_sec": 49332.4,
+    "classify_ms": 0.2,
+    "predict_ms": 0.0,
+    "total_sec": 49332.4,
+    "signals": [
+      "BULLISH"
+    ],
+    "direction": "UP",
+    "confidence": 0.65,
+    "rules_triggered": 1,
+    "polymarket_order": null,
+    "content_preview": "Highly Respected Prime Minister of Hungary, Viktor Orbán, is a truly strong and "
   }
 ]

@@ -1216,5 +1216,54 @@
     "detect_time": "2026-03-24T20:00:10.222018+00:00",
     "latency_sec": 260.2,
     "content_preview": "It is my Great Honor to endorse State Representative Michelle Davis, a REAL Repu"
+  },
+  {
+    "post_id": "116287761828408706",
+    "pub_time": "2026-03-25T03:47:08+00:00",
+    "detect_time": "2026-03-25T13:01:52.319783+00:00",
+    "latency_sec": 33284.3,
+    "content_preview": "Terrible!"
+  },
+  {
+    "post_id": "116287754799935332",
+    "pub_time": "2026-03-25T03:45:21+00:00",
+    "detect_time": "2026-03-25T13:01:52.330525+00:00",
+    "latency_sec": 33391.3,
+    "content_preview": "Iran’s flex of long-range ballistic missiles vindicates Trump, may change Europe"
+  },
+  {
+    "post_id": "116287752129128324",
+    "pub_time": "2026-03-25T03:44:40+00:00",
+    "detect_time": "2026-03-25T13:01:52.339839+00:00",
+    "latency_sec": 33432.3,
+    "content_preview": "Trump admin looks to streamline permitting, lower costs to help make home owners"
+  },
+  {
+    "post_id": "116287749682881628",
+    "pub_time": "2026-03-25T03:44:02+00:00",
+    "detect_time": "2026-03-25T13:01:52.345260+00:00",
+    "latency_sec": 33470.3,
+    "content_preview": "Fishing expedition: Docs expose expansive FBI surveillance of Trump allies, poss"
+  },
+  {
+    "post_id": "116287683741019472",
+    "pub_time": "2026-03-25T03:27:16+00:00",
+    "detect_time": "2026-03-25T13:01:52.358817+00:00",
+    "latency_sec": 34476.4,
+    "content_preview": ""
+  },
+  {
+    "post_id": "116287679930753202",
+    "pub_time": "2026-03-25T03:26:18+00:00",
+    "detect_time": "2026-03-25T13:01:52.370925+00:00",
+    "latency_sec": 34534.4,
+    "content_preview": ""
+  },
+  {
+    "post_id": "116286710096907230",
+    "pub_time": "2026-03-24T23:19:40+00:00",
+    "detect_time": "2026-03-25T13:01:52.383099+00:00",
+    "latency_sec": 49332.4,
+    "content_preview": "Highly Respected Prime Minister of Hungary, Viktor Orbán, is a truly strong and "
   }
 ]
