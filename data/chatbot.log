@@ -1,0 +1,20 @@
+⚠️ 請設定 GEMINI_KEYS 環境變數: export GEMINI_KEYS='key1,key2,key3'
+   沒有 key 的話聊天功能無法使用
+🔴 川普密碼聊天機器人
+========================================
+🌐 http://localhost:8888
+🔑 Gemini Flash × 3 把 key 輪用
+💡 群眾智慧回收啟用
+========================================
+Ctrl+C 停止
+Traceback (most recent call last):
+  File "/home/ubuntu/trump-code/chatbot_server.py", line 1907, in <module>
+    server = HTTPServer(('0.0.0.0', PORT), ChatHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.12/socketserver.py", line 473, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
