@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-03-26",
+  "generated_at": "2026-03-26T10:20:52.929183+00:00",
+  "post_id": "116294956989451533",
+  "post_content": "NATO NATIONS HAVE DONE ABSOLUTELY NOTHING TO HELP WITH THE LUNATIC NATION, NOW MILITARILY DECIMATED, OF IRAN. THE U.S.A. NEEDS NOTHING FROM NATO, BUT “NEVER FORGET” THIS VERY IMPORTANT POINT IN TIME! ",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116294956989451533",
+  "post_source": "Truth Social",
+  "post_time": "Thu, 26 Mar 2026 10:16:57 +0000",
+  "signals": "THREAT",
+  "direction": "DOWN",
+  "confidence": 0.4,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/26-flash-1020-zh.md",
+      "length": 931
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/26-flash-1020-en.md",
+      "length": 1220
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/26-flash-1020-ja.md",
+      "length": 904
+    }
+  }
+}
