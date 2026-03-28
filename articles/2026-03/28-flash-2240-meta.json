@@ -1,15 +1,15 @@
 {
   "type": "flash",
   "date": "2026-03-28",
-  "generated_at": "2026-03-28T22:40:16.537569+00:00",
-  "post_id": "116309194049631675",
-  "post_content": "TrumpRX website sees steady growth in prescription offerings, proving MAHA doubters wrong:",
-  "post_url": "https://truthsocial.com/@realDonaldTrump/116309194049631675",
+  "generated_at": "2026-03-28T22:40:24.574719+00:00",
+  "post_id": "116309192353741463",
+  "post_content": "NY AG Letitia James referred again for criminal prosecution for alleged homeowner insurance fraud:",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116309192353741463",
   "post_source": "Truth Social",
-  "post_time": "Sat, 28 Mar 2026 22:37:38 +0000",
-  "signals": "BULLISH",
-  "direction": "UP",
-  "confidence": 0.3,
+  "post_time": "Sat, 28 Mar 2026 22:37:12 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
   "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
   "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
   "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
@@ -17,17 +17,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/28-flash-2240-zh.md",
-      "length": 843
+      "length": 827
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/28-flash-2240-en.md",
-      "length": 1207
+      "length": 2260
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/28-flash-2240-ja.md",
-      "length": 857
+      "length": 846
     }
   }
 }

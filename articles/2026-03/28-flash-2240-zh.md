@@ -1,25 +1,23 @@
 ⚡ 川普密碼｜即時快報
 
-## TrumpRX 處方藥平台擴張，川普再為 MAHA 政策背書
+## 川普反擊紐約檢察長，政治攻防再升溫
 
-川普剛在 Truth Social 發文：「TrumpRX website sees steady growth in prescription offerings, proving MAHA doubters wrong」，宣稱他的線上處方藥平台持續擴大藥品項目，並向質疑 MAHA（Make America Healthy Again）政策的人喊話。
+川普剛在 Truth Social 發文：「NY AG Letitia James referred again for criminal prosecution for alleged homeowner insurance fraud」——指紐約州檢察長乘芝蓮·乘詹姆士再次因涉嫌房屋保險詐欺被移送刑事追訴。
 
-**這則的重點不在政策，在品牌。** TrumpRX 本質上是川普個人品牌的商業延伸，不是聯邦政策變動。他把平台業績包裝成政策成果，但對大盤、醫療類股的實質推動力極低。
-
-信號偵測結果為 **BULLISH／UP**，但信心度僅 **30%**——這是典型的「自我宣傳文」，聲量大、影響小。
+**為什麼重要？** 詹姆士正是對川普發起民事詐欺案的檢察長。川普此舉是典型的「反擊式敘事」——把追訴者變成被追訴者。這類政治攻防本身不直接影響政策或關稅，但會牽動市場對「法律風險」的定價。信號偵測結果為 **NEUTRAL，信心度 0%**，代表系統判定這則發文不帶明確的市場方向性，純屬政治交鋒。
 
 **建議關注：**
-- 下週醫療保健類股（XLV）是否有異常資金流入
-- TrumpRX 是否有新的合作藥廠或 FDA 相關動態
-- MAHA 政策若有實質立法進展，才是真正該動的時候
+- **短期無需動作**——這不是政策訊號，不影響利率、關稅或產業監管
+- 留意下週紐約法院是否有相關排程，若詹姆士案出現實質進展，可能間接影響川普集團（DJT）股價波動
+- DJT 盤後價格變化是觀察市場情緒的最快指標
 
-一句話：川普在賣自家產品，不是在改遊戲規則。看看就好，別急著動。
+一句話：政治口水戰，市場旁觀即可。
 
 ---
 **📋 出處與方法**
 - 原文來源：Truth Social
-- 原文連結：https://truthsocial.com/@realDonaldTrump/116309194049631675
-- 發文時間：Sat, 28 Mar 2026 22:37:38 +0000
+- 原文連結：https://truthsocial.com/@realDonaldTrump/116309192353741463
+- 發文時間：Sat, 28 Mar 2026 22:37:12 +0000
 - 分析引擎：Trump Code AI（Claude Opus / Gemini Flash）
 - 信號偵測：基於 7,400+ 篇推文訓練的 551 條規則，z=5.39
 - 分析方法：NLP 關鍵字分類 → LLM 因果推理 → 信心度評分
