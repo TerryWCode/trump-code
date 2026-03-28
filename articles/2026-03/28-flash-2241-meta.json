@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-03-28",
+  "generated_at": "2026-03-28T22:41:07.041070+00:00",
+  "post_id": "116309190231389438",
+  "post_content": "No, Trump is not losing his nerve on Iran:",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116309190231389438",
+  "post_source": "Truth Social",
+  "post_time": "Sat, 28 Mar 2026 22:36:39 +0000",
+  "signals": "THREAT",
+  "direction": "DOWN",
+  "confidence": 0.6,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/28-flash-2241-zh.md",
+      "length": 779
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/28-flash-2241-en.md",
+      "length": 2039
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/28-flash-2241-ja.md",
+      "length": 778
+    }
+  }
+}
