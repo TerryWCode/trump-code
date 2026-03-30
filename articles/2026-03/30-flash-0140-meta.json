@@ -1,12 +1,12 @@
 {
   "type": "flash",
   "date": "2026-03-30",
-  "generated_at": "2026-03-30T01:40:29.953804+00:00",
-  "post_id": "116315554694698427",
-  "post_content": "RT @realDonaldTrumpLast week, my Envoy to Belarus, John Coale, after negotiating with Highly Respected President Alexander Lukashenko, got 250 more Political Prisoners freed! This brings the total Pri",
-  "post_url": "https://truthsocial.com/@realDonaldTrump/116315554694698427",
+  "generated_at": "2026-03-30T01:40:40.681725+00:00",
+  "post_id": "116315554378575899",
+  "post_content": "Top Trump Housing Official Seeks New Prosecution Of Letitia James:",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116315554378575899",
   "post_source": "Truth Social",
-  "post_time": "Mon, 30 Mar 2026 01:35:13 +0000",
+  "post_time": "Mon, 30 Mar 2026 01:35:08 +0000",
   "signals": "",
   "direction": "NEUTRAL",
   "confidence": 0.0,
@@ -17,17 +17,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/30-flash-0140-zh.md",
-      "length": 865
+      "length": 859
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/30-flash-0140-en.md",
-      "length": 1246
+      "length": 1166
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-03/30-flash-0140-ja.md",
-      "length": 967
+      "length": 835
     }
   }
 }
