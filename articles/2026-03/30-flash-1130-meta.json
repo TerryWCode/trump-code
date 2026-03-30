@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-03-30",
+  "generated_at": "2026-03-30T11:30:56.727614+00:00",
+  "post_id": "116317880658472708",
+  "post_content": "The United States of America is in serious discussions with A NEW, AND MORE REASONABLE, REGIME to end our Military Operations in Iran. Great progress has been made but, if for any reason a deal is not",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116317880658472708",
+  "post_source": "Truth Social",
+  "post_time": "Mon, 30 Mar 2026 11:26:45 +0000",
+  "signals": "DEAL, THREAT, ACTION",
+  "direction": "UP",
+  "confidence": 0.7999999999999999,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/30-flash-1130-zh.md",
+      "length": 795
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/30-flash-1130-en.md",
+      "length": 2189
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/30-flash-1130-ja.md",
+      "length": 1040
+    }
+  }
+}
