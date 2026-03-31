@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-03-31",
+  "generated_at": "2026-03-31T11:20:56.228940+00:00",
+  "post_id": "116323516183718262",
+  "post_content": "The Country of France wouldn’t let planes headed to Israel, loaded up with military supplies, fly over French territory. France has been VERY UNHELPFUL with respect to the “Butcher of Iran,” who has b",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116323516183718262",
+  "post_source": "Truth Social",
+  "post_time": "Tue, 31 Mar 2026 11:19:56 +0000",
+  "signals": "THREAT, ACTION",
+  "direction": "NEUTRAL",
+  "confidence": 0.3,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/31-flash-1120-zh.md",
+      "length": 821
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/31-flash-1120-en.md",
+      "length": 1142
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/31-flash-1120-ja.md",
+      "length": 878
+    }
+  }
+}
