@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-03-31",
+  "generated_at": "2026-03-31T19:15:43.247763+00:00",
+  "post_id": "116325374279671384",
+  "post_content": "Secretary of the Interior Doug Burgum and I are working on fixing the absolutely filthy Reflecting Pool between the Lincoln Memorial and the Washington Monument. This work was supposed to be done by t",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116325374279671384",
+  "post_source": "Truth Social",
+  "post_time": "Tue, 31 Mar 2026 19:12:28 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/31-flash-1915-zh.md",
+      "length": 827
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/31-flash-1915-en.md",
+      "length": 2150
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-03/31-flash-1915-ja.md",
+      "length": 747
+    }
+  }
+}
