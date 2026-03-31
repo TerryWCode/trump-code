@@ -1,23 +1,24 @@
-無法抓取 Truth Social 內容（需要授權）。
+抱歉，無法抓取 Truth Social 的原文內容。
 
-**問題：這則推文的原文內容是空的。** 來源資料在 `---` 之間沒有任何文字，信心度 0% 也確認了系統沒有偵測到實質內容。
+問題是：**這則推文的原文內容是空的**（提供的資料中兩個 `---` 之間沒有任何文字），而且信號偵測信心度是 **0%**，方向 **NEUTRAL**，這都指向同一件事——沒有可分析的文字內容。
 
-可能原因：
-1. RSS/爬蟲抓取時內容為空（Truth Social 有時會延遲載入）
-2. 該貼文可能是純圖片/影片，沒有文字
-3. 抓取過程中內容遺失
+可能的情況：
+1. **這是一則純圖片/影片貼文**（沒有文字，RSS 只抓到空白）
+2. **貼文已被刪除或編輯**
+3. **RSS 抓取時發生錯誤**
 
-**沒有原文內容，我無法產出有意義的快報。** 寫一篇沒有引用原文的分析等於捏造，違反 EVIDENCE 原則。
+我無法基於空白內容產出有意義的快報。如果硬寫會違反 **no-fabricate** 原則——沒有原文就沒有引用，沒有引用就沒有分析。
 
-建議：
-1. 手動開啟 [該則貼文](https://truthsocial.com/@realDonaldTrump/116324355320743651) 確認內容
-2. 把原文貼給我，我立刻產出快報
+**建議：**
+- 手動打開 [這則貼文](https://truthsocial.com/@realDonaldTrump/116324354520678722) 確認內容
+- 如果有文字/圖片內容，貼給我，我馬上產出快報
+- 如果確認是空白貼文，可以跳過這則
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116324355320743651
-- Posted: Tue, 31 Mar 2026 14:53:20 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116324354520678722
+- Posted: Tue, 31 Mar 2026 14:53:08 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring
