@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-01",
+  "generated_at": "2026-04-02T04:02:25.144676+00:00",
+  "posts_count": 11,
+  "source_urls": [
+    "https://truthsocial.com/@realDonaldTrump/posts/116329512466946656",
+    "https://truthsocial.com/@realDonaldTrump/posts/116329590740337581",
+    "https://truthsocial.com/@realDonaldTrump/posts/116330362125395500",
+    "https://truthsocial.com/@realDonaldTrump/posts/116330487356155648",
+    "https://truthsocial.com/@realDonaldTrump/posts/116330778720988222",
+    "https://truthsocial.com/@realDonaldTrump/posts/37555",
+    "https://truthsocial.com/@realDonaldTrump/posts/116331984748685770",
+    "https://truthsocial.com/@realDonaldTrump/posts/116331986972530622",
+    "https://truthsocial.com/@realDonaldTrump/posts/116331990038819932",
+    "https://truthsocial.com/@realDonaldTrump/posts/116331993306678428",
+    "https://truthsocial.com/@realDonaldTrump/posts/37560"
+  ],
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude -p 超時（120s） | Gemini(AIzaSyDUUAmf...): Gemini HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Your project has exceeded its spending cap.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n | Gemini(AIzaSyDpub2v...): Gemini HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"API key expired. Please renew the API key.\",\n    \"status\": \"INVALID_ARGUMENT\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc"
+    },
+    "en": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude -p 超時（120s） | Gemini(AIzaSyDUUAmf...): Gemini HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Your project has exceeded its spending cap.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n | Gemini(AIzaSyDUUAmf...): Gemini HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Your project has exceeded its spending cap.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n"
+    },
+    "ja": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude -p 超時（120s） | Gemini(AIzaSyDpub2v...): Gemini HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"API key expired. Please renew the API key.\",\n    \"status\": \"INVALID_ARGUMENT\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc | Gemini(AIzaSyDpub2v...): Gemini HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"API key expired. Please renew the API key.\",\n    \"status\": \"INVALID_ARGUMENT\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc"
+    }
+  },
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "Trump Code Daily Analysis 2026-04-01",
+    "alternativeHeadline": "川普密碼日報 2026-04-01",
+    "datePublished": "2026-04-01",
+    "dateModified": "2026-04-02",
+    "author": {
+      "@type": "Organization",
+      "name": "Washin Mura (和心村)",
+      "url": "https://washinmura.jp"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TRUMP CODE",
+      "url": "https://trumpcode.washinmura.jp"
+    },
+    "inLanguage": [
+      "zh-TW",
+      "en",
+      "ja"
+    ],
+    "url": "https://trumpcode.washinmura.jp/daily.html?date=2026-04-01",
+    "isAccessibleForFree": true,
+    "about": "AI analysis of Trump social media posts and stock market impact"
+  }
+}

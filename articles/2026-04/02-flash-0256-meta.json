@@ -1,0 +1,30 @@
+{
+  "type": "flash",
+  "date": "2026-04-02",
+  "generated_at": "2026-04-02T02:56:18.363083+00:00",
+  "post_id": "116332855637584819",
+  "post_content": "Democratic pollster: Benefit of defanging Iran far outweighs cost of war:",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116332855637584819",
+  "post_source": "Truth Social",
+  "post_time": "Thu, 02 Apr 2026 02:55:05 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude -p 退出碼 1:  | Gemini(AIzaSyDUUAmf...): Gemini HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Your project has exceeded its spending cap.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n | Gemini(AIzaSyDUUAmf...): Gemini HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Your project has exceeded its spending cap.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n"
+    },
+    "en": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude -p 退出碼 1:  | Gemini(AIzaSyDUUAmf...): Gemini HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Your project has exceeded its spending cap.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n | Gemini(AIzaSyDpub2v...): Gemini HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"API key expired. Please renew the API key.\",\n    \"status\": \"INVALID_ARGUMENT\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc"
+    },
+    "ja": {
+      "status": "error",
+      "error": "washin_llm 失敗: 所有 AI 都失敗: claude-local: claude -p 退出碼 1:  | Gemini(AIzaSyDpub2v...): Gemini HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"API key expired. Please renew the API key.\",\n    \"status\": \"INVALID_ARGUMENT\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc | Gemini(AIzaSyDpub2v...): Gemini HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"API key expired. Please renew the API key.\",\n    \"status\": \"INVALID_ARGUMENT\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc"
+    }
+  }
+}
