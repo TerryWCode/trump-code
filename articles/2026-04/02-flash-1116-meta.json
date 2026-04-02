@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-02",
+  "generated_at": "2026-04-02T11:16:20.489151+00:00",
+  "post_id": "116334821717037813",
+  "post_content": "Kangaroo Court!!!",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116334821717037813",
+  "post_source": "Truth Social",
+  "post_time": "Thu, 02 Apr 2026 11:15:05 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/02-flash-1116-zh.md",
+      "length": 780
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/02-flash-1116-en.md",
+      "length": 2116
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/02-flash-1116-ja.md",
+      "length": 831
+    }
+  }
+}
