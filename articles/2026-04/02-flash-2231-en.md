@@ -1,28 +1,26 @@
-看起來 WebFetch 權限被拒絕了。
+**無法產出快報。** 原因很明確：
 
-**問題：這則貼文的原文內容是空的。**
+1. **貼文內容為空** — `rss_latency_log.json` 中此 post ID (`116337474135003522`) 的 `content_preview` 是空字串 `""`
+2. **前一次 LLM 也同樣判定無法寫** — `02-flash-2231-zh.md` 已記錄：「內容是空的，無法根據空白內容寫快報」
+3. **外部抓取被阻擋** — WebFetch 和 curl 都未獲得授權
 
-RSS watcher 抓到了這則貼文（ID: `116337473284766361`，發文時間 2026-04-02 22:29:24 UTC），但內容欄位是空白的。這解釋了為什麼信心度是 0%。
+可能原因：
+- 這則貼文是**純圖片/影片**，沒有文字（Truth Social 常見）
+- 貼文已被刪除或編輯
+- RSS 擷取時 content 欄位為空
 
-可能的原因：
-1. **純圖片/影片貼文** — 沒有文字，RSS 無法擷取
-2. **貼文被刪除或編輯** — 在抓取時已經消失
-3. **RSS feed 解析問題** — 沒有正確提取內容
+**編造內容違反 EVIDENCE 規則，我不猜。**
 
-**我無法在沒有原文的情況下寫快報** — 這會違反 EVIDENCE 規則（no-fabricate）。
-
-建議下一步：
-1. 手動打開連結確認內容：https://truthsocial.com/@realDonaldTrump/116337473284766361
-2. 如果是圖片/影片貼文，考慮在 RSS parser 加上 media attachment 偵測
-3. 授權 WebFetch 讓我直接抓取
-
-要我檢查 RSS watcher 的 parser 邏輯，看為什麼會漏掉內容嗎？
+要處理的話：
+1. **你手動貼上推文內容**，我立刻寫快報
+2. **授權 WebFetch / curl**，我去抓實際內容
+3. **跳過這則** — 如果確認是純圖片貼文
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116337473284766361
-- Posted: Thu, 02 Apr 2026 22:29:24 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116337474135003522
+- Posted: Thu, 02 Apr 2026 22:29:37 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring
