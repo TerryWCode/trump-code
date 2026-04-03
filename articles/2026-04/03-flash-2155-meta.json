@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-03",
+  "generated_at": "2026-04-03T21:55:28.896460+00:00",
+  "post_id": "116342994589318293",
+  "post_content": "A very happy and blessed Good Friday to all, especially to the 186,000 Americans who gained Private Sector jobs in the month of March alone! My Economic Policies have created an enormously powerful en",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116342994589318293",
+  "post_source": "Truth Social",
+  "post_time": "Fri, 03 Apr 2026 21:53:33 +0000",
+  "signals": "BULLISH, TARIFF",
+  "direction": "NEUTRAL",
+  "confidence": 0.3,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-2155-zh.md",
+      "length": 892
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-2155-en.md",
+      "length": 1295
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-2155-ja.md",
+      "length": 980
+    }
+  }
+}
