@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-03",
+  "generated_at": "2026-04-03T12:10:59.120214+00:00",
+  "post_id": "116340682613576162",
+  "post_content": "Vice President JD Vance is now in charge of “FRAUD” in the United States. It is massive and pervasive, and the job he will be doing, in conjunction with many great people within the Trump Administrati",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116340682613576162",
+  "post_source": "Truth Social",
+  "post_time": "Fri, 03 Apr 2026 12:05:35 +0000",
+  "signals": "ACTION",
+  "direction": "UP",
+  "confidence": 0.4,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-1210-zh.md",
+      "length": 862
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-1210-en.md",
+      "length": 2234
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-1210-ja.md",
+      "length": 900
+    }
+  }
+}
