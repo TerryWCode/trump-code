@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-03",
+  "generated_at": "2026-04-03T12:25:59.845251+00:00",
+  "post_id": "116340751005894827",
+  "post_content": "With a little more time, we can easily OPEN THE HORMUZ STRAIT, TAKE THE OIL, &amp; MAKE A FORTUNE. IT WOULD BE A “GUSHER” FOR THE WORLD??? President DONALD J. TRUMP",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116340751005894827",
+  "post_source": "Truth Social",
+  "post_time": "Fri, 03 Apr 2026 12:22:58 +0000",
+  "signals": "THREAT, BULLISH, ACTION",
+  "direction": "UP",
+  "confidence": 0.6,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-1225-zh.md",
+      "length": 903
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-1225-en.md",
+      "length": 1959
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-1225-ja.md",
+      "length": 894
+    }
+  }
+}
