@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-03",
+  "generated_at": "2026-04-03T02:45:57.465341+00:00",
+  "post_id": "116338464010194156",
+  "post_content": "Our Military, the greatest and most powerful (by far!) anywhere in the World, hasn’t even started destroying what’s left in Iran. Bridges next, then Electric Power Plants! New Regime leadership knows ",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116338464010194156",
+  "post_source": "Truth Social",
+  "post_time": "Fri, 03 Apr 2026 02:41:22 +0000",
+  "signals": "THREAT, ACTION, BEARISH",
+  "direction": "DOWN",
+  "confidence": 0.85,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-0245-zh.md",
+      "length": 836
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-0245-en.md",
+      "length": 2044
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-flash-0245-ja.md",
+      "length": 834
+    }
+  }
+}
