@@ -1,32 +1,33 @@
-⚡ Trump Code | Flash — Trump Praises Rep. Jasmine Crockett in Surprising Social Media Post
-
-**Signal: NEUTRAL | Confidence: 0%**
+⚡ Trump Code | Flash — AG Bondi Out, Deputy AG Todd Blanche Steps Up
 
 ## What He Said
 
-Trump posted on Truth Social linking Rep. Jasmine Crockett (D-TX) to frontier legend Davy Crockett, calling her a person of *"Great Success as a Politician from the Great State of Texas."* He described Davy Crockett as *"obviously a distant relative of Jasmine Crockett, and a very High IQ Frontiersman."*
+Trump announced Attorney General Pam Bondi's departure, praising her as "a Great American Patriot" who oversaw "a massive crackdown in Crime across our Country, with Murders plummeting to their lowest level since 1900." He confirmed Bondi "will be transitioning to a much needed and important new job in the private sector" and signaled Deputy AG Todd Blanche as her successor.
 
 ## Why It Matters
 
-This is a rare instance of Trump publicly praising a **Democratic member of Congress**. Crockett has been one of his most vocal critics. The tone is ambiguous — it reads as complimentary on the surface but carries Trump's signature sarcasm markers (capitalization, "obviously," the genealogy claim). The 0% confidence score reflects this ambiguity: our NLP engine (551 rules, z=5.39) found **no actionable policy signal** — no tariffs, no Fed commentary, no trade threats, no executive order previews.
+A sitting AG departure is a Tier-1 political event. Key market implications:
 
-## Market Impact
+- **DOJ policy continuity risk**: Bondi led aggressive antitrust actions against tech and crypto enforcement cases. A leadership transition creates a policy vacuum — watch for pauses or pivots in active DOJ litigation (Google, Apple, crypto exchanges).
+- **Private prison / law enforcement equities**: Trump framed the move around crime stats, reinforcing his law-and-order brand. GEO Group (GEO), CoreCivic (CXW) may see sentiment moves.
+- **Todd Blanche factor**: Trump's former personal defense attorney. His elevation signals tighter White House-DOJ alignment, which markets may read as increased regulatory unpredictability.
 
-**Negligible.** No sector, commodity, or currency pair has a direct catalyst from this post. This is political theater, not policy signaling.
+## Signal Detection
 
-## What to Watch
+NLP classification: **NEUTRAL** (confidence 0%). The post is personnel announcement with no direct economic policy trigger. No tariff, trade, or fiscal keywords detected. Low immediate market-moving probability.
 
-- **Next 2-4 hours**: Whether Trump follows up with a policy-adjacent post — these "soft" posts sometimes precede a harder pivot.
-- **Jasmine Crockett's response**: Any escalation could signal broader Dem-GOP friction relevant to upcoming budget negotiations.
-- **Legislative calendar**: If this hints at behind-the-scenes bipartisan outreach on any Texas-related bill, watch for unusual co-sponsorship activity.
+## Watch List
 
-**Bottom line:** File under noise, not signal. No position changes warranted.
+- Blanche confirmation timeline and Senate reaction
+- Any DOJ case pauses in the next 5 business days
+- Bondi's "private sector" destination — if it's Big Tech or crypto-adjacent, re-rate sector exposure
+- S&P 500 futures and VIX overnight for broader sentiment read
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116336350249896927
-- Posted: Thu, 02 Apr 2026 17:43:48 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116336247856387679
+- Posted: Thu, 02 Apr 2026 17:17:46 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring

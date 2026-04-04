@@ -1,26 +1,18 @@
-⚡ トランプ・コード｜速報
+⚡ トランプ・コード｜速報：ボンディ司法長官が退任へ、後任に副長官トッド氏を指名か
 
-## トランプ、民主党議員を突然「称賛」― 真意は？
+**トランプ大統領がトゥルース・ソーシャルで、パム・ボンディ司法長官の退任を発表。**「Pam did a tremendous job overseeing a massive crackdown in Crime across our Country, with Murders plummeting to their lowest level since 1900」と称賛した上で、「she will be transitioning to a much needed and important new job in the private sector」と民間セクターへの転身を明かした。後任には副司法長官トッド氏を示唆。
 
-トランプ大統領がTruth Socialで、民主党テキサス州選出のジャスミン・クロケット下院議員を取り上げ、開拓時代の英雄デイヴィー・クロケットの「遠い親戚」と結びつけた。
+**市場への影響：** 司法長官交代は通常、直接的な市場インパクトは限定的。ただし、ボンディ氏は企業規制・反トラスト政策の要であり、後任の姿勢次第でテック・金融セクターの規制環境が変わる可能性がある。
 
-> "Davy Crockett, obviously a distant relative of Jasmine Crockett, and a very High IQ Frontiersman, would be proud of the legacy that he began long ago"
+**信号検出：NEUTRAL（信頼度 0%）。** NLP分類では明確な市場方向性シグナルなし。
 
-一見「称賛」だが、クロケット議員はトランプ批判の急先鋒であり、皮肉と読むのが自然。政策・関税・経済指標への直接言及はゼロ。
-
-**シグナル検出：NEUTRAL（信頼度 0%）**――市場を動かすキーワードが含まれておらず、システムは方向性なしと判定。
-
-### 📌 投資家の注目点
-
-- **直接的な市場インパクト：極めて限定的**。関税・金利・為替への言及なし
-- 政治的文脈として、民主党との「距離感の変化」を示唆する可能性はあるが、単発の皮肉投稿で戦略転換と判断するのは時期尚早
-- 次の注目は **4月第1週の雇用統計・ISM指標** と、関税関連の続報
+📌 **注目ポイント：** ①後任の正式発表時期と規制スタンス ②ボンディ氏の「民間セクター新職」の詳細 ③ドル円・日経先物の反応は限定的と想定するが、規制緩和期待でS&P500金融セクター指数を監視
 
 ---
 **📋 出典・分析手法**
 - 原文：Truth Social
-- リンク：https://truthsocial.com/@realDonaldTrump/116336350249896927
-- 投稿日時：Thu, 02 Apr 2026 17:43:48 +0000
+- リンク：https://truthsocial.com/@realDonaldTrump/116336247856387679
+- 投稿日時：Thu, 02 Apr 2026 17:17:46 +0000
 - 分析エンジン：Trump Code AI（Claude Opus / Gemini Flash）
 - シグナル検出：7,400件以上の投稿から検証済み551ルール（z=5.39）
 - 手法：NLPキーワード分類 → LLM因果推論 → 信頼度スコアリング
