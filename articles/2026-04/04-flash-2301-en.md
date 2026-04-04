@@ -1,40 +1,31 @@
-⚡ Trump Code | Flash — 出生公民權再成靶心，但市場已讀不回
+⚡ Trump Code | Flash — Nissan Production Shift: Tariff Victory Lap
 
-**信號偵測：NEUTRAL｜信心度 0%｜NLP 551 規則 z=5.39**
+**Signal: TARIFF / BULLISH / DEAL | Direction: UP | Confidence: 75%**
 
----
+Trump just celebrated Nissan's U.S. manufacturing expansion, declaring they "have moved most of their production to our great Country, largely because of Tariffs" and calling the results "AMAZING!!!"
 
-## 川普說了什麼
+## Why This Matters
 
-Trump 在 Truth Social 發文重砲轟出生公民權（birthright citizenship）：
+This is a **tariff validation narrative**. Trump is framing Nissan's move as proof that his tariff policy works — foreign automakers bending to U.S. trade pressure. Key implications:
 
-> "We are the only Country in the World STUPID enough to allow 'Birthright' Citizenship!"
+- **Tariff persistence signal**: When Trump publicly celebrates tariff outcomes, it signals he has zero intention of rolling them back. Expect current auto tariffs (25%) to hold or expand.
+- **Auto sector split**: U.S.-based auto manufacturing (GM, Ford, plus Nissan's Tennessee/Mississippi plants) gets a sentiment boost. Import-dependent names (dealers with foreign inventory, European luxury) face continued margin pressure.
+- **Yen watch**: Nissan shifting capex to the U.S. means fewer dollars converted to yen for Japan-based production — mild USD/JPY upward pressure.
 
-這是他長期主張的延續——挑戰美國憲法第十四修正案賦予的出生地公民權。
+## What to Watch
 
-## 為什麼重要
+1. **$NSANY** pre-market reaction — does the "Trump endorsement" premium hold?
+2. **Ford/GM** sympathy move as "Made in USA" narrative strengthens
+3. **Japan auto tariff negotiations** — any formal response from Tokyo within 48 hours
+4. **Next tariff escalation**: Trump praising compliance often precedes pressure on non-compliers (looking at you, EU auto sector)
 
-**短期市場影響有限。** 信心度 0% 反映此議題屬政治訊號而非政策行動。原因：
-
-- **法律現實：** 出生公民權受憲法保護，修改需國會三分之二通過+各州批准，概率極低
-- **無新行政令：** 此文僅為立場宣示，未搭配任何具體行政命令或時間表
-- **市場已定價：** Trump 任期內多次提及此議題，S&P 500 與美元指數歷次均無顯著反應
-
-唯一需警惕的情境：若後續數日內出現**配套行政令草案**或**國會議員聯署動議**，將升級為實質政策風險，屆時移民相關類股（私營監獄 GEO、CXW；勞動密集產業）可能波動。
-
-## 建議關注
-
-- **未來 48 小時：** 白宮是否發布行政令或政策備忘錄
-- **國會動態：** 共和黨議員是否跟進提案
-- **DXY 美元指數 & 10Y 殖利率：** 若出現移民政策實質收緊，勞動市場緊縮預期將推升通膨指標
-
-**結論：政治噪音，非交易信號。觀望為主。**
+Bottom line: This isn't a deal announcement — it's a warning shot dressed as a compliment. The tariff wall stays up.
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116330362125395500
-- Posted: Wed, 01 Apr 2026 16:20:57 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116329590740337581
+- Posted: Wed, 01 Apr 2026 13:04:46 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring
