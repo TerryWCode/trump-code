@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-04",
+  "generated_at": "2026-04-04T13:25:37.847500+00:00",
+  "post_id": "116346654846871260",
+  "post_content": "The Failing New York Times, whose lack of credibility, and their constant Fake News attacks on your favorite President, ME, has caused its circulation to absolutely PLUMMET, referred to our severely w",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116346654846871260",
+  "post_source": "Truth Social",
+  "post_time": "Sat, 04 Apr 2026 13:24:24 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-1325-zh.md",
+      "length": 1023
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-1325-en.md",
+      "length": 2137
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-1325-ja.md",
+      "length": 969
+    }
+  }
+}
