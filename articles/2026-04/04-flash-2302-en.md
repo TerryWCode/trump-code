@@ -1,35 +1,33 @@
-⚡ Trump Code | Flash — 川普砲轟保險業，State Farm 成標靶
+⚡ Trump Code | Flash — Historic Preservation Lawsuit: Noise, Not Policy
 
-## 川普說了什麼
+**Signal: NEUTRAL | Confidence: 0%**
 
-川普在 Truth Social 發文，公開痛批加州火災後保險公司的理賠表現，點名 State Farm：
+## What He Said
 
-> "Insurance Companies, in particular, State Farm, have been absolutely horrible to people that have been paying them large Premiums for years, only to find that when tragedy struck, these horrendous Companies were not there to help!"
+Trump claims the National Trust for Historic Preservation is suing him over two projects: a White House ballroom and the renamed "Trump Kennedy Center." He frames both as wins — the ballroom is "under budget, ahead of schedule, being built at no cost to the Taxpayer, and will be the finest Building of its kind anywhere in the World," while the Kennedy Center work is merely "fixing, cleaning, running, and sprucing up."
 
-貼文末段提及已要求 EPA 署長介入，但原文遭截斷，具體行政指令內容尚不明。
+The post also highlights bipartisan branding: "A show of Bipartisan Unity, a Republican and Democrat President!" — linking Trump and Kennedy names on a federal building.
 
-## 為什麼重要
+## Why It Matters (Or Doesn't)
 
-**信號偵測：ACTION + THREAT｜方向：NEUTRAL｜信心度 30%**
+This is a **culture-war / legal grievance post**, not a policy signal. No tariffs, no trade threats, no Fed commentary, no fiscal announcements. The NLP classifier flagged NEUTRAL at **0% confidence** — meaning zero detectable market-moving keywords across 551 validated rules (z=5.39).
 
-信心度偏低的原因：貼文被截斷，EPA 具體行動不明，市場難以定價。但兩個信號同時觸發，代表這不只是嘴砲——川普已「met with Political Representatives」並「asked the Administrator」，有實際行政動作的跡象。
+Key context: the National Trust for Historic Preservation is a private nonprofit. This lawsuit has no bearing on spending bills, procurement policy, or government contracts at scale. No budget line items are at risk.
 
-- **保險類股短期承壓**：State Farm 為互助制非上市，但情緒外溢可能波及 Allstate (ALL)、Travelers (TRV)、Chubb (CB) 等上市同業
-- **加州曝險高的保險商**首當其衝，留意 California FAIR Plan 相關再保險鏈
-- **EPA 介入保險理賠**屬非常規路徑，若後續有行政命令，監管風險將重新定價
+## What to Watch
 
-## 建議關注
+- **No immediate trades warranted.** This post lacks fiscal or regulatory catalyst.
+- Monitor if this escalates into an **executive order on historic preservation rules** — that could affect real estate/construction sectors.
+- Watch **federal facilities management stocks** (e.g., CBRE, JLL) only if Trump pivots to broader federal building renovation mandates.
+- Next meaningful signal: any post mentioning **tariffs, Fed, or China** resets the clock.
 
-1. **未來 24-48 小時**：等完整貼文或白宮聲明，確認 EPA 被要求做什麼
-2. **ALL、TRV、CB 盤前/盤後價格反應**及保險 ETF (KIE) 異動
-3. **加州保險監理官 (CDI)** 是否配合聯邦施壓發布新指引
-4. 信心度僅 30%——在行政命令明確前，這是「監控」而非「交易」級別的事件
+**Bottom line: Safe to ignore. Resume normal positioning.**
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116325677707554016
-- Posted: Tue, 31 Mar 2026 20:29:38 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116325438537980532
+- Posted: Tue, 31 Mar 2026 19:28:49 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring

@@ -1,15 +1,15 @@
 {
   "type": "flash",
   "date": "2026-04-04",
-  "generated_at": "2026-04-04T23:02:23.069132+00:00",
-  "post_id": "116325677707554016",
-  "post_content": "I have just met with various Political Representatives of the tragedy that took place in California concerning the burning of thousands of once beautiful homes. It was brought to my attention that the",
-  "post_url": "https://truthsocial.com/@realDonaldTrump/116325677707554016",
+  "generated_at": "2026-04-04T23:02:31.592659+00:00",
+  "post_id": "116325438537980532",
+  "post_content": "The National Trust for Historic Preservation sues me for a Ballroom that is under budget, ahead of schedule, being built at no cost to the Taxpayer, and will be the finest Building of its kind anywher",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116325438537980532",
   "post_source": "Truth Social",
-  "post_time": "Tue, 31 Mar 2026 20:29:38 +0000",
-  "signals": "ACTION, THREAT",
+  "post_time": "Tue, 31 Mar 2026 19:28:49 +0000",
+  "signals": "",
   "direction": "NEUTRAL",
-  "confidence": 0.3,
+  "confidence": 0.0,
   "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
   "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
   "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
@@ -17,17 +17,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2302-zh.md",
-      "length": 916
+      "length": 897
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2302-en.md",
-      "length": 1412
+      "length": 2270
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2302-ja.md",
-      "length": 944
+      "length": 901
     }
   }
 }
