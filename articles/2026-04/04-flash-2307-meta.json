@@ -1,12 +1,12 @@
 {
   "type": "flash",
   "date": "2026-04-04",
-  "generated_at": "2026-04-04T23:07:20.326944+00:00",
-  "post_id": "116315526664604618",
-  "post_content": "TRUMP HOUSING BOSS HURLS FRESH CRIMINAL REFERRALS AT LETITIA JAMES FROM MIAMI TO CHICAGO:",
-  "post_url": "https://truthsocial.com/@realDonaldTrump/116315526664604618",
+  "generated_at": "2026-04-04T23:07:26.373152+00:00",
+  "post_id": "116315525048495482",
+  "post_content": "Trump’s Housing Chief Seeks New DOJ Investigation Against Letitia James:",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116315525048495482",
   "post_source": "Truth Social",
-  "post_time": "Mon, 30 Mar 2026 01:28:06 +0000",
+  "post_time": "Mon, 30 Mar 2026 01:27:41 +0000",
   "signals": "",
   "direction": "NEUTRAL",
   "confidence": 0.0,
@@ -17,17 +17,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2307-zh.md",
-      "length": 823
+      "length": 822
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2307-en.md",
-      "length": 2451
+      "length": 2227
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2307-ja.md",
-      "length": 823
+      "length": 819
     }
   }
 }
