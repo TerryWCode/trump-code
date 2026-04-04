@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-04",
+  "generated_at": "2026-04-04T03:25:22.051854+00:00",
+  "post_id": "116344282496536118",
+  "post_content": "Believers and people of faith find safe harbor in Trump's White House this Easter:",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116344282496536118",
+  "post_source": "Truth Social",
+  "post_time": "Sat, 04 Apr 2026 03:21:05 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-0325-zh.md",
+      "length": 738
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-0325-en.md",
+      "length": 1956
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-0325-ja.md",
+      "length": 816
+    }
+  }
+}
