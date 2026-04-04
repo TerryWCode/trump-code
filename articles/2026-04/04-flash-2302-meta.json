@@ -1,12 +1,12 @@
 {
   "type": "flash",
   "date": "2026-04-04",
-  "generated_at": "2026-04-04T23:02:39.731574+00:00",
-  "post_id": "116325374279671384",
-  "post_content": "Secretary of the Interior Doug Burgum and I are working on fixing the absolutely filthy Reflecting Pool between the Lincoln Memorial and the Washington Monument. This work was supposed to be done by t",
-  "post_url": "https://truthsocial.com/@realDonaldTrump/116325374279671384",
+  "generated_at": "2026-04-04T23:02:46.772248+00:00",
+  "post_id": "116324560991145598",
+  "post_content": "",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116324560991145598",
   "post_source": "Truth Social",
-  "post_time": "Tue, 31 Mar 2026 19:12:28 +0000",
+  "post_time": "Tue, 31 Mar 2026 15:45:38 +0000",
   "signals": "",
   "direction": "NEUTRAL",
   "confidence": 0.0,
@@ -17,17 +17,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2302-zh.md",
-      "length": 771
+      "length": 732
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2302-en.md",
-      "length": 2110
+      "length": 1016
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2302-ja.md",
-      "length": 865
+      "length": 472
     }
   }
 }
