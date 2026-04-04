@@ -1,31 +1,27 @@
-⚡ Trump Code | Flash — 川普警告法國「美國會記住」，美歐關係再添變數
+⚡ Trump Code | Flash — 霍爾木茲海峽棄守宣言：美國不再當世界警察
 
-## 發生什麼事
+**Signal: THREAT / BULLISH / ACTION | Direction: UP (65%)**
 
-川普在 Truth Social 發文痛批法國拒絕讓載有軍事物資的飛機飛越領空前往以色列，稱法國「VERY UNHELPFUL」，並以「The U.S.A. will REMEMBER!!!」作結——這是典型的川普式外交威脅句型。同時確認伊朗軍事目標已被「successfully eliminated」，稱其為「Butcher of Iran」。
+---
 
-**信號偵測：THREAT + ACTION｜預測方向：NEUTRAL（信心度 30%）**
+川普在 Truth Social 發出一則極具挑釁性的聲明，直接告訴英國等盟友：「the U.S.A. won't be there to help you anymore, just like you weren't there for us.」他要求歐洲國家自行前往霍爾木茲海峽「just TAKE IT」，並推銷美國能源——「buy from the U.S., we have plenty.」最後更宣稱「Iran has been, essentially, decimated.」
 
-## 為什麼重要
+**為什麼重要：**
 
-兩條因果鏈同時啟動：
+這是川普首次公開暗示美國可能撤出霍爾木茲海峽護航任務。全球約 20% 原油經此海峽運輸，任何護航空白都將直接推升油價與航運保險費率。THREAT 信號觸發地緣溢價邏輯：油運安全不確定性 → Brent 原油上行壓力 → 歐洲能源股承壓。同時 BULLISH 信號利好美國 LNG 及油氣出口商（Cheniere、EQT、Pioneer），因川普明確將盟友能源需求導向美國供應。ACTION 信號——「decimated」一詞暗示軍事行動已發生或持續，中東局勢遠未結束。
 
-1. **美歐摩擦線**：「will REMEMBER」在川普語境中往往是貿易報復的前奏。法國是歐盟第二大經濟體，若演變為關稅或外交降級，EUR/USD、法國 CAC 40、歐洲防務股（Thales、Dassault）首當其衝。但目前無具體政策行動，信心度僅 30%，市場影響暫屬情緒面。
+**建議關注：**
 
-2. **中東地緣線**：確認消滅伊朗目標，短期推升原油波動（Brent 關注 $85 阻力位），但若無進一步升級，伊朗威脅溢價反而可能收斂。
-
-## 建議關注
-
-- **EUR/USD** 短線支撐 1.0780，跌破則美歐摩擦定價加速
-- **Brent 原油** $83-85 區間，突破則中東風險重新定價
-- **法國 OAT-Bund 利差**：擴大超過 5bp 代表市場開始計價法國風險
-- **時間窗口**：未來 48 小時觀察白宮是否跟進具體措施，無動作則威脅降級為噪音
+- **Brent 原油**：若突破 $82 阻力位，確認地緣溢價啟動
+- **美國 LNG 出口股**：Cheniere (LNG)、EQT 短期受益
+- **VIX 及黃金**：避險情緒指標，留意 48 小時內歐洲盟友回應
+- **航運保險費率**：Lloyd's 霍爾木茲海峽戰爭險報價變動
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116323516183718262
-- Posted: Tue, 31 Mar 2026 11:19:56 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116323481956698353
+- Posted: Tue, 31 Mar 2026 11:11:14 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring
