@@ -1,15 +1,15 @@
 {
   "type": "flash",
   "date": "2026-04-04",
-  "generated_at": "2026-04-04T23:01:04.876883+00:00",
-  "post_id": "116330778720988222",
-  "post_content": "Tonight at 6:24 P.M. EST, for the first time in over 50 YEARS, America is going back to the Moon! Artemis II, among the most powerful rockets ever built, is launching our Brave Astronauts farther into",
-  "post_url": "https://truthsocial.com/@realDonaldTrump/116330778720988222",
+  "generated_at": "2026-04-04T23:01:12.921588+00:00",
+  "post_id": "116330487356155648",
+  "post_content": "Republicans fully support our Great Men and Women of Law Enforcement, maybe the word should be, LOVE! America thanks each and every one of our wonderful Police, Border Patrol, ICE, and others, for the",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116330487356155648",
   "post_source": "Truth Social",
-  "post_time": "Wed, 01 Apr 2026 18:06:53 +0000",
-  "signals": "BULLISH",
-  "direction": "UP",
-  "confidence": 0.3,
+  "post_time": "Wed, 01 Apr 2026 16:52:48 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
   "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
   "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
   "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
@@ -17,17 +17,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2301-zh.md",
-      "length": 897
+      "length": 876
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2301-en.md",
-      "length": 1302
+      "length": 2082
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2301-ja.md",
-      "length": 878
+      "length": 888
     }
   }
 }
