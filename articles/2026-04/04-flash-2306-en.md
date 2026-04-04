@@ -1,30 +1,31 @@
-⚡ Trump Code | Flash — 川普住房高官尋求重新起訴紐約州檢察長 Letitia James
+⚡ Trump Code | Flash — 白俄釋囚外交：川普感謝盧卡申科，地緣信號偏暖
 
 ## 川普說了什麼
 
-川普在 Truth Social 轉發訊息：**"Top Trump Housing Official Seeks New Prosecution Of Letitia James"**，指其政府住房部門高層正推動對紐約州檢察長 Letitia James 發起新一輪刑事起訴。這是川普陣營對 James 長期法律戰的最新升級——James 曾主導對川普集團的民事詐欺訴訟並獲判 4.64 億美元罰款。
+川普轉發自己貼文，宣布其白俄羅斯特使 John Coale 與盧卡申科談判後，"got 250 more Political Prisoners freed"，累計釋放超過 500 名政治犯。川普以罕見的正面語氣稱盧卡申科為 "Highly Respected President"，並表示 "I look forward to being with him at the next Board of Peace meeting"，暗示雙邊關係正在升溫。
 
 ## 為什麼重要
 
-**信號偵測結果：NEUTRAL，信心度 0%**——極低信心度反映此事件處於政治與法律交叉地帶，市場影響路徑不明確。
+**信號偵測：NEUTRAL，信心度 0%** — 系統判定此貼文不含直接市場衝擊語句（無關稅、制裁、貿易政策），因此信心度歸零，屬外交敘事類貼文。
 
-短期而言，這屬於政治報復敘事，不直接觸發財政或貿易政策變動。但值得注意的是：
+但交易者應注意三層含義：
 
-- **紐約州司法獨立性**若受衝擊，可能影響投資人對美國法治環境的信心，間接壓力傳導至 USD 及美債
-- **房地產板塊**：住房高官捲入政治鬥爭，HUD 政策執行力可能分散，留意 XHB（房建 ETF）及相關 REITs
-- **Trump Media（DJT）**：政治衝突升溫通常帶動散戶情緒交易，DJT 盤前波動值得觀察
+1. **制裁鬆動預期**：川普公開讚揚盧卡申科，可能預示美國對白俄制裁立場軟化。歐盟自 2020 年起對白俄實施超過 200 項制裁，若美方率先鬆綁，將影響歐美政策協調。
+2. **俄烏談判外圍棋**：白俄是俄羅斯最緊密盟友，川普拉攏盧卡申科可視為對俄施壓或建立後門溝通管道，間接影響能源與穀物期貨定價。
+3. **"Board of Peace meeting"**：此為川普外交架構中的新機制，若盧卡申科出席，將是其國際孤立狀態的重大突破。
 
 ## 建議關注
 
-1. **DJT 股價**盤前及開盤首 30 分鐘成交量變化
-2. **紐約州法院**是否在 48 小時內回應或駁回起訴動議
-3. **VIX 指數**——若維持穩定，確認市場視此為噪音而非系統性風險
+- **白俄相關制裁名單**變動（OFAC 更新）
+- **EUR/USD** 及 **歐洲天然氣 TTF 期貨**對地緣消息的反應
+- 下一次 "Board of Peace" 會議日期與參與國名單
+- 歐盟外交高級代表對此事的官方回應
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116315554378575899
-- Posted: Mon, 30 Mar 2026 01:35:08 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116315543909881245
+- Posted: Mon, 30 Mar 2026 01:32:29 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring
