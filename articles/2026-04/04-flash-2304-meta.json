@@ -1,15 +1,15 @@
 {
   "type": "flash",
   "date": "2026-04-04",
-  "generated_at": "2026-04-04T23:04:19.093674+00:00",
-  "post_id": "116323481956698353",
-  "post_content": "All of those countries that can’t get jet fuel because of the Strait of Hormuz, like the United Kingdom, which refused to get involved in the decapitation of Iran, I have a suggestion for you: Number ",
-  "post_url": "https://truthsocial.com/@realDonaldTrump/116323481956698353",
+  "generated_at": "2026-04-04T23:04:26.529775+00:00",
+  "post_id": "116321041013301744",
+  "post_content": "",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116321041013301744",
   "post_source": "Truth Social",
-  "post_time": "Tue, 31 Mar 2026 11:11:14 +0000",
-  "signals": "THREAT, BULLISH, ACTION",
-  "direction": "UP",
-  "confidence": 0.65,
+  "post_time": "Tue, 31 Mar 2026 00:50:28 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
   "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
   "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
   "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
@@ -17,17 +17,17 @@
     "zh": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2304-zh.md",
-      "length": 880
+      "length": 769
     },
     "en": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2304-en.md",
-      "length": 1245
+      "length": 1017
     },
     "ja": {
       "status": "ok",
       "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2304-ja.md",
-      "length": 919
+      "length": 478
     }
   }
 }
