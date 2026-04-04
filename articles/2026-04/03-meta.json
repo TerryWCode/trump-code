@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-03",
+  "generated_at": "2026-04-04T04:00:53.702782+00:00",
+  "posts_count": 8,
+  "source_urls": [
+    "https://truthsocial.com/@realDonaldTrump/posts/116338150251966000",
+    "https://truthsocial.com/@realDonaldTrump/posts/116338464010194156",
+    "https://truthsocial.com/@realDonaldTrump/posts/37575",
+    "https://truthsocial.com/@realDonaldTrump/posts/116340682613576162",
+    "https://truthsocial.com/@realDonaldTrump/posts/116340751005894827",
+    "https://truthsocial.com/@realDonaldTrump/posts/116342393448469434",
+    "https://truthsocial.com/@realDonaldTrump/posts/116342994589318293",
+    "https://truthsocial.com/@realDonaldTrump/posts/37579"
+  ],
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-zh.md",
+      "length": 1735
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-en.md",
+      "length": 3629
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/03-ja.md",
+      "length": 1736
+    }
+  },
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "Trump Code Daily Analysis 2026-04-03",
+    "alternativeHeadline": "川普密碼日報 2026-04-03",
+    "datePublished": "2026-04-03",
+    "dateModified": "2026-04-04",
+    "author": {
+      "@type": "Organization",
+      "name": "Washin Mura (和心村)",
+      "url": "https://washinmura.jp"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TRUMP CODE",
+      "url": "https://trumpcode.washinmura.jp"
+    },
+    "inLanguage": [
+      "zh-TW",
+      "en",
+      "ja"
+    ],
+    "url": "https://trumpcode.washinmura.jp/daily.html?date=2026-04-03",
+    "isAccessibleForFree": true,
+    "about": "AI analysis of Trump social media posts and stock market impact"
+  }
+}
