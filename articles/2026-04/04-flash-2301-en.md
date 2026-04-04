@@ -1,31 +1,38 @@
-⚡ Trump Code | Flash — Nissan Production Shift: Tariff Victory Lap
+⚡ Trump Code | Flash — Iran Ceasefire Ultimatum: "Blasting Into Oblivion"
 
-**Signal: TARIFF / BULLISH / DEAL | Direction: UP | Confidence: 75%**
+## What He Said
 
-Trump just celebrated Nissan's U.S. manufacturing expansion, declaring they "have moved most of their production to our great Country, largely because of Tariffs" and calling the results "AMAZING!!!"
+Trump confirmed Iran's new president has requested a **ceasefire**, but issued an extreme conditional threat: "We will consider when Hormuz Strait is open, free, and clear. Until then, we are blasting Iran into oblivion or, as they say, **back to the Stone Ages!!!**"
 
-## Why This Matters
+He framed Iran's leader as "much less Radicalized and far more intelligent" — a rare compliment that leaves a narrow diplomatic window open.
 
-This is a **tariff validation narrative**. Trump is framing Nissan's move as proof that his tariff policy works — foreign automakers bending to U.S. trade pressure. Key implications:
+## Why It Matters
 
-- **Tariff persistence signal**: When Trump publicly celebrates tariff outcomes, it signals he has zero intention of rolling them back. Expect current auto tariffs (25%) to hold or expand.
-- **Auto sector split**: U.S.-based auto manufacturing (GM, Ford, plus Nissan's Tennessee/Mississippi plants) gets a sentiment boost. Import-dependent names (dealers with foreign inventory, European luxury) face continued margin pressure.
-- **Yen watch**: Nissan shifting capex to the U.S. means fewer dollars converted to yen for Japan-based production — mild USD/JPY upward pressure.
+**Signal detected: THREAT + DEAL + BEARISH | Direction: DOWN (85% confidence)**
 
-## What to Watch
+The Strait of Hormuz handles ~20% of global oil transit. Trump is effectively conditioning any de-escalation on full freedom of navigation — a demand Iran has never accepted. The "oblivion" language is the most aggressive military rhetoric toward Iran since the Soleimani strike era.
 
-1. **$NSANY** pre-market reaction — does the "Trump endorsement" premium hold?
-2. **Ford/GM** sympathy move as "Made in USA" narrative strengthens
-3. **Japan auto tariff negotiations** — any formal response from Tokyo within 48 hours
-4. **Next tariff escalation**: Trump praising compliance often precedes pressure on non-compliers (looking at you, EU auto sector)
+**Immediate market impact:**
+- **Crude oil** — expect upward pressure on WTI/Brent as Hormuz risk premium reprices
+- **Gold** — safe-haven bid likely to strengthen
+- **Equities** — energy-heavy indices may hold; broader market faces headwinds from geopolitical uncertainty
+- **USD** — mixed; risk-off supports dollar but energy inflation fears cut both ways
 
-Bottom line: This isn't a deal announcement — it's a warning shot dressed as a compliment. The tariff wall stays up.
+## Watch List
+
+1. **WTI crude** reaction above $85 resistance
+2. **VIX** — any spike past 22 confirms fear repricing
+3. **US Navy CENTCOM** fleet movements in next 24-48 hrs
+4. **Iran's formal response** — if Hormuz concession is rejected, escalation timeline accelerates
+5. **Treasury yields** — flight-to-safety flows into 10Y
+
+The ceasefire request signals Iran is under pressure. But Trump's public maximalism makes quiet diplomacy nearly impossible. Trade the volatility, not the headline.
 
 ---
 **📋 Sources & Methodology**
 - Original post: Truth Social
-- Source URL: https://truthsocial.com/@realDonaldTrump/116329590740337581
-- Posted: Wed, 01 Apr 2026 13:04:46 +0000
+- Source URL: https://truthsocial.com/@realDonaldTrump/116329512466946656
+- Posted: Wed, 01 Apr 2026 12:44:52 +0000
 - Analysis engine: Trump Code AI (Claude Opus / Gemini Flash)
 - Signal detection: 551 validated rules from 7,400+ posts (z=5.39)
 - Method: NLP keyword classification → LLM causal reasoning → confidence scoring
