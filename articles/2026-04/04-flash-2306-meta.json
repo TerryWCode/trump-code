@@ -1,0 +1,33 @@
+{
+  "type": "flash",
+  "date": "2026-04-04",
+  "generated_at": "2026-04-04T23:06:04.413777+00:00",
+  "post_id": "116315554378575899",
+  "post_content": "Top Trump Housing Official Seeks New Prosecution Of Letitia James:",
+  "post_url": "https://truthsocial.com/@realDonaldTrump/116315554378575899",
+  "post_source": "Truth Social",
+  "post_time": "Mon, 30 Mar 2026 01:35:08 +0000",
+  "signals": "",
+  "direction": "NEUTRAL",
+  "confidence": 0.0,
+  "analysis_engine": "Trump Code AI (Claude Opus / Gemini Flash)",
+  "analysis_method": "NLP keyword classification → LLM causal reasoning → confidence scoring",
+  "rules_base": "551 validated rules from 7,400+ posts (z=5.39)",
+  "articles": {
+    "zh": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2306-zh.md",
+      "length": 836
+    },
+    "en": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2306-en.md",
+      "length": 1138
+    },
+    "ja": {
+      "status": "ok",
+      "path": "/Users/tkman/Projects/trump-code/articles/2026-04/04-flash-2306-ja.md",
+      "length": 879
+    }
+  }
+}
