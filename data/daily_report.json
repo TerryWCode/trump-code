@@ -1,12 +1,13 @@
 {
-  "date": "2026-04-09",
-  "generated_at": "2026-04-09T15:22:15Z",
-  "posts_today": 3,
+  "date": "2026-04-10",
+  "generated_at": "2026-04-10T14:46:58Z",
+  "posts_today": 7,
   "latest_post": {
-    "time": "2026-04-09T12:40",
-    "content_preview": "None of these people, including our own, very disappointing, NATO, understood anything unless they h"
+    "time": "2026-04-10T14:32",
+    "content_preview": "Palantir Technologies (PLTR) has proven to have great war fighting capabilities and equipment. Just "
   },
   "signals_detected": [
+    "CHINA",
     "IRAN"
   ],
   "models_triggered": 0,
@@ -21,13 +22,13 @@
     "rate": 0.0
   },
   "sp500_latest": {
-    "date": "2026-04-09",
-    "close": 6785.77
+    "date": "2026-04-10",
+    "close": 6835.01
   },
   "summary": {
-    "en": "Trump Code Daily Report -- 2026-04-09\nPosts today: 3 | Models triggered: 0\nSignals: IRAN\nConsensus: 0 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: None of these people, including our own, very disappointing, NATO, understood anything unless they h",
-    "zh": "川普密碼每日報告 -- 2026-04-09\n今日推文: 3 篇 | 觸發模型: 0 組\n偵測信號: 伊朗\n共識方向: 0 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: None of these people, including our own, very disappointing, NATO, understood anything unless they h",
-    "ja": "トランプ・コード日次レポート -- 2026-04-09\n本日の投稿: 3件 | トリガーモデル: 0組\n検出シグナル: イラン\nコンセンサス: 0組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: None of these people, including our own, very disappointing, NATO, understood anything unless they h"
+    "en": "Trump Code Daily Report -- 2026-04-10\nPosts today: 7 | Models triggered: 0\nSignals: CHINA, IRAN\nConsensus: 0 LONG vs 0 SHORT\nHistorical hit rate: 0.0% (0/0)\nLatest post: Palantir Technologies (PLTR) has proven to have great war fighting capabilities and equipment. Just ",
+    "zh": "川普密碼每日報告 -- 2026-04-10\n今日推文: 7 篇 | 觸發模型: 0 組\n偵測信號: 中國, 伊朗\n共識方向: 0 組看多 vs 0 組看空\n歷史命中率: 0.0% (0/0)\n最新推文: Palantir Technologies (PLTR) has proven to have great war fighting capabilities and equipment. Just ",
+    "ja": "トランプ・コード日次レポート -- 2026-04-10\n本日の投稿: 7件 | トリガーモデル: 0組\n検出シグナル: 中国, イラン\nコンセンサス: 0組ロング vs 0組ショート\n過去の的中率: 0.0% (0/0)\n最新投稿: Palantir Technologies (PLTR) has proven to have great war fighting capabilities and equipment. Just "
   },
   "triggered_rules_sample": []
 }
