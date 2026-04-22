@@ -141,3 +141,4 @@ def next_trading_day(date_str: str, market_data: dict, max_days: int = 10) -> st
             return candidate
     return None
 
+

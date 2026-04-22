@@ -264,3 +264,4 @@ if __name__ == '__main__':
         print(f"Available: {', '.join(COMMANDS.keys())}")
         sys.exit(1)
 
+

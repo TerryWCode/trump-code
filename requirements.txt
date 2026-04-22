@@ -1,2 +1,0 @@
-yfinance>=0.2.36
-torch>=2.0.0
