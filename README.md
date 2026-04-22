@@ -1,6 +1,6 @@
 # Trump Tweet Analyzer
 
-**ECE 110 Project - Data Analysis & Pattern Recognition**
+** Data Analysis & Pattern Recognition**
 
 A Python-based system that monitors and analyzes social media posts from public figures to identify posting patterns and correlations with market data.
 
