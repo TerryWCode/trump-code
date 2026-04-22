@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 """
-川普密碼 CLI — 讓外部用戶查詢信號和套利機會
+Trump Code CLI - Query signals and arbitrage opportunities
 
-安裝：
+Installation:
   git clone https://github.com/sstklen/trump-code.git
   cd trump-code
   pip install -r requirements.txt
 
-用法：
-  python3 trump_code_cli.py signals          # 查看今日信號
-  python3 trump_code_cli.py models           # 查看模型排行
-  python3 trump_code_cli.py predict          # 查看今日預測方向
-  python3 trump_code_cli.py arbitrage        # 預測市場套利機會
-  python3 trump_code_cli.py history          # 歷史命中率
-  python3 trump_code_cli.py report           # 完整日報
-  python3 trump_code_cli.py json             # 全部以 JSON 輸出（給程式接）
-  python3 trump_code_cli.py health           # 系統健康度
+Usage:
+  python trump_code_cli.py signals          # View today's signals
+  python trump_code_cli.py models           # View model rankings
+  python trump_code_cli.py predict          # View today's prediction
+  python trump_code_cli.py arbitrage        # Prediction market arbitrage opportunities
+  python trump_code_cli.py history          # Historical accuracy
+  python trump_code_cli.py report           # Full daily report
+  python trump_code_cli.py json             # Output all as JSON
+  python trump_code_cli.py health           # System health
 
-API 對接（JSON 輸出）：
-  python3 trump_code_cli.py json | jq '.signals'
-  python3 trump_code_cli.py json | jq '.prediction'
+API Usage (JSON output):
+  python trump_code_cli.py json | jq '.signals'
+  python trump_code_cli.py json | jq '.prediction'
 """
 
 from __future__ import annotations
@@ -235,31 +235,31 @@ COMMANDS = {
 
 if __name__ == '__main__':
     if len(sys.argv) < 2 or sys.argv[1] in ('-h', '--help', 'help'):
-        print("川普密碼 CLI")
+        print("Trump Code CLI")
         print("=" * 50)
         print()
-        print("用法: python3 trump_code_cli.py <指令>")
+        print("Usage: python trump_code_cli.py <command>")
         print()
-        print("指令:")
-        print("  signals    今日信號")
-        print("  models     模型排行")
-        print("  predict    預測方向")
-        print("  arbitrage  套利機會")
-        print("  history    歷史命中率")
-        print("  health     系統健康度")
-        print("  report     完整日報")
-        print("  json       全部 JSON（給程式接）")
+        print("Commands:")
+        print("  signals    Today's signals")
+        print("  models     Model rankings")
+        print("  predict    Prediction direction")
+        print("  arbitrage  Arbitrage opportunities")
+        print("  history    Historical accuracy")
+        print("  health     System health")
+        print("  report     Full daily report")
+        print("  json       Full JSON output")
         print()
-        print("API 對接:")
-        print("  python3 trump_code_cli.py json | jq '.signals'")
+        print("API Usage:")
+        print("  python trump_code_cli.py json | jq '.signals'")
         print()
-        print("⚠️ 這不是投資建議。")
+        print("WARNING: This is not investment advice.")
         sys.exit(0)
 
     cmd = sys.argv[1]
     if cmd in COMMANDS:
         COMMANDS[cmd]()
     else:
-        print(f"未知指令: {cmd}")
-        print(f"可用: {', '.join(COMMANDS.keys())}")
+        print(f"Unknown command: {cmd}")
+        print(f"Available: {', '.join(COMMANDS.keys())}")
         sys.exit(1)

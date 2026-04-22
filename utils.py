@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-川普密碼 — 共用工具模組
-統一時區轉換、關鍵字匹配、情緒分數等核心函數
+Trump Code - Shared Utility Module
+Unified timezone conversion, keyword matching, sentiment scoring, and other core functions
 """
 
 import json
@@ -13,28 +13,28 @@ from functools import lru_cache
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-# 美東時區（自動處理 EST/EDT 夏令時間）
+# Eastern Time Zone (automatically handles EST/EDT daylight saving)
 ET = ZoneInfo("America/New_York")
 
 
 # ============================================================
-# 時區轉換（修正 DST bug）
+# Timezone Conversion (DST bug fixed)
 # ============================================================
 
 def to_eastern(utc_str: str) -> datetime:
-    """UTC 字串轉美東時間（自動處理 EST/EDT）"""
+    """Convert UTC string to Eastern Time (auto-handles EST/EDT)"""
     dt = datetime.fromisoformat(utc_str.replace('Z', '+00:00'))
     return dt.astimezone(ET)
 
 
 def est_hour(utc_str: str) -> tuple:
-    """回傳美東 (hour, minute)，自動處理夏令時"""
+    """Return Eastern (hour, minute), auto-handles daylight saving"""
     et = to_eastern(utc_str)
     return et.hour, et.minute
 
 
 def market_session(utc_str: str) -> str:
-    """判斷美股交易時段"""
+    """Determine US stock trading session"""
     h, m = est_hour(utc_str)
     if h < 4:
         return 'OVERNIGHT'
@@ -49,30 +49,30 @@ def market_session(utc_str: str) -> str:
 
 
 # ============================================================
-# 關鍵字匹配（字詞邊界，避免子字串誤判）
+# Keyword Matching (word boundaries to avoid substring false positives)
 # ============================================================
 
 @lru_cache(maxsize=256)
 def _make_pattern(words: tuple) -> re.Pattern:
-    """編譯字詞邊界正規表達式（快取）"""
+    """Compile word boundary regex pattern (cached)"""
     escaped = [re.escape(w) for w in words]
     return re.compile(r'\b(?:' + '|'.join(escaped) + r')\b', re.IGNORECASE)
 
 
 def count_keywords(text: str, keywords: list) -> int:
-    """用字詞邊界匹配計算關鍵字出現次數"""
+    """Count keyword occurrences using word boundary matching"""
     pattern = _make_pattern(tuple(keywords))
     return len(pattern.findall(text))
 
 
 def has_keywords(text: str, keywords: list) -> bool:
-    """文本中是否包含任一關鍵字（字詞邊界匹配）"""
+    """Check if text contains any keyword (word boundary matching)"""
     pattern = _make_pattern(tuple(keywords))
     return bool(pattern.search(text))
 
 
 # ============================================================
-# 情緒分數（統一版本）
+# Sentiment Score (unified version)
 # ============================================================
 
 STRONG_WORDS = frozenset([
@@ -85,27 +85,27 @@ STRONG_WORDS = frozenset([
 
 
 def emotion_score(content: str) -> float:
-    """計算單篇貼文的情緒強度 (0-100)"""
+    """Calculate sentiment intensity of a single post (0-100)"""
     score = 0.0
     text = content
 
-    # 大寫字比例（最高 30 分）
+    # Uppercase letter ratio (max 30 points)
     upper = sum(1 for c in text if c.isupper())
     alpha = sum(1 for c in text if c.isalpha())
     caps_ratio = upper / max(alpha, 1)
     score += caps_ratio * 30
 
-    # 驚嘆號密度（最高 25 分）
+    # Exclamation mark density (max 25 points)
     excl = text.count('!')
     excl_density = excl / max(len(text), 1) * 100
     score += min(excl_density * 10, 25)
 
-    # 強烈詞彙 — 使用字詞邊界匹配（最高 25 分）
+    # Strong words - using word boundary matching (max 25 points)
     word_count = len(re.findall(r'\b\w+\b', text.lower()))
     strong_count = count_keywords(text, list(STRONG_WORDS))
     score += min(strong_count / max(word_count, 1) * 500, 25)
 
-    # 全大寫連續詞（最高 20 分）
+    # All-caps consecutive words (max 20 points)
     caps_words = len(re.findall(r'\b[A-Z]{3,}\b', text))
     score += min(caps_words * 2, 20)
 
@@ -113,11 +113,11 @@ def emotion_score(content: str) -> float:
 
 
 # ============================================================
-# 下一個交易日
+# Next Trading Day
 # ============================================================
 
 def safe_json_write(path, data) -> None:
-    """原子寫入 JSON — 先寫暫存檔再 os.replace，中斷不損壞原檔"""
+    """Atomic JSON write - write to temp file first then os.replace, prevents corruption on interrupt"""
     path = Path(path)
     tmp_fd, tmp_path = tempfile.mkstemp(dir=path.parent, suffix='.tmp')
     try:
@@ -133,7 +133,7 @@ def safe_json_write(path, data) -> None:
 
 
 def next_trading_day(date_str: str, market_data: dict, max_days: int = 10) -> str:
-    """找 date_str 之後的下一個交易日，最多往後找 max_days 天"""
+    """Find next trading day after date_str, search up to max_days forward"""
     d = datetime.strptime(date_str, '%Y-%m-%d')
     for i in range(1, max_days + 1):
         candidate = (d + timedelta(days=i)).strftime('%Y-%m-%d')

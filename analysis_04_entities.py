@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-川普密碼 分析 #4 — 人物與國家點名分析
-他提到誰、什麼國家、頻率變化 = 風向球
+Trump Code Analysis #4 - People & Country Mentions Analysis
+Who does he mention, what countries, frequency changes = bellwether
 """
 
 import json
@@ -20,13 +20,13 @@ def main():
     originals = [p for p in posts if p['has_text'] and not p['is_retweet']]
 
     print("=" * 70)
-    print("🌍 分析 #4: 人物與國家點名分析")
-    print(f"   分析對象: 就任後原創貼文 {len(originals)} 篇")
+    print("🌍 Analysis #4: People & Country Mentions Analysis")
+    print(f"   Analysis Target: Original posts since inauguration - {len(originals)} posts")
     print("=" * 70)
 
-    # --- 1. 國家/地區提及頻率 ---
-    # P3-7: 'EU' 去掉尾隨空格（避免誤匹配），'Korean' → 'South Korean'/'South Korea'
-    # 'Border' 從 Mexico 移除（Border 是邊境政策通用詞，不專屬墨西哥）
+    # --- 1. Country/Region Mention Frequency ---
+    # P3-7: Remove trailing space from 'EU' (avoid false matches), 'Korean' → 'South Korean'/'South Korea'
+    # Remove 'Border' from Mexico (Border is a general border policy term, not specific to Mexico)
     countries = {
         'China': ['China', 'Chinese', 'Beijing', 'Xi', 'Jinping', 'CCP'],
         'Japan': ['Japan', 'Japanese', 'Tokyo', 'Kishida', 'Ishiba'],
@@ -58,18 +58,18 @@ def main():
                 country_monthly[country][month] += 1
         country_counts[country] = count
 
-    print(f"\n🌐 國家/地區提及次數:")
+    print(f"\n🌐 Country/Region Mentions:")
     print("-" * 60)
     for country, count in sorted(country_counts.items(), key=lambda x: -x[1]):
         bar = '█' * (count // 3)
-        print(f"  {country:15s} | {count:4d}篇 {bar}")
+        print(f"  {country:15s} | {count:4d} posts {bar}")
 
-    # 國家提及的月度趨勢（Top 6 國家）
+    # Country mention monthly trend (Top 6 countries)
     top_countries = sorted(country_counts.items(), key=lambda x: -x[1])[:6]
-    print(f"\n📈 Top 6 國家月度趨勢:")
+    print(f"\n📈 Top 6 Countries Monthly Trend:")
     print("-" * 60)
     all_months = sorted(set(p['created_at'][:7] for p in originals))
-    header = f"  {'月份':10s}"
+    header = f"  {'Month':10s}"
     for c, _ in top_countries:
         header += f" {c[:6]:>7s}"
     print(header)
@@ -81,7 +81,7 @@ def main():
             row += f" {val:7d}"
         print(row)
 
-    # --- 2. 人物點名 ---
+    # --- 2. People Mentions ---
     people = {
         'Biden': ['Biden', 'Joe Biden', 'Sleepy Joe'],
         'Obama': ['Obama', 'Barack'],
@@ -116,15 +116,15 @@ def main():
                 people_monthly[person][month] += 1
         people_counts[person] = count
 
-    print(f"\n👤 人物提及次數:")
+    print(f"\n👤 People Mentions:")
     print("-" * 60)
     for person, count in sorted(people_counts.items(), key=lambda x: -x[1]):
         if count > 0:
             bar = '█' * min(count // 2, 40)
-            print(f"  {person:15s} | {count:4d}篇 {bar}")
+            print(f"  {person:15s} | {count:4d} posts {bar}")
 
-    # --- 3. 暱稱/外號追蹤 ---
-    print(f"\n🏷️ 川普專用外號追蹤:")
+    # --- 3. Nickname/Label Tracking ---
+    print(f"\n🏷️ Trump Signature Nicknames Tracking:")
     print("-" * 60)
 
     nicknames = [
@@ -146,23 +146,23 @@ def main():
         bar = '█' * min(count, 30)
         print(f"  {nick:25s} | {count:4d} {bar}")
 
-    # --- 4. 主題關鍵字 ---
-    print(f"\n📋 政策關鍵字頻率:")
+    # --- 4. Policy Keywords ---
+    print(f"\n📋 Policy Keyword Frequency:")
     print("-" * 60)
 
     topics = {
-        'Tariff/關稅': ['tariff', 'tariffs', 'duty', 'duties'],
-        'Border/邊境': ['border', 'wall', 'immigration', 'migrant', 'deportation', 'deport'],
-        'Economy/經濟': ['economy', 'economic', 'inflation', 'gdp', 'recession', 'growth'],
-        'Trade/貿易': ['trade', 'trade deal', 'trade deficit', 'export', 'import'],
-        'Military/軍事': ['military', 'army', 'navy', 'troops', 'defense', 'defence'],
-        'Energy/能源': ['energy', 'oil', 'gas', 'drill', 'pipeline', 'opec'],
-        'Tech/科技': ['technology', 'tech', 'artificial intelligence', ' ai ', 'chips', 'semiconductor'],
-        'Crime/犯罪': ['crime', 'criminal', 'gang', 'ms-13', 'fentanyl', 'drugs'],
-        'Election/選舉': ['election', 'vote', 'voter', 'ballot', 'poll'],
-        'Tax/稅': ['tax', 'taxes', 'irs', 'tax cut'],
-        'Jobs/就業': ['jobs', 'employment', 'unemployment', 'workers', 'hiring'],
-        'Stock Market/股市': ['stock market', 'dow', 'nasdaq', 'wall street', 's&p'],
+        'Tariff': ['tariff', 'tariffs', 'duty', 'duties'],
+        'Border': ['border', 'wall', 'immigration', 'migrant', 'deportation', 'deport'],
+        'Economy': ['economy', 'economic', 'inflation', 'gdp', 'recession', 'growth'],
+        'Trade': ['trade', 'trade deal', 'trade deficit', 'export', 'import'],
+        'Military': ['military', 'army', 'navy', 'troops', 'defense', 'defence'],
+        'Energy': ['energy', 'oil', 'gas', 'drill', 'pipeline', 'opec'],
+        'Tech': ['technology', 'tech', 'artificial intelligence', ' ai ', 'chips', 'semiconductor'],
+        'Crime': ['crime', 'criminal', 'gang', 'ms-13', 'fentanyl', 'drugs'],
+        'Election': ['election', 'vote', 'voter', 'ballot', 'poll'],
+        'Tax': ['tax', 'taxes', 'irs', 'tax cut'],
+        'Jobs': ['jobs', 'employment', 'unemployment', 'workers', 'hiring'],
+        'Stock Market': ['stock market', 'dow', 'nasdaq', 'wall street', 's&p'],
     }
 
     topic_counts = {}
@@ -180,13 +180,13 @@ def main():
 
     for topic, count in sorted(topic_counts.items(), key=lambda x: -x[1]):
         bar = '█' * (count // 3)
-        print(f"  {topic:20s} | {count:4d}篇 {bar}")
+        print(f"  {topic:20s} | {count:4d} posts {bar}")
 
-    # 主題月度趨勢
-    print(f"\n📈 主題月度趨勢 (Top 6):")
+    # Topic monthly trend
+    print(f"\n📈 Topic Monthly Trend (Top 6):")
     print("-" * 60)
     top_topics = sorted(topic_counts.items(), key=lambda x: -x[1])[:6]
-    header = f"  {'月份':10s}"
+    header = f"  {'Month':10s}"
     for t, _ in top_topics:
         header += f" {t[:8]:>9s}"
     print(header)
@@ -198,7 +198,7 @@ def main():
             row += f" {val:9d}"
         print(row)
 
-    # 存結果
+    # Save results
     results = {
         'country_counts': country_counts,
         'country_monthly': {k: dict(v) for k, v in country_monthly.items()},
@@ -211,7 +211,7 @@ def main():
     with open(DATA / 'results_04_entities.json', 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
-    print(f"\n💾 詳細結果存入 results_04_entities.json")
+    print(f"\n💾 Detailed results saved to results_04_entities.json")
 
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-川普密碼 分析 #6 — 發文 vs 美股反應
-核心問題：他發完文之後，股市怎麼動？
+Trump Code Analysis #6 - Posts vs Stock Market Reaction
+Core question: After he posts, how does the stock market move?
 """
 
 import json
@@ -15,7 +15,7 @@ BASE = Path(__file__).parent
 
 
 def main():
-    # --- 載入資料 ---
+    # --- Load data ---
     with open(BASE / "clean_president.json", 'r', encoding='utf-8') as f:
         posts = json.load(f)
 
@@ -33,7 +33,7 @@ def main():
     with open(DATA / "market_NASDAQ.json", 'r', encoding='utf-8') as f:
         nasdaq = json.load(f)
 
-    # 建立日期索引
+    # Build date index
     sp500_by_date = {r['date']: r for r in sp500}
     vix_by_date = {r['date']: r for r in vix}
     dow_by_date = {r['date']: r for r in dow}
@@ -42,24 +42,24 @@ def main():
     originals = [p for p in posts if p['has_text'] and not p['is_retweet']]
 
     print("=" * 80)
-    print("📈 分析 #6: 川普發文 vs 美股反應")
-    print(f"   貼文: {len(originals)} 篇 | S&P500: {len(sp500)} 交易日")
+    print("📈 Analysis #6: Trump Posts vs Stock Market Reaction")
+    print(f"   Posts: {len(originals)} | S&P500: {len(sp500)} trading days")
     print("=" * 80)
 
 
-    # === 工具函數 ===
+    # === Utility Functions ===
 
     def get_next_trading_day(date_str, market_data):
-        """取得某日期後的下一個交易日"""
+        """Get the next trading day after a given date"""
         dt = datetime.strptime(date_str, '%Y-%m-%d')
-        for i in range(1, 5):  # 最多看後4天（跨週末）
+        for i in range(1, 5):  # Look up to 4 days ahead (over weekend)
             next_d = (dt + timedelta(days=i)).strftime('%Y-%m-%d')
             if next_d in market_data:
                 return next_d
         return None
 
     def get_prev_trading_day(date_str, market_data):
-        """取得某日期前的上一個交易日"""
+        """Get the previous trading day before a given date"""
         dt = datetime.strptime(date_str, '%Y-%m-%d')
         for i in range(1, 5):
             prev_d = (dt - timedelta(days=i)).strftime('%Y-%m-%d')
@@ -68,17 +68,17 @@ def main():
         return None
 
     def day_return(date_str, market_data):
-        """計算日報酬率 % (close-to-close)"""
+        """Calculate daily return % (close-to-close)"""
         if date_str not in market_data:
             return None
-        # 找前一個交易日
+        # Find previous trading day
         sorted_dates = sorted(market_data.keys())
         try:
             idx = sorted_dates.index(date_str)
         except ValueError:
             return None
         if idx == 0:
-            # 第一天沒有前一天，fallback 到 open-to-close
+            # First day has no previous day, fallback to open-to-close
             d = market_data[date_str]
             return (d['close'] - d['open']) / d['open'] * 100
         prev_date = sorted_dates[idx - 1]
@@ -87,21 +87,21 @@ def main():
         return (today_close - prev_close) / prev_close * 100
 
     def intraday_return(date_str, market_data):
-        """計算盤中報酬率 % (open-to-close)"""
+        """Calculate intraday return % (open-to-close)"""
         if date_str not in market_data:
             return None
         d = market_data[date_str]
         return (d['close'] - d['open']) / d['open'] * 100
 
     def next_day_return(date_str, market_data):
-        """計算下一個交易日的漲跌幅 %"""
+        """Calculate next trading day return %"""
         next_d = get_next_trading_day(date_str, market_data)
         if not next_d:
             return None
         return day_return(next_d, market_data)
 
     def overnight_gap(date_str, market_data):
-        """計算隔夜跳空 (下一交易日 open vs 今天 close)"""
+        """Calculate overnight gap (next trading day open vs today close)"""
         if date_str not in market_data:
             return None
         next_d = get_next_trading_day(date_str, market_data)
@@ -112,7 +112,7 @@ def main():
         return (next_open - today_close) / today_close * 100
 
 
-    # === 每日發文特徵 ===
+    # === Daily Post Features ===
     daily_features = defaultdict(lambda: {
         'post_count': 0, 'total_length': 0, 'excl_count': 0,
         'caps_count': 0, 'has_tariff': False, 'has_china': False,
@@ -122,17 +122,17 @@ def main():
     })
 
     def welch_ttest(group1, group2):
-        """Welch's t-test（不假設等方差），純 Python 實作"""
+        """Welch's t-test (no equal variance assumption), pure Python implementation"""
         n1, n2 = len(group1), len(group2)
         if n1 < 2 or n2 < 2:
-            return {'t': None, 'significant': False, 'note': '樣本不足'}
+            return {'t': None, 'significant': False, 'note': 'Insufficient sample'}
         mean1 = sum(group1) / n1
         mean2 = sum(group2) / n2
         var1 = sum((x - mean1) ** 2 for x in group1) / (n1 - 1)
         var2 = sum((x - mean2) ** 2 for x in group2) / (n2 - 1)
         se = math.sqrt(var1 / n1 + var2 / n2)
         if se == 0:
-            return {'t': None, 'significant': False, 'note': '方差為零'}
+            return {'t': None, 'significant': False, 'note': 'Zero variance'}
         t = (mean1 - mean2) / se
         df = n1 + n2 - 2
         significant = abs(t) > 2.0 and df > 10
@@ -189,14 +189,14 @@ def main():
         if any(w in content_lower for w in ['border', 'immigration', 'deport', 'illegal']):
             d['has_border'] = True
 
-        # 盤後/盤前推文 (美東 16:00-09:30 = UTC 21:00-14:30)
+        # After-hours/pre-market posts (Eastern 16:00-09:30 = UTC 21:00-14:30)
         hour_utc = int(p['created_at'][11:13])
         if hour_utc >= 21 or hour_utc < 14:
             d['night_posts'] += 1
 
 
     # ============================================================
-    # 基線：所有交易日平均報酬率
+    # Baseline: Average return for all trading days
     # ============================================================
     all_trading_dates = sorted(sp500_by_date.keys())
     all_returns = [day_return(d, sp500_by_date) for d in all_trading_dates]
@@ -205,22 +205,22 @@ def main():
     baseline_std = (sum((r - baseline_mean) ** 2 for r in all_returns) / max(len(all_returns) - 1, 1)) ** 0.5
 
     print(f"\n{'='*80}")
-    print(f"📊 基線: 所有交易日 ({len(all_returns)} 天)")
-    print(f"   平均日報酬: {baseline_mean:+.4f}%")
-    print(f"   標準差: {baseline_std:.4f}%")
+    print(f"📊 Baseline: All Trading Days ({len(all_returns)} days)")
+    print(f"   Average Daily Return: {baseline_mean:+.4f}%")
+    print(f"   Standard Deviation: {baseline_std:.4f}%")
     print("=" * 80)
 
 
     # ============================================================
-    # 分析 1：發文量 vs 隔天股市
+    # Analysis 1: Post Volume vs Next Day Stock Market
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 1: 發文量 vs 隔天 S&P500")
+    print("📊 Analysis 1: Post Volume vs Next Day S&P500")
     print("=" * 80)
 
-    # 按發文量分組
-    buckets = {'0-5篇': (0, 5), '6-10篇': (6, 10), '11-20篇': (11, 20),
-               '21-40篇': (21, 40), '40+篇': (41, 999)}
+    # Group by post volume
+    buckets = {'0-5 posts': (0, 5), '6-10 posts': (6, 10), '11-20 posts': (11, 20),
+               '21-40 posts': (21, 40), '40+ posts': (41, 999)}
 
     for bucket_name, (lo, hi) in buckets.items():
         days = [d for d, f in daily_features.items()
@@ -238,14 +238,14 @@ def main():
             avg_next = sum(next_returns) / len(next_returns)
             avg_same = sum(same_returns) / len(same_returns) if same_returns else 0
             pos = sum(1 for r in next_returns if r > 0)
-            print(f"  {bucket_name:10s} | {len(days):3d}天 | 當天平均 {avg_same:+.2f}% | 隔天平均 {avg_next:+.2f}% | 隔天漲 {pos}/{len(next_returns)} ({pos/len(next_returns)*100:.0f}%)")
+            print(f"  {bucket_name:10s} | {len(days):3d} days | Same day avg {avg_same:+.2f}% | Next day avg {avg_next:+.2f}% | Next day up {pos}/{len(next_returns)} ({pos/len(next_returns)*100:.0f}%)")
 
 
     # ============================================================
-    # 分析 2：關稅推文 vs 股市
+    # Analysis 2: Tariff Posts vs Stock Market
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 2: 「關稅」推文日 vs 非關稅日 S&P500")
+    print("📊 Analysis 2: 'Tariff' Post Days vs Non-Tariff Days S&P500")
     print("=" * 80)
 
     tariff_days = [d for d, f in daily_features.items() if f['has_tariff'] and d in sp500_by_date]
@@ -256,7 +256,7 @@ def main():
     non_tariff_same_rets = []
     non_tariff_next_rets = []
 
-    for label, days in [('提到關稅', tariff_days), ('沒提關稅', non_tariff_days)]:
+    for label, days in [('Mentioned Tariff', tariff_days), ('No Tariff', non_tariff_days)]:
         same_ret = [day_return(d, sp500_by_date) for d in days]
         same_ret = [r for r in same_ret if r is not None]
         next_ret = [next_day_return(d, sp500_by_date) for d in days]
@@ -267,58 +267,58 @@ def main():
             avg_next = sum(next_ret) / len(next_ret)
             pos_same = sum(1 for r in same_ret if r > 0)
             pos_next = sum(1 for r in next_ret if r > 0)
-            print(f"  {label:10s} | {len(days):3d}天 | 當天 {avg_same:+.3f}% (漲{pos_same}/{len(same_ret)}) | 隔天 {avg_next:+.3f}% (漲{pos_next}/{len(next_ret)})")
-            if label == '提到關稅':
+            print(f"  {label:15s} | {len(days):3d} days | Same day {avg_same:+.3f}% (up {pos_same}/{len(same_ret)}) | Next day {avg_next:+.3f}% (up {pos_next}/{len(next_ret)})")
+            if label == 'Mentioned Tariff':
                 tariff_same_rets = same_ret
                 tariff_next_rets = next_ret
             else:
                 non_tariff_same_rets = same_ret
                 non_tariff_next_rets = next_ret
 
-    # t-test: 關稅日 vs 非關稅日
+    # t-test: Tariff days vs Non-tariff days
     ttest_tariff_same = welch_ttest(tariff_same_rets, non_tariff_same_rets)
     ttest_tariff_next = welch_ttest(tariff_next_rets, non_tariff_next_rets)
-    print(f"  [t-test 當天] t={ttest_tariff_same['t']}, {'顯著' if ttest_tariff_same['significant'] else '不顯著'} (df={ttest_tariff_same.get('df', 'N/A')})")
-    print(f"  [t-test 隔天] t={ttest_tariff_next['t']}, {'顯著' if ttest_tariff_next['significant'] else '不顯著'} (df={ttest_tariff_next.get('df', 'N/A')})")
+    print(f"  [t-test same day] t={ttest_tariff_same['t']}, {'Significant' if ttest_tariff_same['significant'] else 'Not significant'} (df={ttest_tariff_same.get('df', 'N/A')})")
+    print(f"  [t-test next day] t={ttest_tariff_next['t']}, {'Significant' if ttest_tariff_next['significant'] else 'Not significant'} (df={ttest_tariff_next.get('df', 'N/A')})")
 
 
     # ============================================================
-    # 分析 3：提到中國 vs 股市
+    # Analysis 3: China Mentions vs Stock Market
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 3: 「中國」推文日 vs 其他日 S&P500")
+    print("📊 Analysis 3: 'China' Post Days vs Other Days S&P500")
     print("=" * 80)
 
     china_days = [d for d, f in daily_features.items() if f['has_china'] and d in sp500_by_date]
     non_china_days = [d for d, f in daily_features.items() if not f['has_china'] and d in sp500_by_date]
 
-    for label, days in [('提到中國', china_days), ('沒提中國', non_china_days)]:
+    for label, days in [('Mentioned China', china_days), ('No China', non_china_days)]:
         same_ret = [r for r in [day_return(d, sp500_by_date) for d in days] if r is not None]
         next_ret = [r for r in [next_day_return(d, sp500_by_date) for d in days] if r is not None]
         if same_ret and next_ret:
-            print(f"  {label:10s} | {len(days):3d}天 | 當天 {sum(same_ret)/len(same_ret):+.3f}% | 隔天 {sum(next_ret)/len(next_ret):+.3f}%")
+            print(f"  {label:15s} | {len(days):3d} days | Same day {sum(same_ret)/len(same_ret):+.3f}% | Next day {sum(next_ret)/len(next_ret):+.3f}%")
 
 
     # ============================================================
-    # 分析 4：提到股市 vs 實際股市
+    # Analysis 4: Market Mentions vs Actual Market Performance
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 4: 他主動提「股市」的日子 vs 實際表現")
+    print("📊 Analysis 4: When He Mentions 'Stock Market' vs Actual Performance")
     print("=" * 80)
 
     market_days = [d for d, f in daily_features.items() if f['has_market'] and d in sp500_by_date]
     non_market_days = [d for d, f in daily_features.items() if not f['has_market'] and d in sp500_by_date]
 
-    for label, days in [('提到股市', market_days), ('沒提股市', non_market_days)]:
+    for label, days in [('Mentioned Market', market_days), ('No Market Mention', non_market_days)]:
         same_ret = [r for r in [day_return(d, sp500_by_date) for d in days] if r is not None]
         next_ret = [r for r in [next_day_return(d, sp500_by_date) for d in days] if r is not None]
         if same_ret and next_ret:
             avg_s = sum(same_ret)/len(same_ret)
             avg_n = sum(next_ret)/len(next_ret)
-            print(f"  {label:10s} | {len(days):3d}天 | 當天 {avg_s:+.3f}% | 隔天 {avg_n:+.3f}%")
+            print(f"  {label:20s} | {len(days):3d} days | Same day {avg_s:+.3f}% | Next day {avg_n:+.3f}%")
 
-    # 他提到股市時通常是漲還是跌的日子？
-    print(f"\n  他通常在股市漲的日子提股市，還是跌的日子？")
+    # Does he mention markets on up days or down days?
+    print(f"\n  Does he typically mention markets on up days or down days?")
     for d in sorted(market_days)[-15:]:
         ret = day_return(d, sp500_by_date)
         if ret is not None:
@@ -328,13 +328,13 @@ def main():
 
 
     # ============================================================
-    # 分析 5：情緒強度 vs 股市
+    # Analysis 5: Emotion Intensity vs Stock Market
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 5: 情緒強度 vs S&P500")
+    print("📊 Analysis 5: Emotion Intensity vs S&P500")
     print("=" * 80)
 
-    # 按情緒分組
+    # Group by emotion
     emotion_buckets = []
     for date, feat in daily_features.items():
         if date in sp500_by_date and feat['post_count'] > 0:
@@ -350,7 +350,7 @@ def main():
                     'post_count': feat['post_count']
                 })
 
-    # 按情緒強度分 5 組
+    # Divide into 5 groups by emotion intensity
     emotion_buckets.sort(key=lambda x: x['emotion'])
     chunk = len(emotion_buckets) // 5
 
@@ -362,16 +362,16 @@ def main():
         avg_emo = sum(g['emotion'] for g in group) / len(group)
         avg_same = sum(g['same_day'] for g in group) / len(group)
         avg_next = sum(g['next_day'] for g in group) / len(group)
-        labels = ['😌很平靜', '🙂偏平靜', '😐中等  ', '😤偏激動', '🔥很激動']
+        labels = ['😌Very Calm', '🙂Calm', '😐Neutral', '😤Agitated', '🔥Very Agitated']
 
-        print(f"  {labels[i]} | 情緒{avg_emo:5.1f} | {len(group):3d}天 | 當天 {avg_same:+.3f}% | 隔天 {avg_next:+.3f}%")
+        print(f"  {labels[i]} | Emotion {avg_emo:5.1f} | {len(group):3d} days | Same day {avg_same:+.3f}% | Next day {avg_next:+.3f}%")
 
 
     # ============================================================
-    # 分析 6：盤後/盤前推文 vs 隔日跳空
+    # Analysis 6: After-Hours Posts vs Next Day Gap
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 6: 盤後推文 vs 隔日開盤跳空")
+    print("📊 Analysis 6: After-Hours Posts vs Next Day Opening Gap")
     print("=" * 80)
 
     for date, feat in sorted(daily_features.items()):
@@ -379,39 +379,39 @@ def main():
             gap = overnight_gap(date, sp500_by_date)
             if gap is not None:
                 arrow = "⬆️" if gap > 0 else "⬇️"
-                print(f"  {date} | 盤後{feat['night_posts']:2d}篇 | 隔日跳空 {gap:+.2f}% {arrow}")
+                print(f"  {date} | After-hours {feat['night_posts']:2d} posts | Next day gap {gap:+.2f}% {arrow}")
 
 
     # ============================================================
-    # 分析 7：VIX 恐慌指數 vs 發文行為
+    # Analysis 7: VIX Fear Index vs Posting Behavior
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 7: VIX 恐慌指數 vs 發文行為")
+    print("📊 Analysis 7: VIX Fear Index vs Posting Behavior")
     print("=" * 80)
 
-    # VIX 高的日子（>25）他怎麼發文
+    # High VIX days (>25) - how does he post
     high_vix_days = [d for d in vix_by_date if vix_by_date[d]['close'] > 25 and d in daily_features]
     low_vix_days = [d for d in vix_by_date if vix_by_date[d]['close'] < 15 and d in daily_features]
     normal_vix_days = [d for d in vix_by_date if 15 <= vix_by_date[d]['close'] <= 25 and d in daily_features]
 
-    for label, days in [('VIX>25恐慌', high_vix_days), ('VIX 15-25正常', normal_vix_days), ('VIX<15平靜', low_vix_days)]:
+    for label, days in [('VIX>25 Fear', high_vix_days), ('VIX 15-25 Normal', normal_vix_days), ('VIX<15 Calm', low_vix_days)]:
         if not days:
-            print(f"  {label:15s} | 0 天")
+            print(f"  {label:17s} | 0 days")
             continue
         avg_posts = sum(daily_features[d]['post_count'] for d in days) / len(days)
         avg_emotion = sum(daily_features[d]['emotion_sum'] / max(daily_features[d]['post_count'], 1) for d in days) / len(days)
         tariff_pct = sum(1 for d in days if daily_features[d]['has_tariff']) / len(days) * 100
-        print(f"  {label:15s} | {len(days):3d}天 | 平均{avg_posts:.1f}篇/天 | 情緒{avg_emotion:.1f} | 提關稅{tariff_pct:.0f}%")
+        print(f"  {label:17s} | {len(days):3d} days | Avg {avg_posts:.1f} posts/day | Emotion {avg_emotion:.1f} | Tariff mentions {tariff_pct:.0f}%")
 
 
     # ============================================================
-    # 分析 8：最大單日漲跌 vs 他的推文
+    # Analysis 8: Biggest Market Moves - What did he post?
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 8: S&P500 最大漲跌日 — 他那天/前天發了什麼？")
+    print("📊 Analysis 8: S&P500 Biggest Moves — What did he post that day/day before?")
     print("=" * 80)
 
-    # 計算每天漲跌幅
+    # Calculate daily moves
     daily_returns = []
     for d in sp500:
         ret = (d['close'] - d['open']) / d['open'] * 100
@@ -419,32 +419,32 @@ def main():
 
     daily_returns.sort(key=lambda x: x['return'])
 
-    print(f"\n  📉 最大跌幅 Top 10:")
+    print(f"\n  📉 Biggest Drops Top 10:")
     for item in daily_returns[:10]:
         d = item['date']
         prev = get_prev_trading_day(d, sp500_by_date)
 
-        # 前一天的推文
+        # Previous day posts
         prev_posts = daily_features.get(prev, {})
         prev_count = prev_posts.get('post_count', 0) if prev_posts else 0
         prev_tariff = prev_posts.get('has_tariff', False) if prev_posts else False
         prev_china = prev_posts.get('has_china', False) if prev_posts else False
 
-        # 當天推文
+        # Same day posts
         today_posts = daily_features.get(d, {})
         today_count = today_posts.get('post_count', 0) if today_posts else 0
 
         tags = []
-        if prev_tariff: tags.append('💣關稅')
-        if prev_china: tags.append('🇨🇳中國')
+        if prev_tariff: tags.append('💣Tariff')
+        if prev_china: tags.append('🇨🇳China')
 
         sample = ''
         if prev_posts and prev_posts.get('contents'):
             sample = prev_posts['contents'][0][:50]
 
-        print(f"    {d} | S&P {item['return']:+.2f}% | 前天{prev_count}篇 當天{today_count}篇 | {' '.join(tags)} | {sample}")
+        print(f"    {d} | S&P {item['return']:+.2f}% | Prev day {prev_count} posts Today {today_count} posts | {' '.join(tags)} | {sample}")
 
-    print(f"\n  📈 最大漲幅 Top 10:")
+    print(f"\n  📈 Biggest Gains Top 10:")
     for item in daily_returns[-10:][::-1]:
         d = item['date']
         prev = get_prev_trading_day(d, sp500_by_date)
@@ -458,21 +458,21 @@ def main():
         today_count = today_posts.get('post_count', 0) if today_posts else 0
 
         tags = []
-        if prev_tariff: tags.append('💣關稅')
+        if prev_tariff: tags.append('💣Tariff')
         if prev_deal: tags.append('🤝Deal')
 
         sample = ''
         if prev_posts and prev_posts.get('contents'):
             sample = prev_posts['contents'][0][:50]
 
-        print(f"    {d} | S&P {item['return']:+.2f}% | 前天{prev_count}篇 當天{today_count}篇 | {' '.join(tags)} | {sample}")
+        print(f"    {d} | S&P {item['return']:+.2f}% | Prev day {prev_count} posts Today {today_count} posts | {' '.join(tags)} | {sample}")
 
 
     # ============================================================
-    # 分析 9：關稅推文時間線 vs S&P500
+    # Analysis 9: Tariff Post Timeline vs S&P500
     # ============================================================
     print(f"\n{'='*80}")
-    print("📊 分析 9: 關稅推文時間線 vs S&P500 走勢")
+    print("📊 Analysis 9: Tariff Post Timeline vs S&P500 Trend")
     print("=" * 80)
 
     tariff_timeline = []
@@ -489,7 +489,7 @@ def main():
                 'next_return': nret,
             })
 
-    print(f"  {'日期':12s} | {'篇數':>4s} | {'S&P500':>10s} | {'當天':>7s} | {'隔天':>7s}")
+    print(f"  {'Date':12s} | {'Posts':>4s} | {'S&P500':>10s} | {'Same Day':>7s} | {'Next Day':>7s}")
     print(f"  {'-'*12}-+-{'-'*4}-+-{'-'*10}-+-{'-'*7}-+-{'-'*7}")
     for t in tariff_timeline:
         nr = f"{t['next_return']:+.2f}%" if t['next_return'] is not None else "  N/A"
@@ -498,7 +498,7 @@ def main():
 
 
     # ============================================================
-    # 存結果摘要
+    # Save Results Summary
     # ============================================================
     results = {
         'baseline': {
@@ -519,7 +519,7 @@ def main():
     with open(DATA / 'results_06_market.json', 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
-    print(f"\n💾 詳細結果存入 results_06_market.json")
+    print(f"\n💾 Detailed results saved to results_06_market.json")
 
 
 if __name__ == '__main__':

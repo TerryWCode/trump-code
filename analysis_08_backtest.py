@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-川普密碼 分析 #8 — 回測驗證
-用歷史資料跑 5 條規則，看每條賺多少、勝率多少
-對照組：同期 Buy & Hold S&P500
+Trump Code Analysis #8 - Backtest Validation
+Run historical data through 5 rules, see profit and win rate for each
+Control group: Same period Buy & Hold S&P500
 """
 
 import json
@@ -35,7 +35,7 @@ def main():
         key=lambda p: p['created_at']
     )
 
-    # === 工具函數 ===
+    # === Utility Functions ===
 
     def classify_post(content):
         cl = content.lower()
@@ -76,7 +76,7 @@ def main():
         return None
 
     def trading_day_offset(date_str, offset, market=None):
-        """取得 N 個交易日後的日期"""
+        """Get date N trading days later"""
         if market is None:
             market = sp_by_date
         d = date_str
@@ -87,15 +87,15 @@ def main():
         return d
 
 
-    # === 每日信號彙整 ===
+    # === Daily Signal Aggregation ===
 
     daily_signals = defaultdict(lambda: {
         'tariff': 0, 'deal': 0, 'relief': 0, 'market_brag': 0,
         'action': 0, 'china': 0, 'posts': 0,
         'pre_tariff': 0, 'pre_deal': 0, 'pre_relief': 0,
         'open_tariff': 0, 'open_deal': 0,
-        # pre_close_* = 盤前 + 盤中（截至 16:00），排除盤後/夜間推文
-        # 用於修正前視偏差：信號只用投資人盤前可見的資訊
+        # pre_close_* = pre-market + market hours (until 16:00), excluding after-hours/overnight posts
+        # Used to correct look-ahead bias: signals only use information available before market close
         'pre_close_tariff': 0, 'pre_close_deal': 0, 'pre_close_relief': 0,
         'pre_close_market_brag': 0, 'pre_close_action': 0,
     })
@@ -115,27 +115,27 @@ def main():
             elif session == 'MARKET_OPEN':
                 d[f'open_{sig.lower()}'] = d.get(f'open_{sig.lower()}', 0) + 1
                 d[f'pre_close_{sig.lower()}'] = d.get(f'pre_close_{sig.lower()}', 0) + 1
-            # AFTER_HOURS / OVERNIGHT 不計入 pre_close_*
+            # AFTER_HOURS / OVERNIGHT not counted in pre_close_*
 
 
     print("=" * 90)
-    print("📊 川普密碼回測 — 5 條規則歷史驗證")
+    print("📊 Trump Code Backtest - 5 Rules Historical Validation")
     print("=" * 90)
 
-    # === Buy & Hold 基準 ===
+    # === Buy & Hold Baseline ===
     first_day = sp500[0]
     last_day = sp500[-1]
     bh_return = (last_day['close'] - first_day['open']) / first_day['open'] * 100
-    print(f"\n📈 基準: Buy & Hold S&P500")
-    print(f"   期間: {first_day['date']} ~ {last_day['date']}")
-    print(f"   起點(open): {first_day['open']:,.2f} → 終點(close): {last_day['close']:,.2f}")
-    print(f"   報酬率: {bh_return:+.2f}%")
-    print(f"   交易日: {len(sp500)} 天")
-    print(f"\n   ⚠️  前視偏差修正: 信號觸發只用盤前(PRE_MARKET)+盤中(MARKET_OPEN)推文")
-    print(f"      盤後(AFTER_HOURS)/夜間(OVERNIGHT)推文不計入信號，排除前視偏差")
+    print(f"\n📈 Baseline: Buy & Hold S&P500")
+    print(f"   Period: {first_day['date']} ~ {last_day['date']}")
+    print(f"   Starting (open): {first_day['open']:,.2f} → Ending (close): {last_day['close']:,.2f}")
+    print(f"   Return: {bh_return:+.2f}%")
+    print(f"   Trading Days: {len(sp500)} days")
+    print(f"\n   ⚠️  Look-ahead Bias Correction: Signal triggers only use PRE_MARKET + MARKET_OPEN posts")
+    print(f"      AFTER_HOURS/OVERNIGHT posts not counted in signals to eliminate look-ahead bias")
 
 
-    # === 回測框架 ===
+    # === Backtest Framework ===
 
     class Trade:
         def __init__(self, rule, date, direction, entry_price, reason):
@@ -162,7 +162,7 @@ def main():
 
 
     def run_rule(rule_name, trigger_fn, direction, hold_days_target, market=None):
-        """通用回測執行器"""
+        """Generic backtest executor"""
         if market is None:
             market = sp_by_date
         trades = []
@@ -170,34 +170,34 @@ def main():
 
         for i, date in enumerate(sorted_dates):
             if date not in market:
-                # 週末/假日 → 用下一個交易日
+                # Weekend/holiday → use next trading day
                 td = next_trading_day(date, market)
                 if not td:
                     continue
             else:
                 td = date
 
-            # 檢查觸發條件
-            # today_pre_close: 只含盤前+盤中信號，排除盤後推文（修正前視偏差）
+            # Check trigger condition
+            # today_pre_close: only contains pre-market + market hours signals, excluding after-hours posts (corrects look-ahead bias)
             sig = daily_signals[date]
             pre_close_view = {k.replace('pre_close_', ''): v for k, v in sig.items() if k.startswith('pre_close_')}
             context = {
                 'date': date,
                 'today': daily_signals[date],
-                'today_pre_close': pre_close_view,  # 無前視偏差版本
+                'today_pre_close': pre_close_view,  # No look-ahead bias version
                 'prev_3': [daily_signals[sorted_dates[j]] for j in range(max(0,i-3), i)],
                 'prev_7': [daily_signals[sorted_dates[j]] for j in range(max(0,i-7), i)],
             }
 
             if trigger_fn(context):
-                # 下一個交易日開盤買入
+                # Buy at next trading day open
                 entry_day = next_trading_day(td, market)
                 if not entry_day or entry_day not in market:
                     continue
 
                 entry_price = market[entry_day]['open']
 
-                # 持有 N 個交易日後賣出
+                # Sell after holding N trading days
                 exit_day = entry_day
                 for _ in range(hold_days_target):
                     nd = next_trading_day(exit_day, market)
@@ -220,10 +220,10 @@ def main():
 
 
     def print_rule_results(rule_name, trades, description):
-        """打印單條規則的回測結果"""
+        """Print backtest results for a single rule"""
         if not trades:
-            print(f"\n  ❌ {rule_name}: 沒有觸發")
-            return None  # P4-1: 明確回傳 None 而非不回傳
+            print(f"\n  ❌ {rule_name}: No triggers")
+            return None  # P4-1: Explicitly return None
 
         wins = [t for t in trades if t.return_pct > 0]
         losses = [t for t in trades if t.return_pct <= 0]
@@ -233,13 +233,13 @@ def main():
         avg_return = total_return / len(returns)
         win_rate = len(wins) / len(trades) * 100
         avg_win = sum(t.return_pct for t in wins) / len(wins) if wins else 0
-        # P4-1: avg_loss 除以零防護（losses 為空時回傳 0）
+        # P4-1: avg_loss divide by zero protection (return 0 if losses is empty)
         avg_loss = sum(t.return_pct for t in losses) / len(losses) if losses else 0
         max_win = max(returns)
         max_loss = min(returns)
         avg_hold = sum(t.hold_days for t in trades) / len(trades)
 
-        # 假設每次投入 $10,000
+        # Assume $10,000 investment each time
         capital = 10000
         cumulative = capital
         peak = capital
@@ -253,27 +253,27 @@ def main():
         final_value = cumulative
 
         print(f"\n  {'='*85}")
-        print(f"  📋 規則: {rule_name}")
+        print(f"  📋 Rule: {rule_name}")
         print(f"  📝 {description}")
         print(f"  {'='*85}")
-        print(f"  交易次數:  {len(trades):5d}")
-        print(f"  勝率:      {win_rate:5.1f}%  ({len(wins)}勝 {len(losses)}負)")
-        print(f"  平均報酬:  {avg_return:+.3f}% / 次")
-        print(f"  累積報酬:  {total_return:+.2f}%")
-        print(f"  平均持有:  {avg_hold:.1f} 天")
-        print(f"  平均勝:    {avg_win:+.3f}%")
-        print(f"  平均負:    {avg_loss:+.3f}%")
-        print(f"  最大單筆勝: {max_win:+.2f}%")
-        print(f"  最大單筆負: {max_loss:+.2f}%")
-        # P4-1: avg_loss == 0 時回傳 999（無損失，盈虧比無限大）
+        print(f"  Trade Count:      {len(trades):5d}")
+        print(f"  Win Rate:         {win_rate:5.1f}%  ({len(wins)} wins {len(losses)} losses)")
+        print(f"  Average Return:   {avg_return:+.3f}% / trade")
+        print(f"  Total Return:     {total_return:+.2f}%")
+        print(f"  Average Hold:     {avg_hold:.1f} days")
+        print(f"  Average Win:      {avg_win:+.3f}%")
+        print(f"  Average Loss:     {avg_loss:+.3f}%")
+        print(f"  Max Single Win:   {max_win:+.2f}%")
+        print(f"  Max Single Loss:  {max_loss:+.2f}%")
+        # P4-1: avg_loss == 0 return 999 (no losses, infinite profit/loss ratio)
         profit_loss_ratio = abs(avg_win / avg_loss) if avg_loss != 0 else 999
-        print(f"  盈虧比:    {profit_loss_ratio:.2f}")
-        print(f"  最大回撤:  {max_drawdown:.2f}%")
-        print(f"  $10K →     ${final_value:,.0f}  ({(final_value/capital-1)*100:+.1f}%)")
+        print(f"  Profit/Loss Ratio: {profit_loss_ratio:.2f}")
+        print(f"  Max Drawdown:     {max_drawdown:.2f}%")
+        print(f"  $10K →            ${final_value:,.0f}  ({(final_value/capital-1)*100:+.1f}%)")
 
-        # 顯示每筆交易
-        print(f"\n  📋 交易明細:")
-        print(f"  {'入場':12s} | {'出場':12s} | {'入場價':>10s} | {'出場價':>10s} | {'報酬':>8s} | {'累積':>10s}")
+        # Display each trade
+        print(f"\n  📋 Trade Details:")
+        print(f"  {'Entry':12s} | {'Exit':12s} | {'Entry Price':>10s} | {'Exit Price':>10s} | {'Return':>8s} | {'Cumulative':>10s}")
         cum = capital
         for t in trades:
             cum *= (1 + t.return_pct / 100)
@@ -291,104 +291,104 @@ def main():
 
 
     # ============================================================
-    # 規則 1: 盤前暫緩信號 → 開盤買入，持有 1 天
+    # Rule 1: Pre-market RELIEF signal → Buy at open, hold 1 day
     # ============================================================
     def rule1_trigger(ctx):
-        # 使用 pre_close 版本（只含盤前+盤中），避免前視偏差
-        return ctx['today'].get('pre_relief', 0) >= 1  # pre_relief 本身已是盤前信號
+        # Use pre_close version (pre-market + market hours only), avoid look-ahead bias
+        return ctx['today'].get('pre_relief', 0) >= 1  # pre_relief is already pre-market signal
 
     trades_r1 = run_rule('R1', rule1_trigger, 'LONG', 1)
     r1 = print_rule_results(
-        "規則1: 盤前RELIEF → 買入1天",
+        "Rule 1: Pre-market RELIEF → Buy 1 day",
         trades_r1,
-        "他在開盤前說「暫緩/豁免/暫停」→ 下一個交易日開盤買、收盤賣"
+        "When he says 'pause/exempt/suspend' before market open → Buy at next trading day open, sell at close"
     )
 
 
     # ============================================================
-    # 規則 2: 盤中發關稅 → 避險（做空1天）
+    # Rule 2: Market hours TARIFF mention → Hedge (short 1 day)
     # ============================================================
     def rule2_trigger(ctx):
-        return ctx['today'].get('open_tariff', 0) >= 2  # 盤中提關稅 ≥2 次
+        return ctx['today'].get('open_tariff', 0) >= 2  # Mentioned tariff ≥2 times during market hours
 
     trades_r2 = run_rule('R2', rule2_trigger, 'SHORT', 1)
     r2 = print_rule_results(
-        "規則2: 盤中TARIFF×2 → 做空1天",
+        "Rule 2: Market hours TARIFF×2 → Short 1 day",
         trades_r2,
-        "他在交易時間提關稅 ≥2 次 → 下一個交易日開盤做空、收盤平倉"
+        "When he mentions tariff ≥2 times during trading hours → Short at next trading day open, cover at close"
     )
 
 
     # ============================================================
-    # 規則 3: 連3天TARIFF → 出現DEAL → 買入2天
+    # Rule 3: 3 consecutive days TARIFF → DEAL appears → Buy 2 days
     # ============================================================
     def rule3_trigger(ctx):
         prev = ctx['prev_3']
         if len(prev) < 3:
             return False
         tariff_streak = all(d['tariff'] >= 1 for d in prev)
-        # 只用盤前+盤中的 deal 信號（避免前視偏差）
+        # Only use pre-market + market hours deal signals (avoid look-ahead bias)
         deal_today = ctx['today_pre_close'].get('deal', 0) >= 1
         return tariff_streak and deal_today
 
     trades_r3 = run_rule('R3', rule3_trigger, 'LONG', 2)
     r3 = print_rule_results(
-        "規則3: 連3天TARIFF後DEAL出現 → 買入2天",
+        "Rule 3: 3-day TARIFF streak then DEAL → Buy 2 days",
         trades_r3,
-        "連續3天提關稅後，當天出現Deal信號 → 轉折買入，持有2個交易日"
+        "After 3 consecutive days of tariff mentions, DEAL signal appears → Buy the turning point, hold 2 trading days"
     )
 
 
     # ============================================================
-    # 規則 4: 三信號齊發 (TARIFF+DEAL+RELIEF同天) → 買入3天
+    # Rule 4: Three signals together (TARIFF+DEAL+RELIEF same day) → Buy 3 days
     # ============================================================
     def rule4_trigger(ctx):
-        # 使用盤前+盤中信號，避免前視偏差
+        # Use pre-market + market hours signals, avoid look-ahead bias
         t = ctx['today_pre_close']
         return t.get('tariff', 0) >= 1 and t.get('deal', 0) >= 1 and t.get('relief', 0) >= 1
 
     trades_r4 = run_rule('R4', rule4_trigger, 'LONG', 3)
     r4 = print_rule_results(
-        "規則4: TARIFF+DEAL+RELIEF齊發 → 買入3天",
+        "Rule 4: TARIFF+DEAL+RELIEF together → Buy 3 days",
         trades_r4,
-        "同一天出現關稅+Deal+暫緩三種信號 → 底部買入，持有3個交易日"
+        "Same day has all three signals: tariff+deal+relief → Buy the bottom, hold 3 trading days"
     )
 
 
     # ============================================================
-    # 規則 5: 他主動炫耀股市 → 賣出信號（做空1天）
+    # Rule 5: He actively brags about stock market → Sell signal (short 1 day)
     # ============================================================
     def rule5_trigger(ctx):
-        # 使用盤前+盤中信號，避免前視偏差
-        return ctx['today_pre_close'].get('market_brag', 0) >= 2  # 一天炫耀股市 ≥2 次
+        # Use pre-market + market hours signals, avoid look-ahead bias
+        return ctx['today_pre_close'].get('market_brag', 0) >= 2  # Brags about market ≥2 times a day
 
     trades_r5 = run_rule('R5', rule5_trigger, 'SHORT', 1)
     r5 = print_rule_results(
-        "規則5: 炫耀股市×2 → 做空1天",
+        "Rule 5: Market bragging×2 → Short 1 day",
         trades_r5,
-        "他一天內主動提股市/新高 ≥2 次 → 短期到頂，隔天做空1天"
+        "When he mentions stock market/all-time high ≥2 times in one day → Short-term top, short next day for 1 day"
     )
 
 
     # ============================================================
-    # 加碼規則：高發文量日 (≥30篇) + TARIFF → 買入2天
+    # Bonus Rule: High volume day (≥30 posts) + TARIFF → Buy 2 days
     # ============================================================
     def rule6_trigger(ctx):
-        # posts 用全天，tariff 用盤前+盤中（避免前視偏差）
+        # posts uses all-day, tariff uses pre-market + market hours (avoid look-ahead bias)
         t = ctx['today']
         t_pc = ctx['today_pre_close']
         return t['posts'] >= 30 and t_pc.get('tariff', 0) >= 3
 
     trades_r6 = run_rule('R6', rule6_trigger, 'LONG', 2)
     r6 = print_rule_results(
-        "規則6: 爆量日(≥30篇)+關稅密集 → 買入2天",
+        "Rule 6: High volume (≥30 posts) + dense tariff → Buy 2 days",
         trades_r6,
-        "一天狂發 ≥30 篇且關稅 ≥3 次 → 市場恐慌極值，反彈在即"
+        "One day with ≥30 posts and tariff mentioned ≥3 times → Market panic extreme, bounce imminent"
     )
 
 
     # ============================================================
-    # 加碼規則：盤前 ACTION → 買入1天
+    # Bonus Rule: Pre-market ACTION → Buy 1 day
     # ============================================================
     def rule7_trigger(ctx):
         return ctx['today'].get('pre_action', 0) >= 1
@@ -402,18 +402,18 @@ def main():
 
     trades_r7 = run_rule('R7', rule7_trigger, 'LONG', 1)
     r7 = print_rule_results(
-        "規則7: 盤前ACTION(簽署/命令) → 買入1天",
+        "Rule 7: Pre-market ACTION (signing/order) → Buy 1 day",
         trades_r7,
-        "他在開盤前宣布簽署/行政命令 → 開盤買入，當天收盤賣出"
+        "When he announces signing/executive order before market open → Buy at open, sell at close same day"
     )
 
 
     # ============================================================
-    # 組合策略：同時用規則 1+3+4
+    # Combined Strategy: Rules 1+3+4+6 running simultaneously
     # ============================================================
     print(f"\n{'='*90}")
-    print("🏆 組合策略回測：規則 1+3+4+6 同時運行")
-    print("   各規則獨立觸發，不重複入場（同一天只觸一次）")
+    print("🏆 Combined Strategy Backtest: Rules 1+3+4+6 Running Simultaneously")
+    print("   Each rule triggers independently, no duplicate entries (only one entry per day)")
     print("=" * 90)
 
     all_trades = []
@@ -443,32 +443,32 @@ def main():
         total_ret = sum(t.return_pct for t in all_trades)
         avg_ret = total_ret / len(all_trades)
 
-        print(f"  交易次數:     {len(all_trades)}")
-        print(f"  勝率:         {wins/len(all_trades)*100:.1f}%")
-        print(f"  平均報酬:     {avg_ret:+.3f}% / 次")
-        print(f"  累積報酬:     {total_ret:+.2f}%")
-        print(f"  最大回撤:     {max_dd:.2f}%")
-        print(f"  $10K →        ${cumulative:,.0f}")
-        print(f"  vs Buy&Hold:  {bh_return:+.2f}%")
+        print(f"  Trade Count:      {len(all_trades)}")
+        print(f"  Win Rate:         {wins/len(all_trades)*100:.1f}%")
+        print(f"  Average Return:   {avg_ret:+.3f}% / trade")
+        print(f"  Total Return:     {total_ret:+.2f}%")
+        print(f"  Max Drawdown:     {max_dd:.2f}%")
+        print(f"  $10K →            ${cumulative:,.0f}")
+        print(f"  vs Buy&Hold:      {bh_return:+.2f}%")
 
 
     # ============================================================
-    # 總結
+    # Summary
     # ============================================================
     print(f"\n{'='*90}")
-    print("📊 川普密碼回測總結")
+    print("📊 Trump Code Backtest Summary")
     print("=" * 90)
-    print(f"  {'規則':40s} | {'次數':>4s} | {'勝率':>5s} | {'平均':>8s} | {'$10K→':>10s}")
+    print(f"  {'Rule':40s} | {'Count':>4s} | {'Win%':>5s} | {'Avg':>8s} | {'$10K→':>10s}")
     print(f"  {'-'*40}-+-{'-'*4}-+-{'-'*5}-+-{'-'*8}-+-{'-'*10}")
 
     all_results = [
-        ('R1: 盤前RELIEF→買1天', r1),
-        ('R2: 盤中TARIFF×2→空1天', r2),
-        ('R3: 連3天TARIFF後DEAL→買2天', r3),
-        ('R4: 三信號齊發→買3天', r4),
-        ('R5: 炫耀股市×2→空1天', r5),
-        ('R6: 爆量日+關稅密集→買2天', r6),
-        ('R7: 盤前ACTION→買1天', r7),
+        ('R1: Pre-market RELIEF→Buy 1 day', r1),
+        ('R2: Market hours TARIFF×2→Short 1 day', r2),
+        ('R3: 3-day TARIFF then DEAL→Buy 2 days', r3),
+        ('R4: Three signals together→Buy 3 days', r4),
+        ('R5: Market bragging×2→Short 1 day', r5),
+        ('R6: High volume + dense tariff→Buy 2 days', r6),
+        ('R7: Pre-market ACTION→Buy 1 day', r7),
     ]
 
     for name, result in all_results:
@@ -478,9 +478,9 @@ def main():
             print(f"  {name:40s} | {'N/A':>4s} |  {'N/A':>4s} |   {'N/A':>6s} |    {'N/A':>6s}")
 
     print(f"  {'-'*40}-+-{'-'*4}-+-{'-'*5}-+-{'-'*8}-+-{'-'*10}")
-    print(f"  {'Buy & Hold S&P500 (對照組)':40s} | {len(sp500):4d} | {'N/A':>5s} | {'N/A':>8s} | ${10000*(1+bh_return/100):>9,.0f}")
+    print(f"  {'Buy & Hold S&P500 (Control)':40s} | {len(sp500):4d} | {'N/A':>5s} | {'N/A':>8s} | ${10000*(1+bh_return/100):>9,.0f}")
 
-    # 存結果
+    # Save results
     summary = {'buy_hold_return': round(bh_return, 2)}
     for name, result in all_results:
         if result:
@@ -489,7 +489,7 @@ def main():
     with open(DATA / 'results_08_backtest.json', 'w', encoding='utf-8') as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
 
-    print(f"\n💾 詳細結果存入 results_08_backtest.json")
+    print(f"\n💾 Detailed results saved to results_08_backtest.json")
 
 
 if __name__ == '__main__':

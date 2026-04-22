@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-川普密碼 分析 #2 — 發文時間規律
-什麼時候發？頻率突變前後發生了什麼？
+Trump Code Analysis #2 - Posting Time Patterns
+When does he post? What happens before and after frequency changes?
 """
 
 import json
@@ -22,11 +22,11 @@ def main():
     originals = [p for p in posts if p['has_text'] and not p['is_retweet']]
 
     print("=" * 70)
-    print("⏰ 分析 #2: 發文時間規律")
-    print(f"   分析對象: 就任後原創貼文 {len(originals)} 篇")
+    print("⏰ Analysis #2: Posting Time Patterns")
+    print(f"   Analysis Target: Original posts since inauguration - {len(originals)} posts")
     print("=" * 70)
 
-    # --- 1. 每小時分布（UTC → EST 轉換，Trump 在東岸） ---
+    # --- 1. Hourly Distribution (UTC → EST conversion, Trump is on East Coast) ---
     hour_dist = Counter()
     hour_by_month = defaultdict(Counter)
 
@@ -36,7 +36,7 @@ def main():
         month = p['created_at'][:7]
         hour_by_month[month][est_h] += 1
 
-    print(f"\n🕐 發文時段分布 (美東時間 EST):")
+    print(f"\n🕐 Posting Time Distribution (Eastern Time EST):")
     print("-" * 60)
     max_count = max(hour_dist.values())
     for h in range(24):
@@ -45,17 +45,17 @@ def main():
         period = "🌙" if h < 6 else ("☀️" if h < 12 else ("🌅" if h < 18 else "🌙"))
         print(f"  {h:02d}:00 {period} {count:4d} {bar}")
 
-    # 深夜推文 (12am-5am EST)
+    # Late night posts (12am-5am EST)
     night_posts = [p for p in originals if est_hour(p['created_at'])[0] < 5]
-    print(f"\n🌙 深夜推文 (12am-5am EST): {len(night_posts)} 篇 ({len(night_posts)/len(originals)*100:.1f}%)")
+    print(f"\n🌙 Late Night Posts (12am-5am EST): {len(night_posts)} posts ({len(night_posts)/len(originals)*100:.1f}%)")
     if night_posts:
-        print("   最近 5 篇深夜推文:")
+        print("   Latest 5 late night posts:")
         for p in night_posts[:5]:
             est_h, est_m = est_hour(p['created_at'])
             print(f"   {p['created_at'][:16]} (EST {est_h}:{est_m:02d}) | {p['content'][:80]}...")
 
-    # --- 2. 每日發文量 ---
-    print(f"\n📅 每日發文量分布:")
+    # --- 2. Daily Post Volume ---
+    print(f"\n📅 Daily Post Volume Distribution:")
     print("-" * 60)
     daily = Counter()
     for p in originals:
@@ -63,36 +63,36 @@ def main():
 
     counts = sorted(daily.values())
     avg_daily = sum(counts) / len(counts)
-    # P4-1: 空值防護 + P3-8: 中位數改用 statistics.median
+    # P4-1: Empty value protection + P3-8: Use statistics.median for median
     median_count = median(counts) if counts else 0
-    print(f"  平均每天: {avg_daily:.1f} 篇")
+    print(f"  Average per day: {avg_daily:.1f} posts")
     if counts:
-        print(f"  最少: {counts[0]} 篇")
-        print(f"  最多: {counts[-1]} 篇")
-    print(f"  中位數: {median_count} 篇")
+        print(f"  Minimum: {counts[0]} posts")
+        print(f"  Maximum: {counts[-1]} posts")
+    print(f"  Median: {median_count} posts")
 
-    # Top 10 最多發文的日子
-    print(f"\n🔥 Top 10 發文最多的日子:")
+    # Top 10 most active days
+    print(f"\n🔥 Top 10 Most Active Days:")
     for date, count in daily.most_common(10):
-        # 那天的第一篇看看主題
+        # Look at first post that day for topic
         day_posts = [p for p in originals if p['created_at'][:10] == date]
         topic = day_posts[0]['content'][:60] if day_posts else ''
         bar = '█' * count
-        print(f"  {date} | {count:3d}篇 | {bar} | {topic}...")
+        print(f"  {date} | {count:3d} posts | {bar} | {topic}...")
 
-    # 沉默日（0 篇或極少篇）
-    print(f"\n🤫 沉默日（≤2 篇）:")
+    # Silent days (0 posts or very few)
+    print(f"\n🤫 Silent Days (≤2 posts):")
     all_dates = sorted(daily.keys())
     quiet_days = [(d, daily[d]) for d in all_dates if daily[d] <= 2]
-    print(f"  總計 {len(quiet_days)} 天")
+    print(f"  Total {len(quiet_days)} days")
     for d, c in quiet_days[-10:]:
-        print(f"  {d} | {c} 篇")
+        print(f"  {d} | {c} posts")
 
-    # --- 3. 星期分布 ---
-    print(f"\n📊 星期分布:")
+    # --- 3. Weekday Distribution ---
+    print(f"\n📊 Weekday Distribution:")
     print("-" * 60)
     weekday_dist = Counter()
-    weekday_names = ['一', '二', '三', '四', '五', '六', '日']
+    weekday_names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     for p in originals:
         dt = datetime.fromisoformat(p['created_at'].replace('Z', '+00:00'))
         weekday_dist[dt.weekday()] += 1
@@ -100,10 +100,10 @@ def main():
     for wd in range(7):
         count = weekday_dist.get(wd, 0)
         bar = '█' * int(count / max(weekday_dist.values()) * 30)
-        print(f"  週{weekday_names[wd]} | {count:4d} {bar}")
+        print(f"  {weekday_names[wd]} | {count:4d} {bar}")
 
-    # --- 4. 發文間隔分析 ---
-    print(f"\n⏱️ 發文間隔分析:")
+    # --- 4. Post Interval Analysis ---
+    print(f"\n⏱️ Post Interval Analysis:")
     print("-" * 60)
     intervals = []
     sorted_posts = sorted(originals, key=lambda p: p['created_at'])
@@ -118,30 +118,30 @@ def main():
         })
 
     intervals_min = sorted([i['minutes'] for i in intervals])
-    # P4-1: 空值防護
+    # P4-1: Empty value protection
     if not intervals_min:
-        print("  無間隔資料")
+        print("  No interval data")
         return
 
-    print(f"  最短間隔: {intervals_min[0]:.0f} 分鐘")
-    print(f"  最長間隔: {intervals_min[-1]:.0f} 分鐘 ({intervals_min[-1]/60:.1f} 小時)")
-    print(f"  平均間隔: {sum(intervals_min)/len(intervals_min):.0f} 分鐘")
-    # P3-8: 用 statistics.median
-    print(f"  中位數間隔: {median(intervals_min):.0f} 分鐘")
+    print(f"  Shortest interval: {intervals_min[0]:.0f} minutes")
+    print(f"  Longest interval: {intervals_min[-1]:.0f} minutes ({intervals_min[-1]/60:.1f} hours)")
+    print(f"  Average interval: {sum(intervals_min)/len(intervals_min):.0f} minutes")
+    # P3-8: Use statistics.median
+    print(f"  Median interval: {median(intervals_min):.0f} minutes")
 
-    # 連續轟炸（5分鐘內連發多篇）
+    # Rapid fire (multiple posts within 5 minutes)
     bursts = [i for i in intervals if i['minutes'] < 5]
-    print(f"\n🔥 連續轟炸（5分鐘內連發）: {len(bursts)} 次")
+    print(f"\n🔥 Rapid Fire (consecutive posts within 5 minutes): {len(bursts)} times")
 
-    # 長沉默後的第一篇（沉默 > 12小時）
+    # First post after long silence (silence > 12 hours)
     long_silence = [i for i in intervals if i['minutes'] > 720]
-    print(f"\n😶 長時間沉默（>12小時）後的第一篇: {len(long_silence)} 次")
+    print(f"\n😶 First Post After Long Silence (>12 hours): {len(long_silence)} times")
     for item in long_silence[:10]:
         hours = item['minutes'] / 60
-        print(f"  沉默 {hours:.1f}h → {item['date']} | {item['content']}...")
+        print(f"  Silent {hours:.1f}h → {item['date']} | {item['content']}...")
 
-    # --- 5. 發文量趨勢（每週） ---
-    print(f"\n📈 每週發文量趨勢:")
+    # --- 5. Post Volume Trend (Weekly) ---
+    print(f"\n📈 Weekly Post Volume Trend:")
     print("-" * 60)
     weekly = defaultdict(int)
     for p in originals:
@@ -152,12 +152,12 @@ def main():
         weekly[key] += 1
 
     weeks = sorted(weekly.keys())
-    for w in weeks[-16:]:  # 最近 16 週
+    for w in weeks[-16:]:  # Latest 16 weeks
         count = weekly[w]
         bar = '█' * (count // 2)
         print(f"  {w} | {count:3d} {bar}")
 
-    # 存結果
+    # Save results
     results = {
         'hourly_distribution_est': dict(hour_dist),
         'daily_counts': dict(daily.most_common()),
@@ -171,7 +171,7 @@ def main():
     with open(DATA / 'results_02_timing.json', 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
-    print(f"\n💾 詳細結果存入 results_02_timing.json")
+    print(f"\n💾 Detailed results saved to results_02_timing.json")
 
 
 if __name__ == '__main__':
