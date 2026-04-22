@@ -126,3 +126,4 @@ class TestMarketSession:
     def test_pre_market_early(self):
         """UTC 09:00 = EST 04:00 → PRE_MARKET (h >= 4, h < 9)"""
         assert market_session("2025-01-15T09:00:00Z") == 'PRE_MARKET'
+
