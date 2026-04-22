@@ -263,3 +263,4 @@ if __name__ == '__main__':
         print(f"Unknown command: {cmd}")
         print(f"Available: {', '.join(COMMANDS.keys())}")
         sys.exit(1)
+
